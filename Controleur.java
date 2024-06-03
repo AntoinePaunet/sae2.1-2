@@ -6,6 +6,14 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * Cette classe lie la pertie métier et vue du projet
+ * @author Antione Paunet, IUT du Havre
+ * @author Mael Vauthier,  IUT du Havre
+ * @author Martin Ravenel, IUT du Havre
+ * @version 1.0 , 2024-06-03
+ */
+
 public class Controleur
 {
     private Carte           carte;

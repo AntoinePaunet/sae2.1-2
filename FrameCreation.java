@@ -7,12 +7,8 @@ import java.awt.event.ActionListener;
 
 public class FrameCreation extends JFrame
 {
-    private JPanel          pnlRadio;
+    private JPanel          pnlTop;
     private JPanel          pnlCentral;
-
-    private JRadioButton    radioButtonVille;
-    private JRadioButton    radioButtonRoute;
-    private ButtonGroup     btnGrp;
 
     private TextField       txtNom;
     private TextField       txtCooX;
@@ -20,7 +16,7 @@ public class FrameCreation extends JFrame
 
 
 
-    public FrameCreation()
+    public FrameCreation(boolean isIhmVille)
     {
         this.setTitle   ( "Création d'un élément");
         this.setSize    ( 500,400 );
@@ -29,49 +25,28 @@ public class FrameCreation extends JFrame
         this.setVisible(true);
 
         //Definition des objets
-        this.pnlRadio   = new JPanel(new FlowLayout());
-        this.pnlCentral = new JPanel(new GridLayout(3,2,10,10));
-
-        this.pnlCentral.add(Box.createRigidArea(new Dimension(0, 100)));
-
-        this.radioButtonVille = new JRadioButton("Ville");
-        this.radioButtonRoute = new JRadioButton("Route");
-        this.btnGrp = new ButtonGroup();
-
-        this.btnGrp.add(this.radioButtonRoute);
-        this.btnGrp.add(this.radioButtonVille);
+        this.pnlTop     = new JPanel(new FlowLayout());
+        this.pnlCentral = new JPanel();
 
 
-        this.pnlRadio.add(this.radioButtonVille, BorderLayout.CENTER);
-        this.pnlRadio.add(this.radioButtonRoute, BorderLayout.CENTER);
+        this.pnlCentral.setLayout(new BoxLayout(this.pnlCentral, BoxLayout.Y_AXIS));
 
-        this.add(this.pnlRadio, BorderLayout.NORTH);
+
+
+        this.add(this.pnlTop, BorderLayout.NORTH);
         this.add(this.pnlCentral);
-
-        this.radioButtonVille.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                setIhmVille();
-            }
-        });
-
-        this.radioButtonRoute.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                setIhmRoute();
-            }
-        });
 
 
         Border lineBorder = BorderFactory.createLineBorder(Color.black, 3);
-        this.pnlRadio.setBorder(lineBorder);
-
+        this.pnlTop.setBorder(lineBorder);
 
         //Initialisation
-        this.radioButtonVille.setSelected(true);
-        this.setIhmVille();
+        if(isIhmVille)
+        {
+            this.setIhmVille();
+        }else{
+            this.setIhmRoute();
+        }
     }
 
 
@@ -79,6 +54,17 @@ public class FrameCreation extends JFrame
 
     public void setIhmVille()
     {
+        JLabel lblTxtPresentation = new JLabel("Création d'une ville");
+        lblTxtPresentation.setFont(new Font("Arial", Font.BOLD, 16));
+        this.pnlTop.add(lblTxtPresentation, BorderLayout.CENTER);
+
+
+        //Tests
+        JPanel pnlNom = new JPanel(new FlowLayout());
+        JPanel pnlCooX = new JPanel(new FlowLayout());
+        JPanel pnlCooY = new JPanel(new FlowLayout());
+
+
         JLabel lblNom = new JLabel("Nom de la ville : ");
         this.txtNom = new TextField();
         JLabel lblCooX = new JLabel("Coordonnée X de la ville : ");
@@ -86,17 +72,18 @@ public class FrameCreation extends JFrame
         JLabel lblCooY = new JLabel("Coordonnée Y de la ville : ");
         this.txtCooY = new TextField();
 
-        this.txtNom.setPreferredSize(new Dimension(20, 30));
-        this.txtCooY.setPreferredSize(new Dimension(20, 30));
-        this.txtCooX.setPreferredSize(new Dimension(20, 30));
+        pnlNom.add(lblNom);
+        pnlNom.add(this.txtNom);
 
-        this.pnlCentral.add(lblNom);
-        this.pnlCentral.add(this.txtNom);
-        this.pnlCentral.add(lblCooX);
-        this.pnlCentral.add(this.txtCooX);
-        this.pnlCentral.add(lblCooY);
-        this.pnlCentral.add(this.txtCooY);
+        pnlCooX.add(lblCooX);
+        pnlCooX.add(this.txtCooX);
 
+        pnlCooY.add(lblCooY);
+        pnlCooY.add(this.txtCooY);
+
+        this.pnlCentral.add(pnlNom);
+        this.pnlCentral.add(pnlCooX);
+        this.pnlCentral.add(pnlCooY);
     }
 
 

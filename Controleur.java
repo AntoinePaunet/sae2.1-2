@@ -34,12 +34,12 @@ public class Controleur
         this.importFile("data.txt");
 
         //Ajout des actions listener pour les bouttons
-        this.ihm.getMenuFichierAjouter().addActionListener(new ActionListener()
+        this.ihm.getMenuiAjouterVille().addActionListener(new ActionListener()
         {
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                getCrtl().ihmCreation = new FrameCreation();
+                getCrtl().ihmCreation = new FrameCreation(true);
             }
         });
     }

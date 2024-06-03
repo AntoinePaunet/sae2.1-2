@@ -28,10 +28,10 @@ public class Controleur
     private Controleur()
     {
         this.carte = new Carte();
-        this.urlFichier = "./data.txt";
+        this.urlFichier = "data.txt";
         this.ihm = new Interface();
         this.init();
-        this.importFile("./data.txt");
+        this.importFile("data.txt");
 
         //Ajout des actions listener pour les bouttons
         this.ihm.getPanel().getBtnAjout().addActionListener(new ActionListener()

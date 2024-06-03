@@ -8,9 +8,9 @@ public class Interface extends JFrame implements ActionListener
 {
     private PanelReseau panelReseau;
 
-	private JMenuItem     menuFichierAjouter;
-	private JMenuItem     menuFichierOuvrir;
-	private JMenuItem     menuFichierQuitter;
+	private JMenuItem     menuiFichierAjouter;
+	private JMenuItem     menuiFichierOuvrir;
+	private JMenuItem     menuiFichierQuitter;
 
     public Interface ()
     {
@@ -30,13 +30,13 @@ public class Interface extends JFrame implements ActionListener
 		JMenu menuQuitter = new JMenu("Quitter");
 
 
-		this.menuFichierAjouter  = new JMenuItem("Ajouter une route" );
-		this.menuFichierAjouter = new JMenuItem("Ajouter une ville" );
-		this.menuFichierQuitter = new JMenuItem("Quitter" );
+		this.menuiFichierAjouter  = new JMenuItem("Ajouter une route" );
+		this.menuiFichierAjouter = new JMenuItem("Ajouter une ville" );
+		this.menuiFichierQuitter = new JMenuItem("Quitter" );
 
 
 		menuBar.add(menuFichierAjouter);
-		//menuBar.add(menuFichierOuvrir);
+		menuBar.add(menuFichierOuvrir);
 		menuBar.add(menuFichierQuitter);
 
 		this.setJMenuBar( menuBar );
@@ -44,7 +44,7 @@ public class Interface extends JFrame implements ActionListener
 
 		// Activation des composants
 		this.menuFichierAjouter.addActionListener ( this );
-		//this.menuFichierOuvrir.addActionListener  ( this );
+		this.menuFichierOuvrir .addActionListener ( this );
 		this.menuFichierQuitter.addActionListener ( this );
 
 		// Gestion de la fermeture de la fenêtre
@@ -64,7 +64,7 @@ public class Interface extends JFrame implements ActionListener
 			System.out.println ( ( (JMenuItem) e.getSource() ).getText() );
 
 		// Fermeture de l'application
-		if ( e.getSource() == this.menuFichierQuitter )
+		if ( e.getSource() == this.menuiFichierQuitter )
 			System.exit(0);
 	}
 

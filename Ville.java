@@ -24,7 +24,7 @@ public class Ville
 	 * @param x l'abcisse de la Ville
 	 * @param y l'ordonnée de la Ville
 	 */
-	private Ville( String nom, int x, int y)
+	public Ville( String nom, int x, int y)
 	{
 		this.numVille = Ville.nbVille++;
 		this.nom = nom;

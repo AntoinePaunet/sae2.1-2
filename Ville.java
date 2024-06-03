@@ -1,12 +1,12 @@
 import java.util.List;
 
 /**
- * Cette classe permet de créer et gérer les villes du plateau
+ * Cet classe recesne les Villes.
  * @author Antione Paunet, IUT du Havre
  * @author Mael Vauthier,  IUT du Havre
  * @author Martin Ravenel, IUT du Havre
  * @version 1.0 , 2024-06-03
-*/
+ */
 
 public class Ville
 {
@@ -18,7 +18,7 @@ public class Ville
 	private List lstRoute;
 
 	/**
-	 * Constructeur de la classe Ville. Chaque villle possede un numéro séquentiel, un nom, ainsi qu'une abcisse et une ordonnée pour définnir sa position.
+	 * Constructeur de la classe Ville. Chaque ville possede un numéro séquentiel, un nom, ainsi qu'une abcisse et une ordonnée pour définir sa position.
 	 *
 	 * @param nom le nom de la Ville
 	 * @param x l'abcisse de la Ville
@@ -86,7 +86,7 @@ public class Ville
 	public String toString()
 	{
 		return "Ville " + this.numVille + " " + this.nom
-		 +     "\tx:" + this.x + " y:" + this.y;
+				+     "\tx:" + this.x + " y:" + this.y;
 	}
 
 }

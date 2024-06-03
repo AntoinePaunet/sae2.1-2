@@ -22,6 +22,7 @@ public class Route
 	 * @param villeD la ville de départ de la Route
 	 * @param villeA la ville d'arrivée de la Route
 	 */
+
 	public Route(int nbTroncon, Ville villeD, Ville villeA)
 	{
 		if (nbTroncon >= 0 && nbTroncon <= 10)

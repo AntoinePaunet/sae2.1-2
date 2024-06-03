@@ -39,13 +39,16 @@ public class Carte {
 					int		 x = sc.nextInt(); 
 					int		 y = sc.nextInt();
 
-					this.villes.add(new Ville(  );
+					this.villes.add( new Ville(nom, x, y) );
 				}
+				else if( sc.hasNext("R") )
+				{
+					int nbTroncon  = sc.nextInt();
+					String	villeA = sc.next(); 
+					String	villeB = sc.next();
 
-				else if( sc.hasNext("R")
-
-
-
+					this.routes.add( new Route(nbTroncon, null, null));
+				}
 				else
 					sc.nextLine();
 

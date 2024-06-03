@@ -1,7 +1,7 @@
 import java.util.List;
 
 /**
- * Cet classe enum recense les Epices contenues dans le jeu. Les Epices sont un type de Jeton, et ont une Couleur coeespondante, définie dans la classe enum Couleur.
+ * Cette classe permet de créer et gérer les villes du plateau
  * @author Antione Paunet, IUT du Havre
  * @author Mael Vauthier,  IUT du Havre
  * @author Martin Ravenel, IUT du Havre

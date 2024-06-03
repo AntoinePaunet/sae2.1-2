@@ -47,7 +47,7 @@ public class Carte {
 					String	villeA = sc.next(); 
 					String	villeB = sc.next();
 
-					this.routes.add( new Route(nbTroncon, null, null));
+					this.routes.add( new Route(nbTroncon, villeA, villeB));
 				}
 				else
 					sc.nextLine();
@@ -57,6 +57,8 @@ public class Carte {
 			fr.close();
 		}
 		catch (Exception e){ e.printStackTrace(); }
+    }
+
 
 /*
 Les villes ont un num, nom, x et y
@@ -65,9 +67,6 @@ Les routes ont un nombre de troncons, une villeA et une villeB
 V	Nom	00	00
 R	00	Nom	Nom
 */
-    }
-
-
 
 
 

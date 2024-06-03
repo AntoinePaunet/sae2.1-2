@@ -92,8 +92,8 @@ public class Interface extends JFrame implements ActionListener
             this.setLayout(new BorderLayout(0,0));
 
             // création des composants;
-            this.panelAjout = new JPanel                  ();
-            this.panelCarte = new JPanel                  ();
+            this.panelAjout = new JPanel ();
+            this.panelCarte = new JPanel ();
 
 
 

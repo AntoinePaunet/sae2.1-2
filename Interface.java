@@ -26,7 +26,8 @@ public class Interface extends JFrame implements ActionListener
 		// Création et ajout de la barre de menu
 		JMenuBar  menuBar = new JMenuBar();
 		JMenu menuFichier = new JMenu("Ajouter");
-		JMenu menuOuvrir = new JMenu("Ouvrir");
+		JMenu menuOuvrir  = new JMenu("Ouvrir");
+		JMenu menuQuitter = new JMenu("Quitter");
 
 
 		this.menuFichierAjouter  = new JMenuItem("Ajouter une route" );
@@ -96,8 +97,11 @@ public class Interface extends JFrame implements ActionListener
 
             //Mise en place du fond
             ImageIcon backgroundImage = new ImageIcon(this.getClass().getResource("/images/backGround.jpg"));
+
             JLabel backgroundLabel = new JLabel(backgroundImage);
+
             backgroundLabel.setBounds(0, 0, this.panelCarte.getWidth(), this.panelCarte.getHeight());
+
             this.panelCarte.add(backgroundLabel);
         }
     }

@@ -35,17 +35,17 @@ public class Interface extends JFrame implements ActionListener
 		this.menuiFichierQuitter = new JMenuItem("Quitter" );
 
 
-		menuBar.add(menuFichierAjouter);
-		menuBar.add(menuFichierOuvrir);
-		menuBar.add(menuFichierQuitter);
+		menuBar.add(menuFichier);
+		menuBar.add(menuOuvrir);
+		menuBar.add(menuQuitter);
 
 		this.setJMenuBar( menuBar );
 
 
 		// Activation des composants
-		this.menuFichierAjouter.addActionListener ( this );
-		this.menuFichierOuvrir .addActionListener ( this );
-		this.menuFichierQuitter.addActionListener ( this );
+		this.menuiFichierAjouter.addActionListener ( this );
+		this.menuiFichierOuvrir.addActionListener ( this );
+		this.menuiFichierQuitter.addActionListener ( this );
 
 		// Gestion de la fermeture de la fenêtre
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -54,7 +54,7 @@ public class Interface extends JFrame implements ActionListener
 
     public JMenuItem getMenuFichierAjouter()
     {
-        return this.menuFichierAjouter;
+        return this.menuiFichierAjouter;
     }
 
 	public void actionPerformed ( ActionEvent e )

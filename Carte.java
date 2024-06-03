@@ -19,27 +19,13 @@ public class Carte {
     private ArrayList<Ville> villes;
     private ArrayList<Route> routes;
 
-
-/*
-Les villes ont un num, nom, x et y
-Les routes ont un nombre de troncons, une villeA et une villeB
-
-
-
-V	Nom	00	00
-R	00	Nom	Nom
-
-
-*/
-
-
-
     public Carte()
     {
-        this.tabRoutes = new Routes[100];
-        this.tabVilles = new Ville[50];
-
 		FileReader fr;
+
+		this.villes = new ArrayList<Ville>();
+		this.routes = new ArrayList<Route>();
+
 
 		try
 		{
@@ -53,7 +39,7 @@ R	00	Nom	Nom
 					int		 x = sc.nextInt(); 
 					int		 y = sc.nextInt();
 
-					this.tabVilles[
+					this.villes.add(new Ville(  );
 				}
 
 				else if( sc.hasNext("R")
@@ -69,6 +55,13 @@ R	00	Nom	Nom
 		}
 		catch (Exception e){ e.printStackTrace(); }
 
+/*
+Les villes ont un num, nom, x et y
+Les routes ont un nombre de troncons, une villeA et une villeB
+
+V	Nom	00	00
+R	00	Nom	Nom
+*/
     }
 
 

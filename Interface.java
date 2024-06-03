@@ -26,7 +26,8 @@ public class Interface extends JFrame implements ActionListener
 		// Création et ajout de la barre de menu
 		JMenuBar  menuBar = new JMenuBar();
 		JMenu menuFichier = new JMenu("Ajouter");
-		JMenu menuOuvrir = new JMenu("Ouvrir");
+		JMenu menuOuvrir  = new JMenu("Ouvrir");
+		JMenu menuQuitter = new JMenu("Quitter");
 
 
 		this.menuFichierAjouter  = new JMenuItem("Ajouter une route" );

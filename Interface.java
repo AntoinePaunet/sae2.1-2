@@ -38,8 +38,6 @@ public class Interface extends JFrame implements ActionListener
 		menuOuvrir .add(this.menuiOuvrir);
 		menuQuitter.add(this.menuiQuitter);
 
-
-
 		menuBar.add(menuAjouter);
 		menuBar.add(menuOuvrir);
 		menuBar.add(menuQuitter);

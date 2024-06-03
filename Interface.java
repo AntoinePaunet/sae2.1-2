@@ -35,21 +35,26 @@ public class Interface extends JFrame implements ActionListener
 		this.menuiFichierQuitter = new JMenuItem("Quitter" );
 
 
-		menuBar.add(menuiFichierAjouter);
-		menuBar.add(menuiFichierOuvrir);
-		menuBar.add(menuiFichierQuitter);
+		menuBar.add(menuFichierAjouter);
+		menuBar.add(menuFichierOuvrir);
+		menuBar.add(menuFichierQuitter);
 
 		this.setJMenuBar( menuBar );
 
 
 		// Activation des composants
-		this.menuiFichierAjouter.addActionListener ( this );
-		this.menuiFichierOuvrir.addActionListener  ( this );
-		this.menuiFichierQuitter.addActionListener ( this );
+		this.menuFichierAjouter.addActionListener ( this );
+		this.menuFichierOuvrir.addActionListener  ( this );
+		this.menuFichierQuitter.addActionListener ( this );
 
 		// Gestion de la fermeture de la fenêtre
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
+    }
+
+    public JMenuItem getMenuFichierAjouter()
+    {
+        return this.menuFichierAjouter;
     }
 
 	public void actionPerformed ( ActionEvent e )
@@ -75,16 +80,12 @@ public class Interface extends JFrame implements ActionListener
         private JPanel panelAjout;
         private JPanel panelCarte;
 
-        private JButton btnAjout;
-
         public PanelReseau ( )
         {
 
             this.setLayout(new BorderLayout(0,0));
 
             // création des composants;
-            this.btnAjout   = new JButton ( "AJOUTER" );
-
             this.panelAjout = new JPanel                  ();
             this.panelCarte = new JPanel                  ();
 
@@ -102,14 +103,6 @@ public class Interface extends JFrame implements ActionListener
             backgroundLabel.setBounds(0, 0, this.panelCarte.getWidth(), this.panelCarte.getHeight());
 
             this.panelCarte.add(backgroundLabel);
-
-            //Ajout des composants
-            this.panelAjout.add( this.btnAjout );
-        }
-
-        public JButton getBtnAjout()
-        {
-            return this.btnAjout;
         }
     }
 }

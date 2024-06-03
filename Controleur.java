@@ -34,7 +34,7 @@ public class Controleur
         this.importFile("data.txt");
 
         //Ajout des actions listener pour les bouttons
-        this.ihm.getPanel().getBtnAjout().addActionListener(new ActionListener()
+        this.ihm.getMenuFichierAjouter().addActionListener(new ActionListener()
         {
             @Override
             public void actionPerformed(ActionEvent e)

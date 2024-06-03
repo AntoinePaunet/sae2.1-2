@@ -28,6 +28,10 @@ public class FrameCreation extends JFrame implements ActionListener
         this.panelDonnees.add(this.radioButtonVille, BorderLayout.CENTER);
         this.panelDonnees.add(this.radioButtonRoute, BorderLayout.CENTER);
         this.add(panelDonnees);
+
+        //Initialisation
+        this.radioButtonVille.setSelected(true);
+        this.setIhmVille();
     }
 
     @Override

@@ -8,7 +8,7 @@ public class Interface extends JFrame implements ActionListener
 {
     private PanelReseau panelReseau;
 
-	private JMenuItem     menuiAjouter;
+	private JMenuItem     menuiAjouterVille, menuiAjouterRoute;
 	private JMenuItem     menuiOuvrir;
 	private JMenuItem     menuiQuitter;
 
@@ -30,11 +30,13 @@ public class Interface extends JFrame implements ActionListener
 		JMenu menuQuitter = new JMenu("Quitter");
 
 
-		this.menuiAjouter  = new JMenuItem("Ajouter une ville" );
-		this.menuiOuvrir = new JMenuItem("Ajouter une route" );
+		this.menuiAjouterVille  = new JMenuItem("Ajouter une ville" );
+		this.menuiAjouterRoute  = new JMenuItem("Ajouter une route" );
+		this.menuiOuvrir = new JMenuItem("Importer un réseau" );
 		this.menuiQuitter = new JMenuItem("Quitter" );
 
-		menuAjouter.add(this.menuiAjouter);
+		menuAjouter.add(this.menuiAjouterVille);
+		menuAjouter.add(this.menuiAjouterRoute);
 		menuOuvrir .add(this.menuiOuvrir);
 		menuQuitter.add(this.menuiQuitter);
 
@@ -46,7 +48,8 @@ public class Interface extends JFrame implements ActionListener
 
 
 		// Activation des composants
-		this.menuiAjouter.addActionListener ( this );
+		this.menuiAjouterVille.addActionListener ( this );
+		this.menuiAjouterRoute.addActionListener ( this );
 		this.menuiOuvrir .addActionListener ( this );
 		this.menuiQuitter.addActionListener ( this );
 

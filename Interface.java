@@ -8,9 +8,9 @@ public class Interface extends JFrame implements ActionListener
 {
     private PanelReseau panelReseau;
 
-	private JMenuItem     menuiFichierAjouter;
-	private JMenuItem     menuiFichierOuvrir;
-	private JMenuItem     menuiFichierQuitter;
+	private JMenuItem     menuiAjouter;
+	private JMenuItem     menuiOuvrir;
+	private JMenuItem     menuiQuitter;
 
     public Interface ()
     {
@@ -25,27 +25,32 @@ public class Interface extends JFrame implements ActionListener
 
 		// Création et ajout de la barre de menu
 		JMenuBar  menuBar = new JMenuBar();
-		JMenu menuFichier = new JMenu("Ajouter");
+		JMenu menuAjouter = new JMenu("Ajouter");
 		JMenu menuOuvrir  = new JMenu("Ouvrir");
 		JMenu menuQuitter = new JMenu("Quitter");
 
 
-		this.menuiFichierAjouter  = new JMenuItem("Ajouter une route" );
-		this.menuiFichierAjouter = new JMenuItem("Ajouter une ville" );
-		this.menuiFichierQuitter = new JMenuItem("Quitter" );
+		this.menuiAjouter  = new JMenuItem("Ajouter une ville" );
+		this.menuiOuvrir = new JMenuItem("Ajouter une route" );
+		this.menuiQuitter = new JMenuItem("Quitter" );
+
+		menuAjouter.add(this.menuiAjouter);
+		menuOuvrir .add(this.menuiOuvrir);
+		menuQuitter.add(this.menuiQuitter);
 
 
-		menuBar.add(menuFichierAjouter);
-		menuBar.add(menuFichierOuvrir);
-		menuBar.add(menuFichierQuitter);
+
+		menuBar.add(menuAjouter);
+		menuBar.add(menuOuvrir);
+		menuBar.add(menuQuitter);
 
 		this.setJMenuBar( menuBar );
 
 
 		// Activation des composants
-		this.menuFichierAjouter.addActionListener ( this );
-		this.menuFichierOuvrir .addActionListener ( this );
-		this.menuFichierQuitter.addActionListener ( this );
+		this.menuiAjouter.addActionListener ( this );
+		this.menuiOuvrir .addActionListener ( this );
+		this.menuiQuitter.addActionListener ( this );
 
 		// Gestion de la fermeture de la fenêtre
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -54,7 +59,8 @@ public class Interface extends JFrame implements ActionListener
 
     public JMenuItem getMenuFichierAjouter()
     {
-        return this.menuFichierAjouter;
+        //return this.menuAjouter;
+		return null;
     }
 
 	public void actionPerformed ( ActionEvent e )
@@ -64,7 +70,7 @@ public class Interface extends JFrame implements ActionListener
 			System.out.println ( ( (JMenuItem) e.getSource() ).getText() );
 
 		// Fermeture de l'application
-		if ( e.getSource() == this.menuiFichierQuitter )
+		if ( e.getSource() == this.menuiQuitter )
 			System.exit(0);
 	}
 

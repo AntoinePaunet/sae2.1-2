@@ -44,7 +44,7 @@ public class Interface extends JFrame implements ActionListener
 
 		// Activation des composants
 		this.menuFichierAjouter.addActionListener ( this );
-		this.menuFichierOuvrir.addActionListener  ( this );
+		this.menuFichierOuvrir .addActionListener ( this );
 		this.menuFichierQuitter.addActionListener ( this );
 
 		// Gestion de la fermeture de la fenêtre

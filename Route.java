@@ -7,7 +7,7 @@
  */
 
 
-public class Routes
+public class Route
 {
 
 	private int   nbTroncon   ;

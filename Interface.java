@@ -1,15 +1,17 @@
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
 import java.awt.event.*;
-import java.awt.BorderLayout;
 
-public class FrameReseau extends JFrame
+public class Interface extends JFrame
 {
     private PanelReseau panelReseau;
 
-    public FrameReseau ()
+    public Interface ()
     {
         this.setTitle   ( "Réseau routier");
-        this.setSize    ( 1040,910 );
+        this.setSize    ( 1040,950 );
         this.setLocation(  50, 50 );
         this.panelReseau = new PanelReseau();
 
@@ -29,7 +31,7 @@ public class FrameReseau extends JFrame
     }
 
 
-    public class PanelReseau extends JPanel implements ActionListener
+    public class PanelReseau extends JPanel
     {
 
         private JPanel panelAjout;
@@ -40,7 +42,7 @@ public class FrameReseau extends JFrame
         public PanelReseau ( )
         {
 
-            this.setLayout(new BorderLayout(10,10));
+            this.setLayout(new BorderLayout(0,0));
 
             // création des composants;
             this.btnAjout   = new JButton ( "AJOUTER" );
@@ -52,32 +54,22 @@ public class FrameReseau extends JFrame
 
             // positionnement des composants
             this.add(panelAjout, BorderLayout.NORTH );
-            this.add(panelCarte);
+            this.add(panelCarte, BorderLayout.CENTER);
 
+            //Mise en place du fond
+            ImageIcon backgroundImage = new ImageIcon(this.getClass().getResource("/images/backGround.jpg"));
+            JLabel backgroundLabel = new JLabel(backgroundImage);
+            backgroundLabel.setBounds(0, 0, this.panelCarte.getWidth(), this.panelCarte.getHeight());
+            this.panelCarte.add(backgroundLabel);
+
+            //Ajout des composants
             this.panelAjout.add( this.btnAjout );
-
-            // activation des composants
-            this.btnAjout.addActionListener(this);
         }
 
-        public void actionPerformed ( ActionEvent evt )
+        public JButton getBtnAjout()
         {
-            if(evt.getSource().equals(btnAjout))
-                new FrameCreation();
-        }
-
-        public void actionPerformed(ActionListener actionListener) {
+            return this.btnAjout;
         }
     }
-
-    public class FrameCreation
-    {
-        public FrameCreation()
-        {
-
-        }
-    }
-
-
 }
 

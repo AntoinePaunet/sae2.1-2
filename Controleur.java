@@ -5,12 +5,12 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.time.temporal.JulianFields;
 
 public class Controleur
 {
     private Carte           carte;
-    private FrameReseau     ihm;
+    private Interface       ihm;
+    private FrameCreation   ihmCreation;
 
     private String urlFichier;
     private File fichierData;
@@ -21,21 +21,24 @@ public class Controleur
     {
         this.carte = new Carte();
         this.urlFichier = "./data.txt";
-        this.ihm = new FrameReseau();
+        this.ihm = new Interface();
         this.init();
         this.importFile("./data.txt");
-        this.ihm.getPanel().actionPerformed(new ActionListener()
+
+        //Ajout des actions listener pour les bouttons
+        this.ihm.getPanel().getBtnAjout().addActionListener(new ActionListener()
         {
-            
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                if(e.getSource() instanceof JButton)
-                {
-
-                }
+                getCrtl().ihmCreation = new FrameCreation();
             }
         });
+    }
+
+    private Controleur getCrtl()
+    {
+        return this;
     }
 
 

@@ -11,7 +11,7 @@ public class FrameCreation extends JFrame
 
     public FrameCreation()
     {
-        this.setTitle   ( "Réseau routier");
+        this.setTitle   ( "Création d'un élément");
         this.setSize    ( 500,400 );
         this.setLocation(  50, 50 );
         this.setVisible(true);

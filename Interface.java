@@ -75,6 +75,27 @@ public class Interface extends JFrame implements ActionListener
 		if ( e.getSource() instanceof JMenuItem )
 			System.out.println ( ( (JMenuItem) e.getSource() ).getText() );
 
+		if( e.getSource() == this.menuiAjouterVille )
+			new FrameCreation();
+
+		if( e.getSource() == this.menuiAjouterRoute )
+			new FrameCreation();
+
+		/*
+		// Importation des fichiers
+		if( e.getSource() == this.menuiOuvrir )
+		{
+			JFileChooser fc = new JFileChooser();
+
+			int returnVal = fc.showOpenDialog(this);
+
+			if (returnVal == JFileChooser.APPROVE_OPTION)
+				this.ctrl.setFichierImage(fc.getSelectedFile().getAbsolutePath());
+			else
+				System.out.println("Annuler");
+		}
+		*/
+
 		// Fermeture de l'application
 		if ( e.getSource() == this.menuiQuitter )
 			System.exit(0);

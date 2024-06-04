@@ -62,7 +62,7 @@ public class Carte
 
 
 
-	public static void lireVille
+	public static void lireVille( String ligne )
 
 
 /*

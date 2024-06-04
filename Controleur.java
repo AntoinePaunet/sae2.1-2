@@ -17,7 +17,7 @@ import java.io.IOException;
 public class Controleur
 {
     private Carte           carte;
-    private Interface       ihm;
+    private FramePrincipale ihm;
     private FrameCreation   ihmCreation;
 
     private String urlFichier;
@@ -29,7 +29,7 @@ public class Controleur
     {
         this.carte = new Carte();
         this.urlFichier = "data.txt";
-        this.ihm = new Interface();
+        this.ihm = new FramePrincipale();
         this.init();
         this.importFile("data.txt");
     }

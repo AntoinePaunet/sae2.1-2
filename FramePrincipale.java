@@ -4,7 +4,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.*;
 
-public class Interface extends JFrame implements ActionListener
+public class FramePrincipale extends JFrame implements ActionListener
 {
     private PanelReseau panelReseau;
 
@@ -12,7 +12,7 @@ public class Interface extends JFrame implements ActionListener
 	private JMenuItem     menuiOuvrir;
 	private JMenuItem     menuiQuitter;
 
-    public Interface ()
+    public FramePrincipale ()
     {
         this.setTitle   ( "Réseau routier");
         this.setSize    ( 1040,950 );

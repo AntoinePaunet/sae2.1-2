@@ -60,10 +60,6 @@ public class Carte
 	}
 
 
-
-
-}
-
 /*
 Les villes ont un num, nom, x et y
 Les routes ont un nombre de troncons, une villeA et une villeB

@@ -58,6 +58,11 @@ public class Interface extends JFrame implements ActionListener
         this.setVisible(true);
     }
 
+    public JMenuItem getMenuiAjouterVille()
+    {
+        return this.menuiAjouterVille;
+    }
+
     public JMenuItem getMenuFichierAjouter()
     {
         //return this.menuAjouter;

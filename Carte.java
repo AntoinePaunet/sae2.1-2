@@ -47,7 +47,7 @@ public class Carte {
 					String	villeA = sc.next(); 
 					String	villeB = sc.next();
 
-					this.routes.add( new Route(nbTroncon, villeA, villeB));
+					this.routes.add( new Route(nbTroncon, new Ville("g",0,0), new Ville("t",0,0)));
 				}
 				else
 					sc.nextLine();

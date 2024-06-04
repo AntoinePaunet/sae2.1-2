@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -191,6 +192,11 @@ public class Carte
 	public Ville rechercheVille( int numVille )
 	{
 		return this.villes.get(numVille-1);
+	}
+
+	public ArrayList<Ville> getTabVilles()
+	{
+		return this.villes;
 	}
 
 

@@ -1,10 +1,12 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FramePrincipale extends JFrame implements ActionListener
 {
-    private PanelReseau panelReseau;
+    private JLayeredPane panelReseau;
 
 	private JMenuItem     menuiAjouterVille, menuiAjouterRoute;
 	private JMenuItem     menuiOuvrir;
@@ -19,8 +21,10 @@ public class FramePrincipale extends JFrame implements ActionListener
 
 
 		// Création et ajout du Panel
-        this.panelReseau = new PanelReseau();
+        this.panelReseau = new JLayeredPane();
         this.add ( this.panelReseau );
+        this.panelReseau.setPreferredSize(new Dimension(1000, 800));
+        this.panelReseau.setBorder(BorderFactory.createLineBorder(Color.black, 3));
 
 
 		// Création et ajout de la barre de menu
@@ -56,7 +60,38 @@ public class FramePrincipale extends JFrame implements ActionListener
 		// Gestion de la fermeture de la fenêtre
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        //Recharger l'ihm
+        rechargerIhm();
+
     }
+
+    public Runnable rechargerIhm() //Met 60 fps
+    {
+        ArrayList<Ville> villes = Controleur.getCarte().getTabVilles();
+        Timer fps = new Timer(17, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                ImageIcon backgroundImage = new ImageIcon(this.getClass().getResource("/images/backGround.jpg"));
+                JLabel backgroundLabel = new JLabel(backgroundImage);
+                backgroundLabel.setBounds(0, 0, panelReseau.getWidth(), panelReseau.getHeight());
+                panelReseau.add(backgroundLabel, JLayeredPane.DEFAULT_LAYER);
+
+
+                for(Ville v : villes)
+                {
+                    ImageIcon imageVille = new ImageIcon(getClass().getResource("/images/ville.png"));
+                    JLabel imgLabel = new JLabel(imageVille);
+                    imgLabel.setBounds(v.getX(), v.getY(), imageVille.getIconWidth(), imageVille.getIconHeight());
+                    panelReseau.add(imgLabel, JLayeredPane.DRAG_LAYER);
+                }
+            }
+        });
+        fps.start();
+        return null;
+    }
+
+
 
     public JMenuItem getMenuiAjouterVille()
     {
@@ -101,42 +136,9 @@ public class FramePrincipale extends JFrame implements ActionListener
 			System.exit(0);
 	}
 
-    public PanelReseau getPanel()
+    public JLayeredPane getPanel()
     {
         return this.panelReseau;
-    }
-
-
-    public class PanelReseau extends JPanel
-    {
-
-        private JPanel panelAjout;
-        private JPanel panelCarte;
-
-        public PanelReseau ( )
-        {
-
-            this.setLayout(new BorderLayout(0,0));
-
-            // création des composants;
-            this.panelAjout = new JPanel ();
-            this.panelCarte = new JPanel ();
-
-
-
-            // positionnement des composants
-            this.add(panelAjout, BorderLayout.NORTH );
-            this.add(panelCarte, BorderLayout.CENTER);
-
-            //Mise en place du fond
-            ImageIcon backgroundImage = new ImageIcon(this.getClass().getResource("/images/backGround.jpg"));
-
-            JLabel backgroundLabel = new JLabel(backgroundImage);
-
-            backgroundLabel.setBounds(0, 0, this.panelCarte.getWidth(), this.panelCarte.getHeight());
-
-            this.panelCarte.add(backgroundLabel);
-        }
     }
 }
 

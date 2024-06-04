@@ -25,15 +25,21 @@ public class Controleur
 
 
 
-    private Controleur() {
+    private Controleur()
+    {
         this.urlFichier = "data.txt";
-        this.ihm = new FramePrincipale();
         this.init();
         this.importFile("data.txt");
         Controleur.carte = new Carte();
+        this.ihm = new FramePrincipale();
     }
 
-	public static boolean setNouvelleVille( Ville ville ) throws IOException
+    public static Carte getCarte()
+    {
+        return carte;
+    }
+
+    public static boolean setNouvelleVille(Ville ville ) throws IOException
     {
         Ville vDep = Controleur.carte.getVille(ville.getNom());
 

@@ -57,8 +57,12 @@ public class Carte
 			fr.close();
 		}
 		catch (Exception e){ e.printStackTrace(); }
-    }
+	}
 
+
+
+
+}
 
 /*
 Les villes ont un num, nom, x et y

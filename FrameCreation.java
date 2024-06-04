@@ -249,7 +249,11 @@ public class FrameCreation extends JFrame
 
                 //Création d'un élément
                 lblErreur.setText("Création d'un élément");
-                System.out.println(lstTroncons.getSelectedIndex());
+                try {
+                    Controleur.setNouvelleRoute(txtVilleDep.getText(), txtVilleArr.getText(), lstTroncons.getSelectedIndex());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 

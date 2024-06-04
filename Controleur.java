@@ -38,9 +38,18 @@ public class Controleur
         Controleur.carte.ecrireVille(ville.getNom(), ville.getX(), ville.getY());
 	}
 
-    public static void setNouvelleRoute( Ville villeA, Ville villeB)
+    public static boolean setNouvelleRoute( String villeA, String villeB, int nbTroncons) throws IOException
     {
-        
+        Ville vDep = Controleur.carte.getVille(villeA);
+        Ville vArr = Controleur.carte.getVille(villeB);
+
+        if(vDep == null || vArr == null)
+        {
+            return false;
+        }
+
+        Controleur.carte.ecrireRoute(vDep,vArr,nbTroncons);
+        return true;
     }
 
 

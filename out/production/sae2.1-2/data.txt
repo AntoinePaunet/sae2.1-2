@@ -3,5 +3,10 @@ Paris	20	30
 Caen	68	90
 Test	50	30
 test	60	20
+Le havre	60	20
+Rouen	50	40
 
 [ROUTES]
+3	1	2
+3	2	5
+5	6	1

@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -75,6 +76,16 @@ public class Carte
 		catch (Exception e){ e.printStackTrace(); }
 	}
 
+	public Ville getVille(String nomVille)
+	{
+		for(Ville i : this.villes)
+		{
+			System.out.println(i.getNom() + " " + i.getNumVille());
+			if (i.getNom().equals(nomVille)) return i;
+		}
+		return null;
+	}
+
 
 	public void ecrireVille(String nom, int x, int y) throws IOException
 	{
@@ -108,20 +119,28 @@ public class Carte
 		writer.close();
 	}
 
-	public void ecrireRoute(Ville villeA, Ville villeB) throws IOException {
+	public void ecrireRoute(Ville villeA, Ville villeB, int nbTroncons) throws IOException {
 		FileReader fr = new FileReader("data.txt");
 		Scanner sc = new Scanner(fr);
 
 
 		String donnesFichier = "";
 
+
+
 		while(sc.hasNextLine())
 		{
-			donnesFichier += sc.nextLine()+"\n";
+			String ligne = sc.nextLine();
+			donnesFichier += ligne+"\n";
+			if(ligne.equals((nbTroncons + "\t" + villeA.getNumVille() + "\t" + villeB.getNumVille() + "\n")))
+			{
+				return;
+			}
+
 		}
 
 
-		donnesFichier += (villeA.getNumVille() + "\t" + villeB.getNumVille() + "\n\n");
+		donnesFichier += (nbTroncons + "\t" + villeA.getNumVille() + "\t" + villeB.getNumVille() + "\n");
 
 
 		BufferedWriter writer = new BufferedWriter(new FileWriter("data.txt"));

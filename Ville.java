@@ -1,4 +1,4 @@
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Cet classe recesne les Villes.
@@ -15,7 +15,7 @@ public class Ville
 	private int numVille , x , y;
 	private String nom;
 
-	private List lstRoute;
+	private ArrayList<Route> lstRoute;
 
 	/**
 	 * Constructeur de la classe Ville. Chaque ville possede un numéro séquentiel, un nom, ainsi qu'une abcisse et une ordonnée pour définir sa position.
@@ -30,6 +30,8 @@ public class Ville
 		this.nom = nom;
 		this.x = x;
 		this.y = y;
+
+		this.lstRoute = new ArrayList<Route>();
 	}
 
 	/**
@@ -74,6 +76,17 @@ public class Ville
 	public int getY()
 	{
 		return this.y;
+	}
+
+	/**
+	 * Donne l'ordonnée de la Ville.
+	 *
+	 * @return l'ordonnée de la Ville.
+	 */
+
+	public void ajouterRoute(Route r)
+	{
+		this.lstRoute.add(r);
 	}
 
 

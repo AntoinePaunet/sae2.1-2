@@ -38,7 +38,12 @@ public class Controleur
     {
         return this;
     }
-
+/*
+	public static Ville getNouvelleVille( Ville ville )
+	{
+		return 
+	}
+*/
 
     private boolean init()
     {

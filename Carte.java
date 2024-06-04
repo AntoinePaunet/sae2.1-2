@@ -33,26 +33,27 @@ public class Carte
 			Scanner sc = new Scanner ( fr );
 
 			while ( sc.hasNextLine() )
-				if( sc.hasNext("V") )
+			{
+				String ligne = sc.nextLine();
+
+				if( !ligne.isEmpty() )
 				{
-					String nom = sc.next();
-					int		 x = sc.nextInt(); 
-					int		 y = sc.nextInt();
+					int etapeLecture = 0;
 
-					this.villes.add( new Ville(nom, x, y) );
+					if( ligne.equals("[VILLES]") )
+						etapeLecture = 1;
+
+					else if( ligne.equals("[ROUTES]") )
+						etapeLecture = 2;
+
+					switch( etapeLecture )
+					{
+						case 1  : this.lireVille(ligne);
+						case 2  : this.lireRoute(ligne);
+					}
 				}
-				else if( sc.hasNext("R") )
-				{
-					int nbTroncon  = sc.nextInt();
-					String	villeA = sc.next(); 
-					String	villeB = sc.next();
-
-					this.routes.add( new Route(nbTroncon, new Ville("g",0,0), new Ville("t",0,0)));
-				}
-				sc.nextLine();
-
-
-
+			}
+			sc.close();
 			fr.close();
 		}
 		catch (Exception e){ e.printStackTrace(); }
@@ -61,18 +62,37 @@ public class Carte
 
 
 
-	public static void lireVille( String ligne )
+	public void lireVille( String ligne )
 	{
-		
+		String[] routeInfo = ligne.split("\t");
 
+		String nom = routeInfo[0]; 
+		int  x = Integer.parseInt(routeInfo[1]);
+		int  y = Integer.parseInt(routeInfo[2]);
 
-
+		this.villes.add( new Ville(nom, x, y) );
 	}
 
 
-	public static void lireRoute( String ligne )
+	public void lireRoute( String ligne )
 	{
+		String[] routeInfo = ligne.split("\t");
 
+		int nbTroncon = Integer.parseInt(routeInfo[0]); 
+		Ville  villeA = this.rechercheVille(Integer.parseInt(routeInfo[1]));
+		Ville  villeB = this.rechercheVille(Integer.parseInt(routeInfo[2]));
+
+		Route r = new Route(nbTroncon, villeA, villeB );
+
+		this.routes.add(r);
+		villeA.ajouterRoute(r);
+		villeB.ajouterRoute(r);
+	}
+
+
+	public Ville rechercheVille( int numVille )
+	{
+		return this.villes.get(numVille-1);
 	}
 
 
@@ -81,7 +101,7 @@ Les villes ont un num, nom, x et y
 Les routes ont un nombre de troncons, une villeA et une villeB
 
 V	Nom	00	00
-R	00	Nom	Nom
+R	00	00	00
 */
 
 

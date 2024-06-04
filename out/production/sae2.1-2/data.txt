@@ -1,8 +1,0 @@
-[VILLES]
-Paris	500	400
-Moncul	800	700
-Pointe-à-Pitre	100	200
-
-[ROUTES]
-1	1	2
-5	2	3

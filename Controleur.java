@@ -16,7 +16,7 @@ import java.io.IOException;
 
 public class Controleur
 {
-    private Carte           carte;
+    private static Carte    carte;
     private FramePrincipale ihm;
     private FrameCreation   ihmCreation;
 
@@ -25,33 +25,37 @@ public class Controleur
 
 
 
-    private Controleur()
-    {
-        this.carte = new Carte();
+    private Controleur() {
         this.urlFichier = "data.txt";
         this.ihm = new FramePrincipale();
         this.init();
         this.importFile("data.txt");
+        Controleur.carte = new Carte();
     }
 
     private Controleur getCrtl()
     {
         return this;
     }
-/*
-	public static Ville getNouvelleVille( Ville ville )
-	{
-		return 
+
+	public static void setNouvelleVille( Ville ville ) throws IOException
+    {
+        Controleur.carte.ecrireVille(ville.getNom(), ville.getX(), ville.getY());
 	}
-*/
+
 
     private boolean init()
     {
         this.fichierData = new File(this.urlFichier);
 
+        if(fichierData.exists())
+        {
+            return true;
+        }
+
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fichierData)))
         {
-            writer.write("Villes :\nRoutes :");
+            writer.write("[VILLES]\n\n[ROUTES]");
             System.out.println("Fichier de données créer : " + fichierData.getAbsolutePath());
         } catch (IOException e)
         {

@@ -1,8 +1,4 @@
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -42,21 +38,35 @@ public class Carte
 				{
 					if( ligne.equals("[VILLES]") )
 					{
-						ligne = sc.nextLine();
 						etapeLecture = 1;
+						if(sc.hasNextLine())
+						{
+							ligne = sc.nextLine();
+						}
 					}
 					else if( ligne.equals("[ROUTES]") )
 					{
-						ligne = sc.nextLine();
 						etapeLecture = 2;
+						if(sc.hasNextLine())
+						{
+							ligne = sc.nextLine();
+						}
 					}
-					if( etapeLecture == 1 )
+					if( etapeLecture == 1 && !ligne.equals("[VILLES]"))
 					{
-						this.lireVille(ligne);
+						if(!ligne.isEmpty())
+						{
+							System.out.println(ligne + "Ahh");
+							this.lireVille(ligne);
+						}
 					}
 					if( etapeLecture == 2 )
 					{
-						this.lireRoute(ligne);
+						if(!ligne.isEmpty() && !ligne.equals("[ROUTES]"))
+						{
+							System.out.println(ligne + "Ahh");
+							this.lireRoute(ligne);
+						}
 					}
 
 				}
@@ -68,11 +78,38 @@ public class Carte
 	}
 
 
+	public void ecrireVille(String nom, int x, int y) throws IOException
+	{
+		BufferedWriter writer = new BufferedWriter(new FileWriter("data.txt"));
+		FileReader fr = new FileReader("data.txt");
+		Scanner sc = new Scanner(fr);
+
+		System.out.println(nom + " " + x + " " + y);
+
+		try {
+
+			while (sc.hasNextLine())
+			{
+				String ligne = sc.nextLine();
+				writer.newLine();
+
+				if(ligne.isEmpty())
+				{
+					writer.write(nom + "\t" + x + "\t" + y + "\n");
+				}
+			}
+
+		}catch (Exception e){e.printStackTrace();}
+	}
+
+
 
 
 	public void lireVille( String ligne )
 	{
 		String[] routeInfo = ligne.split("\t");
+
+		System.out.println(ligne);
 
 		String nom = routeInfo[0]; 
 		int  x = Integer.parseInt(routeInfo[1]);

@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.Console;
+import java.io.IOException;
 
 public class FrameCreation extends JFrame
 {
@@ -144,12 +145,13 @@ public class FrameCreation extends JFrame
 
                     //Création ville
                     lblErreur.setText("Création d'une ville");
-                    System.out.println("Création d'une ville");
+                    Controleur.setNouvelleVille(new Ville(txtNom.getText(), Integer.parseInt(txtCooX.getText()), Integer.parseInt(txtCooY.getText())));
 
 
                 } catch (NumberFormatException e) {
                     lblErreur.setText("Erreur de saisie.");
-                    return;
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
                 }
             }
         });

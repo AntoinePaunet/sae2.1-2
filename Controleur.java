@@ -33,9 +33,17 @@ public class Controleur
         Controleur.carte = new Carte();
     }
 
-	public static void setNouvelleVille( Ville ville ) throws IOException
+	public static boolean setNouvelleVille( Ville ville ) throws IOException
     {
+        Ville vDep = Controleur.carte.getVille(ville.getNom());
+
+        if(vDep != null)
+        {
+            return false;
+        }
+
         Controleur.carte.ecrireVille(ville.getNom(), ville.getX(), ville.getY());
+        return true;
 	}
 
     public static boolean setNouvelleRoute( String villeA, String villeB, int nbTroncons) throws IOException

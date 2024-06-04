@@ -100,6 +100,11 @@ public class Carte
 			donnesFichier += sc.nextLine()+"\n";
 		}
 
+		if(donnesFichier.contains(nom))
+		{
+			return;
+		}
+
 
 		String villes = donnesFichier.substring(donnesFichier.indexOf("[VILLES]"), donnesFichier.indexOf("\n["));
 		String routes = donnesFichier.substring(donnesFichier.indexOf("[ROUTES]"));
@@ -132,10 +137,6 @@ public class Carte
 		{
 			String ligne = sc.nextLine();
 			donnesFichier += ligne+"\n";
-			if(ligne.equals((nbTroncons + "\t" + villeA.getNumVille() + "\t" + villeB.getNumVille() + "\n")))
-			{
-				return;
-			}
 
 		}
 

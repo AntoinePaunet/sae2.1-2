@@ -145,7 +145,10 @@ public class FrameCreation extends JFrame
 
                     //Création ville
                     lblErreur.setText("Création d'une ville");
-                    Controleur.setNouvelleVille(new Ville(txtNom.getText(), Integer.parseInt(txtCooX.getText()), Integer.parseInt(txtCooY.getText())));
+                    if(Controleur.setNouvelleVille(new Ville(txtNom.getText(), Integer.parseInt(txtCooX.getText()), Integer.parseInt(txtCooY.getText()))))
+                    {
+                        FrameCreation.super.dispose();
+                    }
 
 
                 } catch (NumberFormatException e) {
@@ -250,7 +253,13 @@ public class FrameCreation extends JFrame
                 //Création d'un élément
                 lblErreur.setText("Création d'un élément");
                 try {
-                    Controleur.setNouvelleRoute(txtVilleDep.getText(), txtVilleArr.getText(), lstTroncons.getSelectedIndex());
+                    if(!Controleur.setNouvelleRoute(txtVilleDep.getText(), txtVilleArr.getText(), lstTroncons.getSelectedIndex()))
+                    {
+                        lblErreur.setText("Erreur, une des villes n'existe pas");
+                    }else
+                    {
+                        FrameCreation.super.dispose();
+                    }
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }

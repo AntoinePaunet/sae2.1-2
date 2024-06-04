@@ -245,8 +245,8 @@ public class FrameCreation extends JFrame
                     return;
                 }
 
-                //Création ville
-                lblErreur.setText("Création d'une ville");
+                //Création d'un élément
+                lblErreur.setText("Création d'un élément");
                 System.out.println(lstTroncons.getSelectedIndex());
             }
         });

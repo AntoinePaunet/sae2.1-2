@@ -86,7 +86,9 @@ public class Ville
 
 	public void ajouterRoute(Route r)
 	{
+		System.out.println(this.lstRoute.add(r));
 		this.lstRoute.add(r);
+		
 	}
 
 

@@ -41,10 +41,16 @@ public class Carte
 					int etapeLecture = 0;
 
 					if( ligne.equals("[VILLES]") )
+					{
 						etapeLecture = 1;
+						sc.nextLine();
+					}
 
 					else if( ligne.equals("[ROUTES]") )
+					{
 						etapeLecture = 2;
+						sc.nextLine();
+					}
 
 					switch( etapeLecture )
 					{
@@ -65,6 +71,8 @@ public class Carte
 	public void lireVille( String ligne )
 	{
 		String[] routeInfo = ligne.split("\t");
+		System.out.println(routeInfo.length);
+		System.out.println(routeInfo[0]);
 
 		String nom = routeInfo[0]; 
 		int  x = Integer.parseInt(routeInfo[1]);

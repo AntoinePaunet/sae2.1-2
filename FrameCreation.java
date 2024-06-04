@@ -170,6 +170,7 @@ public class FrameCreation extends JFrame
         JPanel pnlVilleDep  = new JPanel(new FlowLayout());
         JPanel pnlVilleArr  = new JPanel(new FlowLayout());
         JPanel pnlTroncons  = new JPanel(new FlowLayout());
+        JPanel pnlErreur    = new JPanel(new FlowLayout());
         JPanel pnlSave      = new JPanel(new BorderLayout());
 
 
@@ -200,6 +201,9 @@ public class FrameCreation extends JFrame
         this.lstTroncons.setPreferredSize(new Dimension(60, 10));
 
 
+        JLabel lblErreur = new JLabel("");
+
+
 
         JButton btnSave = new JButton("Sauvegarder");
         btnSave.setFont(new Font("Arial", Font.BOLD, 30));
@@ -221,6 +225,7 @@ public class FrameCreation extends JFrame
         this.pnlCentral.add(pnlVilleDep);
         this.pnlCentral.add(pnlVilleArr);
         this.pnlCentral.add(pnlTroncons);
+        this.pnlCentral.add(pnlErreur);
         this.pnlCentral.add(pnlSave);
 
 
@@ -228,11 +233,21 @@ public class FrameCreation extends JFrame
             @Override
             public void actionPerformed(ActionEvent actionEvent)
             {
-                if(txtVilleArr.getText().isEmpty() || txtVilleDep.getText().isEmpty())
+                lblErreur.setFont(new Font("Arial", Font.BOLD, 20));
+                lblErreur.setBackground(Color.RED);
+                pnlErreur.add(lblErreur);
+
+
+
+                if(txtVilleDep.getText().isEmpty() || txtVilleArr.getText().isEmpty() || lstTroncons.getSelectedIndex() == -1)
                 {
+                    lblErreur.setText("Erreur de saisie.");
                     return;
                 }
-                //Créer ville
+
+                //Création ville
+                lblErreur.setText("Création d'une ville");
+                System.out.println(lstTroncons.getSelectedIndex());
             }
         });
 

@@ -56,7 +56,6 @@ public class Carte
 					{
 						if(!ligne.isEmpty())
 						{
-							System.out.println(ligne + "Ahh");
 							this.lireVille(ligne);
 						}
 					}
@@ -64,7 +63,6 @@ public class Carte
 					{
 						if(!ligne.isEmpty() && !ligne.equals("[ROUTES]"))
 						{
-							System.out.println(ligne + "Ahh");
 							this.lireRoute(ligne);
 						}
 					}
@@ -80,26 +78,62 @@ public class Carte
 
 	public void ecrireVille(String nom, int x, int y) throws IOException
 	{
-		BufferedWriter writer = new BufferedWriter(new FileWriter("data.txt"));
 		FileReader fr = new FileReader("data.txt");
 		Scanner sc = new Scanner(fr);
 
-		System.out.println(nom + " " + x + " " + y);
+
+		String donnesFichier = "";
+
+		while(sc.hasNextLine())
+		{
+			donnesFichier += sc.nextLine()+"\n";
+		}
+
+
+		String villes = donnesFichier.substring(donnesFichier.indexOf("[VILLES]"), donnesFichier.indexOf("\n["));
+		String routes = donnesFichier.substring(donnesFichier.indexOf("[ROUTES]"));
+
+		donnesFichier = villes + (nom + "\t" + x + "\t" + y +"\n\n") + routes;
+
+
+		BufferedWriter writer = new BufferedWriter(new FileWriter("data.txt"));
 
 		try {
+			writer.write(donnesFichier);
+		}catch (Exception e)
+		{
+			e.printStackTrace();
+		}
 
-			while (sc.hasNextLine())
-			{
-				String ligne = sc.nextLine();
-				writer.newLine();
+		writer.close();
+	}
 
-				if(ligne.isEmpty())
-				{
-					writer.write(nom + "\t" + x + "\t" + y + "\n");
-				}
-			}
+	public void ecrireRoute(Ville villeA, Ville villeB) throws IOException {
+		FileReader fr = new FileReader("data.txt");
+		Scanner sc = new Scanner(fr);
 
-		}catch (Exception e){e.printStackTrace();}
+
+		String donnesFichier = "";
+
+		while(sc.hasNextLine())
+		{
+			donnesFichier += sc.nextLine()+"\n";
+		}
+
+
+		donnesFichier += (villeA.getNumVille() + "\t" + villeB.getNumVille() + "\n\n");
+
+
+		BufferedWriter writer = new BufferedWriter(new FileWriter("data.txt"));
+
+		try {
+			writer.write(donnesFichier);
+		}catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+
+		writer.close();
 	}
 
 
@@ -109,7 +143,6 @@ public class Carte
 	{
 		String[] routeInfo = ligne.split("\t");
 
-		System.out.println(ligne);
 
 		String nom = routeInfo[0]; 
 		int  x = Integer.parseInt(routeInfo[1]);

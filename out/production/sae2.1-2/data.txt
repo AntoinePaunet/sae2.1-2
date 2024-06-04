@@ -3,6 +3,5 @@ Paris	20	30
 Caen	68	90
 Test	50	30
 test	60	20
-Le havre	60	20
 
 [ROUTES]

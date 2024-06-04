@@ -72,7 +72,7 @@ public class FrameCreation extends JFrame
 
 
         //Labels
-        JLabel lblNom   = new JLabel("Nom de la ville :               ");
+        JLabel lblNom   = new JLabel("Nom de la ville :                ");
         lblNom.setFont(new Font("Arial", Font.PLAIN, 25));
         this.txtNom     = new TextField();
         this.txtNom.setPreferredSize(new Dimension(100, 20));

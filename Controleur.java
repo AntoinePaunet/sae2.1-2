@@ -33,15 +33,15 @@ public class Controleur
         Controleur.carte = new Carte();
     }
 
-    private Controleur getCrtl()
-    {
-        return this;
-    }
-
 	public static void setNouvelleVille( Ville ville ) throws IOException
     {
         Controleur.carte.ecrireVille(ville.getNom(), ville.getX(), ville.getY());
 	}
+
+    public static void setNouvelleRoute( Ville villeA, Ville villeB)
+    {
+        
+    }
 
 
     private boolean init()

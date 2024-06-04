@@ -42,11 +42,9 @@ public class FrameCreation extends JFrame
 
         //Initialisation
         if(isIhmVille)
-        {
-            this.setIhmVille();
-        }else{
-            this.setIhmRoute();
-        }
+			this.setIhmVille();
+		else
+			this.setIhmRoute();
     }
 
 

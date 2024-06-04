@@ -95,6 +95,8 @@ public class FrameModificationVille extends JFrame implements ActionListener
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
 
+		// AFFICHER LES ROUTES
+
     }
 
     @Override
@@ -107,14 +109,22 @@ public class FrameModificationVille extends JFrame implements ActionListener
 				txtYVille.getText().isEmpty()     )
 			{
 				lblErreur.setText("Erreur de saisie.\n");
-				System.out.println("test");
+			}
+			else
+			{
+				//sauvegarde dans le fichier
+				//exit
 			}
         }
 
         if( e.getSource().equals(this.btnSupprimer)  )
         {
+			//afficher la fenetre de confirmation
 			FrameConfirmer confirmer;
 			confirmer = new FrameConfirmer();
+			//si getConfirm renvoie false alors ferme confirm
+			//si true supprime dans le fichier
+			//et ferme les deux fenetres
         }
 
 
@@ -123,6 +133,7 @@ public class FrameModificationVille extends JFrame implements ActionListener
 
     public static void main(String[]args)
     {
+		//Supprimer quand fini
         JFrame frameTest;
 
         frameTest = new FrameModificationVille();

@@ -35,22 +35,24 @@ public class Carte
 			while ( sc.hasNextLine() )
 			{
 				String ligne = sc.nextLine();
+				System.out.println(ligne);
+				int etapeLecture = 0;
 
 				if( !ligne.isEmpty() )
 				{
-					int etapeLecture = 0;
-
 					if( ligne.equals("[VILLES]") )
-						etapeLecture = 1;
-
-					else if( ligne.equals("[ROUTES]") )
-						etapeLecture = 2;
-
-					switch( etapeLecture )
 					{
-						case 1  : this.lireVille(sc.nextLine());
-						case 2  : this.lireRoute(sc.nextLine());
+						ligne = sc.nextLine();
+						etapeLecture = 1;
 					}
+					else if( ligne.equals("[ROUTES]") )
+					{
+						ligne = sc.nextLine();
+						etapeLecture = 2;
+					}
+					if( etapeLecture == 1 ) this.lireVille(ligne);
+					if( etapeLecture == 2 ) this.lireRoute(ligne);
+
 				}
 			}
 			sc.close();
@@ -65,18 +67,19 @@ public class Carte
 	public void lireVille( String ligne )
 	{
 		String[] routeInfo = ligne.split("\t");
-		System.out.println(routeInfo.length);
-		System.out.println(routeInfo[0]);
 
 		String nom = routeInfo[0]; 
 		int  x = Integer.parseInt(routeInfo[1]);
 		int  y = Integer.parseInt(routeInfo[2]);
 
-		//this.villes.add( new Ville(nom, x, y) );
+		this.villes.add( new Ville(nom, x, y) );
 
-		Ville v = new Ville(nom, x, y);
-		System.out.println(v);
-		System.out.println("indice de la ville" + ));
+
+
+		//Ville v = new Ville(nom, x, y);
+		for( Ville i : this.villes )
+			System.out.println(i);
+		//System.out.println("indice de la ville " + villes.get(1));
 	}
 
 
@@ -88,7 +91,7 @@ public class Carte
 		Ville  villeA = this.rechercheVille(Integer.parseInt(routeInfo[1]));
 		Ville  villeB = this.rechercheVille(Integer.parseInt(routeInfo[2]));
 
-		Route r = new Route(nbTroncon, villeA, villeB );
+		Route r = new Route( nbTroncon, villeA, villeB );
 
 		this.routes.add(r);
 		villeA.ajouterRoute(r);
@@ -100,6 +103,7 @@ public class Carte
 
 	public Ville rechercheVille( int numVille )
 	{
+		System.out.println(this.villes.indexOf(this.villes.get(numVille-1)));
 		return this.villes.get(numVille-1);
 	}
 

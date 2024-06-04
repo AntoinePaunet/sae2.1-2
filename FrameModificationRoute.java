@@ -56,8 +56,10 @@ public class FrameModificationRoute extends JFrame implements ActionListener
 
         this.panelDonnees.add(this.lblVilleDepart  = new JLabel("Ville de départ"   ));
         //this.panelDonnees.add(this.lstVilleDepart  = new JList<>());
+
         this.panelDonnees.add(this.lblVilleArrivee = new JLabel("Ville d'arrivée"   ));
         //this.panelDonnees.add(this.lstVilleArrivee = new JList<>());
+        
         this.panelDonnees.add(this.lblNbTroncons   = new JLabel("Nombre de tronçons"));
         this.panelDonnees.add(this.lstNbTroncon);
 
@@ -75,13 +77,12 @@ public class FrameModificationRoute extends JFrame implements ActionListener
         this.add(panelSauvegarde, BorderLayout.SOUTH);
         this.add(panelDonnees                       );
         
+
         //Activation des composants
         this.lstNbTroncon.addActionListener  (this);
         this.btnSauvegarder.addActionListener(this);
         this.btnSupprimer.addActionListener  (this);
-
-        //Changement du fond visuel
-        this.panelDonnees.setBackground();
+    
 
         //Initialisation
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

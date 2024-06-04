@@ -7,15 +7,15 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 /**
- * Cette classe permet de construire et stocker les villes ainsi que les routes
+ * Cette classe permet de construire et stocker les villes ainsi que les routes. Elle représente tout le réseau pour le programme.
  * @author Antione Paunet, IUT du Havre
  * @author Mael Vauthier,  IUT du Havre
  * @author Martin Ravenel, IUT du Havre
  * @version 1.0 , 2024-06-03
  */
 
-public class Carte {
-
+public class Carte
+{
     private ArrayList<Ville> villes;
     private ArrayList<Route> routes;
 
@@ -49,15 +49,31 @@ public class Carte {
 
 					this.routes.add( new Route(nbTroncon, new Ville("g",0,0), new Ville("t",0,0)));
 				}
-				else
-					sc.nextLine();
+				sc.nextLine();
 
 
 
 			fr.close();
 		}
 		catch (Exception e){ e.printStackTrace(); }
-    }
+	}
+
+
+
+
+	public static void lireVille( String ligne )
+	{
+		
+
+
+
+	}
+
+
+	public static void lireRoute( String ligne )
+	{
+
+	}
 
 
 /*

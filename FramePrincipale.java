@@ -1,10 +1,8 @@
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.*;
 
-public class Interface extends JFrame implements ActionListener
+public class FramePrincipale extends JFrame implements ActionListener
 {
     private PanelReseau panelReseau;
 
@@ -12,11 +10,13 @@ public class Interface extends JFrame implements ActionListener
 	private JMenuItem     menuiOuvrir;
 	private JMenuItem     menuiQuitter;
 
-    public Interface ()
+    public FramePrincipale ()
     {
         this.setTitle   ( "Réseau routier");
         this.setSize    ( 1040,950 );
         this.setLocation(  50, 50 );
+		this.setVisible (true);
+
 
 		// Création et ajout du Panel
         this.panelReseau = new PanelReseau();
@@ -55,7 +55,7 @@ public class Interface extends JFrame implements ActionListener
 
 		// Gestion de la fermeture de la fenêtre
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setVisible(true);
+
     }
 
     public JMenuItem getMenuiAjouterVille()
@@ -76,10 +76,10 @@ public class Interface extends JFrame implements ActionListener
 			System.out.println ( ( (JMenuItem) e.getSource() ).getText() );
 
 		if( e.getSource() == this.menuiAjouterVille )
-			new FrameCreation();
+			new FrameCreation(true);
 
 		if( e.getSource() == this.menuiAjouterRoute )
-			new FrameCreation();
+			new FrameCreation(false);
 
 		/*
 		// Importation des fichiers

@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 public class FrameModificationVille extends JFrame implements ActionListener
@@ -25,9 +27,9 @@ public class FrameModificationVille extends JFrame implements ActionListener
     public FrameModificationVille()
     {
         this.setTitle   ( "Modification d'une ville");
-        this.setSize    ( 500,400                   );
-        this.setLocation(  50, 50                   );
-        this.setLayout  ( new BorderLayout()  );
+        this.setSize    ( 500,400            );
+        this.setLocation(  50, 50                     );
+        this.setLayout  ( new BorderLayout()              );
         
 
 
@@ -42,13 +44,16 @@ public class FrameModificationVille extends JFrame implements ActionListener
 
 
         //Ajout des objets aux panels
-        this.panelInfo.add(this.lblInfo = new JLabel("Modification d'une route"));
+        this.panelInfo.add(this.lblInfo = new JLabel("Modification d'une ville"));
 
-        this.panelDonnees.add(this.lblNomVille  = new JLabel("Nom de la ville : "   ));
+        this.panelDonnees.add(this.lblNomVille = new JLabel("  Nom de la ville : "   ));
+		this.panelDonnees.add(this.txtNomVille = new JTextField() );
 
-        this.panelDonnees.add(this.lblXVille = new JLabel("Position X : "   ));
+        this.panelDonnees.add(this.lblXVille = new JLabel("  Position X : "   ));
+		this.panelDonnees.add(this.txtXVille = new JTextField(10) );
 
-        this.panelDonnees.add(this.lblYVille = new JLabel("Position Y : "));
+        this.panelDonnees.add(this.lblYVille = new JLabel("  Position Y : "));
+		this.panelDonnees.add(this.txtYVille = new JTextField() );
 
         this.panelSauvegarde.add(this.btnSauvegarder = new JButton("SAUVEGARDER"));
         this.panelSauvegarde.add(this.btnSupprimer   = new JButton("SUPPRIMER"  ));
@@ -66,9 +71,6 @@ public class FrameModificationVille extends JFrame implements ActionListener
         
 
         //Activation des composants
-        this.lstNbTroncon.addActionListener  (this);
-        this.btnSauvegarder.addActionListener(this);
-        this.btnSupprimer.addActionListener  (this);
     
 
         //Initialisation
@@ -90,15 +92,6 @@ public class FrameModificationVille extends JFrame implements ActionListener
             
         }
 
-        if( e.getSource().equals(this.lstNbTroncon)  )
-        {
-            for (String s : this.lstNbTroncon.getSelectedItems())
-            {
-                System.out.println(s);
-            }
-        }
-
-
 
     }
 
@@ -107,7 +100,7 @@ public class FrameModificationVille extends JFrame implements ActionListener
     {
         JFrame frameTest;
 
-        frameTest = new FrameModificationRoute();
+        frameTest = new FrameModificationVille();
     }
 
 

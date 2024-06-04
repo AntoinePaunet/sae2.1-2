@@ -82,6 +82,15 @@ public class FrameModificationRoute extends JFrame implements ActionListener
         this.lstNbTroncon.addActionListener  (this);
         this.btnSauvegarder.addActionListener(this);
         this.btnSupprimer.addActionListener  (this);
+
+        //Changement visuel des labels
+		lblInfo.setFont(new Font("Arial", Font.BOLD, 20));
+		lblVilleDepart.setFont(new Font("Arial", Font.BOLD, 20));
+		lblVilleArrivee.setFont(new Font("Arial", Font.BOLD, 20));
+		lblNbTroncons.setFont(new Font("Arial", Font.BOLD, 20));
+
+		btnSauvegarder.setFont(new Font("Arial", Font.BOLD, 25));
+		btnSupprimer.setFont(new Font("Arial", Font.BOLD, 25));
     
 
         //Initialisation
@@ -100,7 +109,15 @@ public class FrameModificationRoute extends JFrame implements ActionListener
 
         if( e.getSource().equals(this.btnSupprimer)  )
         {
-            
+			//afficher la fenetre de confirmation
+			FrameConfirmer confirmer;
+			boolean bOk;
+			confirmer = new FrameConfirmer();
+			//si getConfirm renvoie false alors ferme confirm
+			//si true supprime dans le fichier
+			confirmer.dispose();
+			this.dispose();
+
         }
 
         if( e.getSource().equals(this.lstNbTroncon)  )

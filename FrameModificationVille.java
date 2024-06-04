@@ -64,12 +64,23 @@ public class FrameModificationVille extends JFrame implements ActionListener
 		this.panelDonnees.add(this.txtYVille = new JTextField() );
 
 		this.panelRoute.add(this.lblErreur = new JLabel(""), BorderLayout.SOUTH);
-		lblErreur.setFont(new Font("Arial", Font.BOLD, 20));
+		
 		this.panelRoute.add(this.lblRoute = new JLabel("  Route(s) : "), BorderLayout.NORTH);
-		lblRoute.setFont(new Font("Arial", Font.BOLD, 13));
+		
 
         this.panelSauvegarde.add(this.btnSauvegarder = new JButton("SAUVEGARDER"));
         this.panelSauvegarde.add(this.btnSupprimer   = new JButton("SUPPRIMER"  ));
+
+
+		//Changement visuel des labels
+		lblInfo.setFont(new Font("Arial", Font.BOLD, 20));
+		lblNomVille.setFont(new Font("Arial", Font.BOLD, 20));
+		lblXVille.setFont(new Font("Arial", Font.BOLD, 20));
+		lblYVille.setFont(new Font("Arial", Font.BOLD, 20));
+		lblRoute.setFont(new Font("Arial", Font.BOLD, 20));
+		lblErreur.setFont(new Font("Arial", Font.BOLD, 20));
+		btnSauvegarder.setFont(new Font("Arial", Font.BOLD, 25));
+		btnSupprimer.setFont(new Font("Arial", Font.BOLD, 25));
 
 
         //Ajout des événements aux objets
@@ -95,6 +106,8 @@ public class FrameModificationVille extends JFrame implements ActionListener
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
 
+		// AFFICHER LES ROUTES
+
     }
 
     @Override
@@ -107,14 +120,25 @@ public class FrameModificationVille extends JFrame implements ActionListener
 				txtYVille.getText().isEmpty()     )
 			{
 				lblErreur.setText("Erreur de saisie.\n");
-				System.out.println("test");
+			}
+			else
+			{
+				//sauvegarde dans le fichier
+				this.dispose();
 			}
         }
 
         if( e.getSource().equals(this.btnSupprimer)  )
         {
+			//afficher la fenetre de confirmation
 			FrameConfirmer confirmer;
+			boolean bOk;
 			confirmer = new FrameConfirmer();
+			//si getConfirm renvoie false alors ferme confirm
+			//si true supprime dans le fichier
+			confirmer.dispose();
+			this.dispose();
+
         }
 
 
@@ -123,6 +147,7 @@ public class FrameModificationVille extends JFrame implements ActionListener
 
     public static void main(String[]args)
     {
+		//Supprimer quand fini
         JFrame frameTest;
 
         frameTest = new FrameModificationVille();

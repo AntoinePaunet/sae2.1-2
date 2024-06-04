@@ -25,7 +25,7 @@ public class FrameModificationRoute extends JFrame implements ActionListener
 
     public FrameModificationRoute()
     {
-        String[] TRONCON = new String[] {"0","1","2","3","4","5","6","7","8","9","10"}; 
+        final String[] TRONCON = new String[] {"0","1","2","3","4","5","6","7","8","9","10"};
         this.setTitle   ( "Modification d'une route");
         this.setSize    ( 500,400            );
         this.setLocation(  50, 50                     );
@@ -37,7 +37,7 @@ public class FrameModificationRoute extends JFrame implements ActionListener
         this.panelInfo       = new JPanel();
         this.panelDonnees    = new JPanel();
         this.panelSauvegarde = new JPanel();
-        this.lstNbTroncon = new List();
+        this.lstNbTroncon    = new List();
 
 
         //Création de la liste du nombre de tronçons

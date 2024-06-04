@@ -21,41 +21,7 @@ public class Carte
 
     public Carte()
     {
-		FileReader fr;
 
-		this.villes = new ArrayList<Ville>();
-		this.routes = new ArrayList<Route>();
-
-
-		try
-		{
-			fr = new FileReader ( "data.txt" );
-			Scanner sc = new Scanner ( fr );
-
-			while ( sc.hasNextLine() )
-				if( sc.hasNext("V") )
-				{
-					String nom = sc.next();
-					int		 x = sc.nextInt(); 
-					int		 y = sc.nextInt();
-
-					this.villes.add( new Ville(nom, x, y) );
-				}
-				else if( sc.hasNext("R") )
-				{
-					int nbTroncon  = sc.nextInt();
-					String	villeA = sc.next(); 
-					String	villeB = sc.next();
-
-					this.routes.add( new Route(nbTroncon, new Ville("g",0,0), new Ville("t",0,0)));
-				}
-				sc.nextLine();
-
-
-
-			fr.close();
-		}
-		catch (Exception e){ e.printStackTrace(); }
 	}
 
 

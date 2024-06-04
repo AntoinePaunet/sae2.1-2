@@ -60,6 +60,11 @@ public class Carte
 	}
 
 
+
+
+	public static void lireVille
+
+
 /*
 Les villes ont un num, nom, x et y
 Les routes ont un nombre de troncons, une villeA et une villeB

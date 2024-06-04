@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 public class FrameConfirmer extends JFrame implements ActionListener
 {
-    private JPanel          panelConf;
+    private JPanel panelConf;
 
     private JLabel 	lblConf;
     private JButton btnOui , btnNon;
@@ -31,27 +31,30 @@ public class FrameConfirmer extends JFrame implements ActionListener
 
 
 		// Ajout des éléments
-
+		panelConf.add(this.lblConf);
+		panelConf.add(this.btnOui);
+		panelConf.add(this.btnNon);
 
         this.add(this.panelConf);
-
-		
-        this.setVisible(true);
     }
 
     public void actionPerformed(ActionEvent e)
     {
         if( e.getSource().equals(this.btnOui) )
         {
-            
+            this.getConfirmation(true);
         }
 
         if( e.getSource().equals(this.btnNon)  )
         {
-            
+            this.getConfirmation(false);
         }
     }
 
+	public boolean getConfirmation( boolean conf )
+	{
+		return conf;
+	}
 
 
 

@@ -76,10 +76,10 @@ public class Interface extends JFrame implements ActionListener
 			System.out.println ( ( (JMenuItem) e.getSource() ).getText() );
 
 		if( e.getSource() == this.menuiAjouterVille )
-			new FrameCreation();
+			new FrameCreation(true);
 
 		if( e.getSource() == this.menuiAjouterRoute )
-			new FrameCreation();
+			new FrameCreation(false);
 
 		/*
 		// Importation des fichiers

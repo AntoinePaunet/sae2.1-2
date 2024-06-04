@@ -23,13 +23,19 @@ public class FrameConfirmer extends JFrame implements ActionListener
         //Definition des objets
         this.panelConf = new JPanel(new FlowLayout());
 
+		this.lblConf = new JLabel("Êtes-vous sûr ?");
+
+		this.btnOui = new JButton("Oui");
+		this.btnNon = new JButton("Non");
 
 
 
+		// Ajout des éléments
 
 
         this.add(this.panelConf);
 
+		
         this.setVisible(true);
     }
 

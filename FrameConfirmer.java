@@ -56,6 +56,4 @@ public class FrameConfirmer extends JFrame implements ActionListener
 		return conf;
 	}
 
-
-
 }

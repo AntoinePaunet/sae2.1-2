@@ -41,21 +41,15 @@ public class Carte
 					int etapeLecture = 0;
 
 					if( ligne.equals("[VILLES]") )
-					{
 						etapeLecture = 1;
-						sc.nextLine();
-					}
 
 					else if( ligne.equals("[ROUTES]") )
-					{
 						etapeLecture = 2;
-						sc.nextLine();
-					}
 
 					switch( etapeLecture )
 					{
-						case 1  : this.lireVille(ligne);
-						case 2  : this.lireRoute(ligne);
+						case 1  : this.lireVille(sc.nextLine());
+						case 2  : this.lireRoute(sc.nextLine());
 					}
 				}
 			}
@@ -82,6 +76,7 @@ public class Carte
 
 		Ville v = new Ville(nom, x, y);
 		System.out.println(v);
+		System.out.println("indice de la ville" + ));
 	}
 
 

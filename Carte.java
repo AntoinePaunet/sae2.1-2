@@ -80,7 +80,6 @@ public class Carte
 	{
 		for(Ville i : this.villes)
 		{
-			System.out.println(i.getNom() + " " + i.getNumVille());
 			if (i.getNom().equals(nomVille)) return i;
 		}
 		return null;

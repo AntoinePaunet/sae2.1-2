@@ -14,8 +14,8 @@ import java.util.ArrayList;
  * @version 1.0 , 2024-06-03
  */
 
-public class Carte {
-
+public class Carte
+{
     private ArrayList<Ville> villes;
     private ArrayList<Route> routes;
 

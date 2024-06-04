@@ -60,9 +60,12 @@ public class Carte
 
 
 
-/*
+
 	public static void lireVille( String ligne )
 	{
+		
+
+
 
 	}
 
@@ -71,7 +74,7 @@ public class Carte
 	{
 
 	}
-*/
+
 
 /*
 Les villes ont un num, nom, x et y

@@ -32,11 +32,11 @@ public class Carte
 			fr = new FileReader ( "data.txt" );
 			Scanner sc = new Scanner ( fr );
 
+			int etapeLecture = 0;
+
 			while ( sc.hasNextLine() )
 			{
 				String ligne = sc.nextLine();
-				System.out.println(ligne);
-				int etapeLecture = 0;
 
 				if( !ligne.isEmpty() )
 				{
@@ -50,8 +50,14 @@ public class Carte
 						ligne = sc.nextLine();
 						etapeLecture = 2;
 					}
-					if( etapeLecture == 1 ) this.lireVille(ligne);
-					if( etapeLecture == 2 ) this.lireRoute(ligne);
+					if( etapeLecture == 1 )
+					{
+						this.lireVille(ligne);
+					}
+					if( etapeLecture == 2 )
+					{
+						this.lireRoute(ligne);
+					}
 
 				}
 			}
@@ -72,14 +78,8 @@ public class Carte
 		int  x = Integer.parseInt(routeInfo[1]);
 		int  y = Integer.parseInt(routeInfo[2]);
 
+
 		this.villes.add( new Ville(nom, x, y) );
-
-
-
-		//Ville v = new Ville(nom, x, y);
-		for( Ville i : this.villes )
-			System.out.println(i);
-		//System.out.println("indice de la ville " + villes.get(1));
 	}
 
 
@@ -87,7 +87,7 @@ public class Carte
 	{
 		String[] routeInfo = ligne.split("\t");
 
-		int nbTroncon = Integer.parseInt(routeInfo[0]); 
+		int nbTroncon = Integer.parseInt(routeInfo[0]);
 		Ville  villeA = this.rechercheVille(Integer.parseInt(routeInfo[1]));
 		Ville  villeB = this.rechercheVille(Integer.parseInt(routeInfo[2]));
 
@@ -96,14 +96,11 @@ public class Carte
 		this.routes.add(r);
 		villeA.ajouterRoute(r);
 		villeB.ajouterRoute(r);
-
-		System.out.println(r);
 	}
 
 
 	public Ville rechercheVille( int numVille )
 	{
-		System.out.println(this.villes.indexOf(this.villes.get(numVille-1)));
 		return this.villes.get(numVille-1);
 	}
 

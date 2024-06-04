@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+
 
 public class FrameModificationRoute extends JFrame implements ActionListener
 {
@@ -59,7 +59,7 @@ public class FrameModificationRoute extends JFrame implements ActionListener
 
         this.panelDonnees.add(this.lblVilleArrivee = new JLabel("Ville d'arrivée"   ));
         //this.panelDonnees.add(this.lstVilleArrivee = new JList<>());
-        
+
         this.panelDonnees.add(this.lblNbTroncons   = new JLabel("Nombre de tronçons"));
         this.panelDonnees.add(this.lstNbTroncon);
 

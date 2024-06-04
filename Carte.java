@@ -70,7 +70,10 @@ public class Carte
 		int  x = Integer.parseInt(routeInfo[1]);
 		int  y = Integer.parseInt(routeInfo[2]);
 
-		this.villes.add( new Ville(nom, x, y) );
+		//this.villes.add( new Ville(nom, x, y) );
+
+		Ville v = new Ville(nom, x, y);
+		System.out.println(v);
 	}
 
 
@@ -87,6 +90,8 @@ public class Carte
 		this.routes.add(r);
 		villeA.ajouterRoute(r);
 		villeB.ajouterRoute(r);
+
+		System.out.println(r);
 	}
 
 
@@ -104,7 +109,8 @@ V	Nom	00	00
 R	00	00	00
 */
 
-
-
-
+	public static void main( String[] args )
+	{
+		new Carte();
+	}
 }

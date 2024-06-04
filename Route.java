@@ -58,8 +58,8 @@ public class Route
 	 */
 	public String toString()
 	{
-		return "Route de " + this.getNbTroncon() + " tronçon, qui part de" + this.getVilleDepart()
-				+     " jusqu'a " + this.getVilleArrivee();
+		return "Route de " + this.getNbTroncon() + " tronçon\t" 
+			 + this.getVilleDepart() + " a " + this.getVilleArrivee();
 	}
 
 

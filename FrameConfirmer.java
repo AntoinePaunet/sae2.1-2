@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class FrameConfirmer extends JFrame implements ActionListener {
     private JPanel panelConf;
@@ -50,9 +51,17 @@ public class FrameConfirmer extends JFrame implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource().equals(this.btnOui)) {
+        if (e.getSource().equals(this.btnOui))
+        {
             if (this.frameModificationVille != null)
+            {
                 this.frameModificationVille.quitterFrame(true);
+                try {
+                    Controleur.getCarte().supprimerVille(this.frameModificationVille.getVilleModif());
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
             if (this.frameModificationRoute != null)
                 this.frameModificationRoute.quitterFrame(true);
             this.dispose();

@@ -188,6 +188,46 @@ public class Carte
 		sc.close();
 	}
 
+	public void modifieVille(Ville ville, String nomVille, int xVille, int yVille) throws IOException
+	{
+		this.supprimerVille(ville);
+		this.ecrireVille(nomVille, xVille, yVille);
+	}
+
+	public void supprimerVille(Ville ville) throws IOException
+	{
+		FileReader fr = new FileReader("data.txt");
+		Scanner sc = new Scanner(fr);
+
+
+		String donnesFichier = "";
+
+		while( sc.hasNextLine() )
+			donnesFichier += sc.nextLine()+"\n";
+
+		if( donnesFichier.contains(ville.getNom()) ) // Vérification de doubles dans le fichier texte
+		{
+			String tmp = ville.getX() + "" + ville.getY();
+			String donneesVilles = donnesFichier.substring(donnesFichier.indexOf("[VILLES]"), donnesFichier.indexOf(ville.getNom()));
+			String donneesRoutes = donnesFichier.substring(donnesFichier.indexOf(ville.getNom()) + ville.getNom().length() + tmp.length() + 2);
+
+
+			donnesFichier = donneesVilles.stripTrailing() + donneesRoutes;
+
+
+			BufferedWriter writer = new BufferedWriter( new FileWriter("data.txt") );
+
+			try
+			{
+				writer.write(donnesFichier);
+			}
+			catch( Exception e ) { e.printStackTrace(); }
+
+			writer.close();
+		}
+		sc.close();
+	}
+
 
 	public Ville getVille( String nomVille )
 	{
@@ -206,7 +246,7 @@ public class Carte
 	{
 		for( Ville v : this.villes )
 		{
-			if(v.getNom() == nom)
+			if(v.getNom().equals(nom))
 			{
 				return v;
 			}

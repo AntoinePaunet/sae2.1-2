@@ -1,14 +1,5 @@
 [VILLES]
-Caen	500	300
-Test	500	20
-Bozo	900	400
-Beauval	200	100
-Clown	400	200
-Loan	400	200
-Paris	10	20
+Rouen	200	500
+Caen	420	320
 
 [ROUTES]
-9	1	2
-2	2	1
-8	5	6
-3	7	1

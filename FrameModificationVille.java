@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class FrameModificationVille extends JFrame implements ActionListener {
 
@@ -25,11 +26,14 @@ public class FrameModificationVille extends JFrame implements ActionListener {
     private JButton btnSauvegarder;
     private JButton btnSupprimer;
 
+    private Ville villeModif;
+
     public FrameModificationVille(Ville ville) {
         this.setTitle("Modification d'une ville");
         this.setSize(500, 400);
         this.setLocation(50, 50);
         this.setLayout(new BorderLayout());
+        this.villeModif = ville;
 
         // Definition des objets
         this.panelInfo = new JPanel();
@@ -93,7 +97,6 @@ public class FrameModificationVille extends JFrame implements ActionListener {
         this.btnSupprimer.addActionListener(this);
 
         // Initialisation
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
 
         // AFFICHER LES ROUTES
@@ -108,7 +111,13 @@ public class FrameModificationVille extends JFrame implements ActionListener {
                     txtYVille.getText().isEmpty()) {
                 lblErreur.setText("Erreur de saisie.\n");
             } else {
-                // sauvegarde dans le fichier
+                try {
+
+                    //Modification
+                    Controleur.getCarte().modifieVille(villeModif, this.txtNomVille.getText(), Integer.parseInt(this.txtXVille.getText()), Integer.parseInt(this.txtYVille.getText()));
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
                 this.dispose();
             }
         }
@@ -126,6 +135,12 @@ public class FrameModificationVille extends JFrame implements ActionListener {
         if (confirm) {
             this.dispose();
         }
+    }
+
+
+    public Ville getVilleModif()
+    {
+        return this.villeModif;
     }
 
     public static void main(String[] args) {

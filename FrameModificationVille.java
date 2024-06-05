@@ -25,7 +25,7 @@ public class FrameModificationVille extends JFrame implements ActionListener {
     private JButton btnSauvegarder;
     private JButton btnSupprimer;
 
-    public FrameModificationVille() {
+    public FrameModificationVille(Ville ville) {
         this.setTitle("Modification d'une ville");
         this.setSize(500, 400);
         this.setLocation(50, 50);
@@ -48,17 +48,19 @@ public class FrameModificationVille extends JFrame implements ActionListener {
         this.panelInfo.add(this.lblInfo = new JLabel("Modification d'une ville"));
 
         this.panelDonnees.add(this.lblNomVille = new JLabel("  Nom de la ville : "));
-        this.panelDonnees.add(this.txtNomVille = new JTextField());
+        this.panelDonnees.add(this.txtNomVille = new JTextField(ville.getNom()));
 
         this.panelDonnees.add(this.lblXVille = new JLabel("  Position X : "));
-        this.panelDonnees.add(this.txtXVille = new JTextField(10));
+        this.panelDonnees.add(this.txtXVille = new JTextField(ville.getX() + ""));
 
         this.panelDonnees.add(this.lblYVille = new JLabel("  Position Y : "));
-        this.panelDonnees.add(this.txtYVille = new JTextField());
+        this.panelDonnees.add(this.txtYVille = new JTextField(ville.getY() + ""));
 
         this.panelRoute.add(this.lblErreur = new JLabel(""), BorderLayout.SOUTH);
 
         this.panelRoute.add(this.lblRoute = new JLabel("  Route(s) : "), BorderLayout.NORTH);
+
+        //Routes
 
         this.panelSauvegarde.add(this.btnSauvegarder = new JButton("SAUVEGARDER"));
         this.panelSauvegarde.add(this.btnSupprimer = new JButton("SUPPRIMER"));
@@ -127,6 +129,6 @@ public class FrameModificationVille extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
-        new FrameModificationVille();
+        new FrameModificationVille(new Ville("test", 20, 20));
     }
 }

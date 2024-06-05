@@ -120,7 +120,7 @@ public class FramePrincipale extends JFrame implements ActionListener
                 {
                     if(e.getX() >= v.getX() + 10 && e.getX() < v.getX() + 110 && e.getY() >= v.getY() + 60 && e.getY() < v.getY() + 160)
                     {
-                        System.out.println(v);
+                        new FrameModificationVille(v);
                     }
                 }
             }

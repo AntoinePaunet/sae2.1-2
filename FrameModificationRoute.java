@@ -31,8 +31,6 @@ public class FrameModificationRoute extends JFrame implements ActionListener
         this.setLocation(  50, 50                     );
         this.setLayout  ( new BorderLayout()              );
         
-
-
         //Definition des objets
         this.panelInfo       = new JPanel();
         this.panelDonnees    = new JPanel();
@@ -42,9 +40,7 @@ public class FrameModificationRoute extends JFrame implements ActionListener
 
         //Création de la liste du nombre de tronçons
         for (int i=0; i < TRONCON.length; i++)
-        {
-            this.lstNbTroncon.add(TRONCON[i]);
-        }
+        	this.lstNbTroncon.add(TRONCON[i]);
 
         //Modification du layout des panels
         this.panelDonnees.setLayout   ( new GridLayout(3,2, 10, 10) );
@@ -96,7 +92,6 @@ public class FrameModificationRoute extends JFrame implements ActionListener
         //Initialisation
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
-
     }
 
     @Override
@@ -104,7 +99,7 @@ public class FrameModificationRoute extends JFrame implements ActionListener
     {
         if( e.getSource().equals(this.btnSauvegarder) )
         {
-            
+            // Ecrire les modifications
         }
 
         if( e.getSource().equals(this.btnSupprimer)  )
@@ -123,23 +118,14 @@ public class FrameModificationRoute extends JFrame implements ActionListener
         if( e.getSource().equals(this.lstNbTroncon)  )
         {
             for (String s : this.lstNbTroncon.getSelectedItems())
-            {
-                System.out.println(s);
-            }
+            	System.out.println(s);
         }
-
-
 
     }
 
 
     public static void main(String[]args)
     {
-        JFrame frameTest;
-
-        frameTest = new FrameModificationRoute();
+       	new FrameModificationRoute();
     }
-
-
-
 }

@@ -45,9 +45,9 @@ public class FrameModificationVille extends JFrame implements ActionListener
         this.panelSauvegarde = new JPanel();
 
         //Modification du layout des panels
-		this.panelPrincipal.setLayout ( new GridLayout(2, 1));
+		this.panelPrincipal.setLayout ( new GridLayout(2, 1) );
         this.panelDonnees.setLayout   ( new GridLayout(3,2, 30, 30) );
-		this.panelRoute.setLayout     ( new BorderLayout());
+		this.panelRoute.setLayout     ( new BorderLayout() );
         this.panelSauvegarde.setLayout( new GridLayout(1, 2) );
 
 
@@ -138,21 +138,11 @@ public class FrameModificationVille extends JFrame implements ActionListener
 			//si true supprime dans le fichier
 			confirmer.dispose();
 			this.dispose();
-
         }
-
-
     }
-
 
     public static void main(String[]args)
     {
-		//Supprimer quand fini
-        JFrame frameTest;
-
-        frameTest = new FrameModificationVille();
+		new FrameModificationVille();
     }
-
-
-
 }

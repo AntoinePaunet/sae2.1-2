@@ -10,8 +10,6 @@ public class FrameConfirmer extends JFrame implements ActionListener
     private JLabel 	lblConf;
     private JButton btnOui , btnNon;
 
-
-
     public FrameConfirmer()
     {
         this.setTitle   ( "Confirmer");
@@ -29,7 +27,6 @@ public class FrameConfirmer extends JFrame implements ActionListener
 		this.btnNon = new JButton("Non");
 
 
-
 		// Ajout des éléments
 		panelConf.add(this.lblConf);
 		panelConf.add(this.btnOui);
@@ -43,11 +40,13 @@ public class FrameConfirmer extends JFrame implements ActionListener
         if( e.getSource().equals(this.btnOui) )
         {
             this.getConfirmation(true);
+			this.dispose();
         }
 
         if( e.getSource().equals(this.btnNon)  )
         {
             this.getConfirmation(false);
+			this.dispose();
         }
     }
 

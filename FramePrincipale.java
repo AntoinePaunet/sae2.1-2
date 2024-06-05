@@ -2,7 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
-import java.util.List;
 
 public class FramePrincipale extends JFrame implements ActionListener
 {
@@ -48,7 +47,7 @@ public class FramePrincipale extends JFrame implements ActionListener
 		menuBar.add(menuOuvrir);
 		menuBar.add(menuQuitter);
 
-		this.setJMenuBar( menuBar );
+		this.setJMenuBar(menuBar);
 
 
 		// Activation des composants
@@ -68,7 +67,9 @@ public class FramePrincipale extends JFrame implements ActionListener
     public Runnable rechargerIhm() //Met 60 fps
     {
         ArrayList<Ville> villes = Controleur.getCarte().getTabVilles();
-        Timer fps = new Timer(17, new ActionListener() {
+
+        Timer fps = new Timer(17, new ActionListener()
+		{
             @Override
             public void actionPerformed(ActionEvent e)
             {
@@ -76,7 +77,6 @@ public class FramePrincipale extends JFrame implements ActionListener
                 JLabel backgroundLabel = new JLabel(backgroundImage);
                 backgroundLabel.setBounds(0, 0, panelReseau.getWidth(), panelReseau.getHeight());
                 panelReseau.add(backgroundLabel, JLayeredPane.DEFAULT_LAYER);
-
 
                 for(Ville v : villes)
                 {
@@ -98,10 +98,9 @@ public class FramePrincipale extends JFrame implements ActionListener
         return this.menuiAjouterVille;
     }
 
-    public JMenuItem getMenuFichierAjouter()
+    public JMenuItem getMenuiAjouterRoute()
     {
-        //return this.menuAjouter;
-		return null;
+        return this.menuiAjouterRoute;
     }
 
 	public void actionPerformed ( ActionEvent e )
@@ -136,9 +135,5 @@ public class FramePrincipale extends JFrame implements ActionListener
 			System.exit(0);
 	}
 
-    public JLayeredPane getPanel()
-    {
-        return this.panelReseau;
-    }
+    public JLayeredPane getPanel() { return this.panelReseau; }
 }
-

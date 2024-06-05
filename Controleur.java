@@ -1,6 +1,3 @@
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -29,80 +26,67 @@ public class Controleur
     {
         this.urlFichier = "data.txt";
         this.init();
-        this.importFile("data.txt");
+        this.importFile(this.urlFichier);
         Controleur.carte = new Carte();
         this.ihm = new FramePrincipale();
     }
 
-    public static Carte getCarte()
+    public static Carte getCarte() { return carte; }
+
+    public static boolean setNouvelleVille( Ville ville ) throws IOException
     {
-        return carte;
-    }
+        Ville vDep = Controleur.carte.getVille( ville.getNom() );
 
-    public static boolean setNouvelleVille(Ville ville ) throws IOException
-    {
-        Ville vDep = Controleur.carte.getVille(ville.getNom());
+        if( vDep != null )
+        	return false;
 
-        if(vDep != null)
-        {
-            return false;
-        }
-
-        Controleur.carte.ecrireVille(ville.getNom(), ville.getX(), ville.getY());
+        Controleur.carte.ecrireVille( ville.getNom(), ville.getX(), ville.getY() );
         return true;
 	}
 
-    public static boolean setNouvelleRoute( String villeA, String villeB, int nbTroncons) throws IOException
+    public static boolean setNouvelleRoute( String villeA, String villeB, int nbTroncons ) throws IOException
     {
         Ville vDep = Controleur.carte.getVille(villeA);
         Ville vArr = Controleur.carte.getVille(villeB);
 
-        if(vDep == null || vArr == null)
-        {
-            return false;
-        }
+        if( vDep == null || vArr == null )
+        	return false;
 
-        Controleur.carte.ecrireRoute(vDep,vArr,nbTroncons);
+        Controleur.carte.ecrireRoute( vDep, vArr, nbTroncons );
         return true;
     }
 
 
     private boolean init()
     {
-        this.fichierData = new File(this.urlFichier);
+        this.fichierData = new File( this.urlFichier );
 
-        if(fichierData.exists())
-        {
-            return true;
-        }
+        if( fichierData.exists() )
+        	return true;
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fichierData)))
+        try( BufferedWriter writer = new BufferedWriter( new FileWriter(fichierData) ) )
         {
             writer.write("[VILLES]\n\n[ROUTES]");
-            System.out.println("Fichier de données créer : " + fichierData.getAbsolutePath());
-        } catch (IOException e)
-        {
-            return false;
+            System.out.println("Fichier de données créé : " + fichierData.getAbsolutePath());
         }
+		catch( IOException e ) { return false; }
 
         return true;
     }
 
-    public boolean importFile(String url)
+    public boolean importFile( String url )
     {
         File fileImport = new File(url);
 
-        if(fileImport.exists() && fileImport.isFile() && fileImport.canWrite() && fileImport.canRead())
+        if( fileImport.exists() && fileImport.isFile() && fileImport.canWrite() && fileImport.canRead() )
         {
             this.urlFichier = url;
             this.fichierData = fileImport;
             return true;
         }
-        System.out.println("Ceci n'est pas un fichier data");
+        System.out.println("Ce fichier n'est pas lisible");
         return false;
     }
-
-
 
     public static void main(String[] args)
     {

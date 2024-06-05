@@ -1,6 +1,4 @@
 import java.io.*;
-import java.util.List;
-import java.util.Objects;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -24,15 +22,14 @@ public class Carte
 		this.villes = new ArrayList<Ville>();
 		this.routes = new ArrayList<Route>();
 
-
 		try
 		{
-			fr = new FileReader ( "data.txt" );
-			Scanner sc = new Scanner ( fr );
+			fr = new FileReader( "data.txt" );
+			Scanner sc = new Scanner(fr);
 
 			int etapeLecture = 0;
 
-			while ( sc.hasNextLine() )
+			while( sc.hasNextLine() )
 			{
 				String ligne = sc.nextLine();
 
@@ -41,7 +38,7 @@ public class Carte
 					if( ligne.equals("[VILLES]") )
 					{
 						etapeLecture = 1;
-						if(sc.hasNextLine())
+						if( sc.hasNextLine() )
 						{
 							ligne = sc.nextLine();
 						}
@@ -49,21 +46,21 @@ public class Carte
 					else if( ligne.equals("[ROUTES]") )
 					{
 						etapeLecture = 2;
-						if(sc.hasNextLine())
+						if( sc.hasNextLine() )
 						{
 							ligne = sc.nextLine();
 						}
 					}
-					if( etapeLecture == 1 && !ligne.equals("[VILLES]"))
+					if( etapeLecture == 1 && !ligne.equals("[VILLES]") )
 					{
-						if(!ligne.isEmpty())
+						if( !ligne.isEmpty() )
 						{
 							this.lireVille(ligne);
 						}
 					}
 					if( etapeLecture == 2 )
 					{
-						if(!ligne.isEmpty() && !ligne.equals("[ROUTES]"))
+						if( !ligne.isEmpty() && !ligne.equals("[ROUTES]") )
 						{
 							this.lireRoute(ligne);
 						}
@@ -74,104 +71,19 @@ public class Carte
 			sc.close();
 			fr.close();
 		}
-		catch (Exception e){ e.printStackTrace(); }
+		catch( Exception e ){ e.printStackTrace(); }
 	}
-
-	public Ville getVille(String nomVille)
-	{
-		for(Ville i : this.villes)
-		{
-			if (i.getNom().equals(nomVille)) return i;
-		}
-		return null;
-	}
-
-
-	public void ecrireVille(String nom, int x, int y) throws IOException
-	{
-		FileReader fr = new FileReader("data.txt");
-		Scanner sc = new Scanner(fr);
-
-
-		String donnesFichier = "";
-
-		while(sc.hasNextLine())
-		{
-			donnesFichier += sc.nextLine()+"\n";
-		}
-
-		if(donnesFichier.contains(nom))
-		{
-			return;
-		}
-
-
-		String villes = donnesFichier.substring(donnesFichier.indexOf("[VILLES]"), donnesFichier.indexOf("\n["));
-		String routes = donnesFichier.substring(donnesFichier.indexOf("[ROUTES]"));
-
-		donnesFichier = villes + (nom + "\t" + x + "\t" + y +"\n\n") + routes;
-
-
-		BufferedWriter writer = new BufferedWriter(new FileWriter("data.txt"));
-
-		try {
-			writer.write(donnesFichier);
-		}catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-
-		writer.close();
-	}
-
-	public void ecrireRoute(Ville villeA, Ville villeB, int nbTroncons) throws IOException {
-		FileReader fr = new FileReader("data.txt");
-		Scanner sc = new Scanner(fr);
-
-
-		String donnesFichier = "";
-
-
-
-		while(sc.hasNextLine())
-		{
-			String ligne = sc.nextLine();
-			donnesFichier += ligne+"\n";
-
-		}
-
-
-		donnesFichier += (nbTroncons + "\t" + villeA.getNumVille() + "\t" + villeB.getNumVille() + "\n");
-
-
-		BufferedWriter writer = new BufferedWriter(new FileWriter("data.txt"));
-
-		try {
-			writer.write(donnesFichier);
-		}catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-
-		writer.close();
-	}
-
-
-
 
 	public void lireVille( String ligne )
 	{
 		String[] routeInfo = ligne.split("\t");
 
-
 		String nom = routeInfo[0]; 
 		int  x = Integer.parseInt(routeInfo[1]);
 		int  y = Integer.parseInt(routeInfo[2]);
 
-
 		this.villes.add( new Ville(nom, x, y) );
 	}
-
 
 	public void lireRoute( String ligne )
 	{
@@ -189,27 +101,74 @@ public class Carte
 	}
 
 
-	public Ville rechercheVille( int numVille )
+	public void ecrireVille( String nom, int x, int y ) throws IOException
 	{
-		return this.villes.get(numVille-1);
+		FileReader fr = new FileReader("data.txt");
+		Scanner sc = new Scanner(fr);
+
+
+		String donnesFichier = "";
+
+		while( sc.hasNextLine() )
+			donnesFichier += sc.nextLine()+"\n";
+
+		if( !donnesFichier.contains(nom) ) // Vérification de doubles dans le fichier texte
+		{
+			String donneesVilles = donnesFichier.substring(donnesFichier.indexOf("[VILLES]"), donnesFichier.indexOf("\n["));
+			String donneesRoutes = donnesFichier.substring(donnesFichier.indexOf("[ROUTES]"));
+
+			donnesFichier = donneesVilles + (nom + "\t" + x + "\t" + y +"\n\n") + donneesRoutes;
+
+
+			BufferedWriter writer = new BufferedWriter( new FileWriter("data.txt") );
+
+			try
+			{
+				writer.write(donnesFichier);
+			}
+			catch( Exception e ) { e.printStackTrace(); }
+
+			writer.close();
+		}
+		sc.close();
 	}
 
-	public ArrayList<Ville> getTabVilles()
+	public void ecrireRoute(Ville villeA, Ville villeB, int nbTroncons) throws IOException
 	{
-		return this.villes;
+		FileReader fr = new FileReader("data.txt");
+		Scanner sc = new Scanner(fr);
+
+		String donnesFichier = "";
+
+		while( sc.hasNextLine() )
+			donnesFichier += sc.nextLine()+"\n";
+
+		donnesFichier += (nbTroncons + "\t" + villeA.getNumVille() + "\t" + villeB.getNumVille() + "\n");
+
+
+		BufferedWriter writer = new BufferedWriter(new FileWriter("data.txt"));
+
+		try
+		{
+			writer.write(donnesFichier);
+		}
+		catch( Exception e ) { e.printStackTrace(); }
+
+		writer.close();
+		sc.close();
 	}
 
 
-/*
-Les villes ont un num, nom, x et y
-Les routes ont un nombre de troncons, une villeA et une villeB
-
-V	Nom	00	00
-R	00	00	00
-*/
-
-	public static void main( String[] args )
+	public Ville getVille( String nomVille )
 	{
-		new Carte();
+		for( Ville i : this.villes )
+		{
+			if( i.getNom().equals(nomVille) ) return i;
+		}
+		return null;
 	}
+
+	public ArrayList<Ville> getTabVilles() { return this.villes; }
+
+	public Ville rechercheVille( int numVille ) { return this.villes.get(numVille-1); }
 }

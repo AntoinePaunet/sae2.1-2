@@ -25,13 +25,13 @@ public class FrameCreation extends JFrame
         this.setTitle   ( "Création d'un élément");
         this.setSize    ( 500,300 );
         this.setLocation(  50, 50 );
-        this.setLayout(new BorderLayout());
+        this.setLayout(     new BorderLayout());
         this.setVisible(true);
 
         //Definition des objets
-        this.panelTop     = new JPanel(new FlowLayout());
-        this.panelCentral = new JPanel();
-        this.panelCentral.setLayout(new BoxLayout(this.panelCentral, BoxLayout.Y_AXIS));
+        this.panelTop                 = new JPanel(new FlowLayout());
+        this.panelCentral             = new JPanel();
+        this.panelCentral.setLayout(    new BoxLayout(this.panelCentral, BoxLayout.Y_AXIS));
 
         this.add(this.panelTop, BorderLayout.NORTH);
         this.add(this.panelCentral);
@@ -55,11 +55,11 @@ public class FrameCreation extends JFrame
 
 
         //Panels
-        JPanel pnlNom  = new JPanel(new FlowLayout());
-        JPanel pnlCooX = new JPanel(new FlowLayout());
-        JPanel pnlCooY = new JPanel(new FlowLayout());
-        JPanel pnlErreur = new JPanel(new FlowLayout());
-        JPanel pnlSave = new JPanel(new BorderLayout());
+        JPanel pnlNom       = new JPanel(new FlowLayout());
+        JPanel pnlCooX      = new JPanel(new FlowLayout());
+        JPanel pnlCooY      = new JPanel(new FlowLayout());
+        JPanel pnlErreur    = new JPanel(new FlowLayout());
+        JPanel pnlSave      = new JPanel(new BorderLayout());
 
         //Labels
         JLabel lblNom   = new JLabel("Nom de la ville :                ");
@@ -102,6 +102,7 @@ public class FrameCreation extends JFrame
         this.panelCentral.add(pnlErreur);
         this.panelCentral.add(pnlSave);
 
+
         //On vérifie que le bouton à été cliqué et que les données entrées sont valides
         btnSave.addActionListener(new ActionListener()
 		{
@@ -115,13 +116,14 @@ public class FrameCreation extends JFrame
                 if( !txtNom.getText().isEmpty() )
                 {
 					try {
-						if( Integer.parseInt(txtCooX.getText()) < 1000 || Integer.parseInt(txtCooX.getText()) > 0
-						||  Integer.parseInt(txtCooY.getText()) < 800  || Integer.parseInt(txtCooY.getText()) > 0 )
+						if( Integer.parseInt(txtCooX.getText()) <= 900 && Integer.parseInt(txtCooX.getText()) >= 20
+						||  Integer.parseInt(txtCooY.getText()) <= 730  && Integer.parseInt(txtCooY.getText()) >= 50 )
 						{
 							lblErreur.setText("Création d'une ville");
 							if(Controleur.setNouvelleVille(new Ville(txtNom.getText(), Integer.parseInt(txtCooX.getText()), Integer.parseInt(txtCooY.getText()))))
                                 FrameCreation.super.dispose();
 						}
+                        lblErreur.setText("X compris [20;900] et Y compris [50;730]");
 					}
 					catch( NumberFormatException e ) { lblErreur.setText("Erreur de saisie.");	}
 					catch( IOException e )			 { throw new RuntimeException(e); }
@@ -138,15 +140,15 @@ public class FrameCreation extends JFrame
         final String[] TRONCON = new String[] {"0","1","2","3","4","5","6","7","8","9","10"};
 
         JLabel lblTxtPresentation = new JLabel("Création d'une route");
-        lblTxtPresentation.setFont(new Font("Arial", Font.BOLD, 30));
+        lblTxtPresentation.setFont( new Font("Arial", Font.BOLD, 30));
         this.panelTop.add(lblTxtPresentation, BorderLayout.CENTER);
 
         //Panels
-        JPanel pnlVilleDep  = new JPanel(new FlowLayout());
-        JPanel pnlVilleArr  = new JPanel(new FlowLayout());
-        JPanel pnlTroncons  = new JPanel(new FlowLayout());
-        JPanel pnlErreur    = new JPanel(new FlowLayout());
-        JPanel pnlSave      = new JPanel(new BorderLayout());
+        JPanel pnlVilleDep  = new JPanel( new FlowLayout()  );
+        JPanel pnlVilleArr  = new JPanel( new FlowLayout()  );
+        JPanel pnlTroncons  = new JPanel( new FlowLayout()  );
+        JPanel pnlErreur    = new JPanel( new FlowLayout()  );
+        JPanel pnlSave      = new JPanel( new BorderLayout());
 
         //Labels
         JLabel lblVilleDep   = new JLabel("Ville de départ :");

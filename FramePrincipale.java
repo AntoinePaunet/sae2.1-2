@@ -8,9 +8,11 @@ public class FramePrincipale extends JFrame implements ActionListener
 {
     private JLayeredPane panelReseau;
 
-	private JMenuItem     menuiAjouterVille, menuiAjouterRoute;
-	private JMenuItem     menuiOuvrir;
-	private JMenuItem     menuiQuitter;
+	private JMenuItem           menuiAjouterVille, menuiAjouterRoute;
+	private JMenuItem           menuiOuvrir;
+	private JMenuItem           menuiQuitter;
+
+    private ArrayList<Ville>    villes;
 
     public FramePrincipale ()
     {
@@ -18,6 +20,38 @@ public class FramePrincipale extends JFrame implements ActionListener
         this.setSize    ( 1040,950 );
         this.setLocation(  50, 50 );
 		this.setVisible (true);
+        this.setIconImage(new ImageIcon(this.getClass().getResource("/images/ville.png")).getImage());
+
+
+
+        JMenuBar  menuBar = new JMenuBar();
+        JMenu menuAjouter = new JMenu("Ajouter");
+        JMenu menuOuvrir  = new JMenu("Ouvrir");
+        JMenu menuQuitter = new JMenu("Quitter");
+
+
+        this.menuiAjouterVille  = new JMenuItem("Ajouter une ville" );
+        this.menuiAjouterRoute  = new JMenuItem("Ajouter une route" );
+        this.menuiOuvrir = new JMenuItem("Importer un réseau" );
+        this.menuiQuitter = new JMenuItem("Quitter" );
+
+        menuAjouter.add(this.menuiAjouterVille);
+        menuAjouter.add(this.menuiAjouterRoute);
+        menuOuvrir .add(this.menuiOuvrir);
+        menuQuitter.add(this.menuiQuitter);
+
+        menuBar.add(menuAjouter);
+        menuBar.add(menuOuvrir);
+        menuBar.add(menuQuitter);
+
+        this.setJMenuBar(menuBar);
+
+
+        // Activation des composants
+        this.menuiAjouterVille.addActionListener ( this );
+        this.menuiAjouterRoute.addActionListener ( this );
+        this.menuiOuvrir .addActionListener ( this );
+        this.menuiQuitter.addActionListener ( this );
 
 
 		// Création et ajout du Panel
@@ -26,42 +60,12 @@ public class FramePrincipale extends JFrame implements ActionListener
         this.panelReseau.setPreferredSize(new Dimension(1000, 800));
         this.panelReseau.setBorder(BorderFactory.createLineBorder(Color.black, 3));
 
-
-		// Création et ajout de la barre de menu
-		JMenuBar  menuBar = new JMenuBar();
-		JMenu menuAjouter = new JMenu("Ajouter");
-		JMenu menuOuvrir  = new JMenu("Ouvrir");
-		JMenu menuQuitter = new JMenu("Quitter");
-
-
-		this.menuiAjouterVille  = new JMenuItem("Ajouter une ville" );
-		this.menuiAjouterRoute  = new JMenuItem("Ajouter une route" );
-		this.menuiOuvrir = new JMenuItem("Importer un réseau" );
-		this.menuiQuitter = new JMenuItem("Quitter" );
-
-		menuAjouter.add(this.menuiAjouterVille);
-		menuAjouter.add(this.menuiAjouterRoute);
-		menuOuvrir .add(this.menuiOuvrir);
-		menuQuitter.add(this.menuiQuitter);
-
-		menuBar.add(menuAjouter);
-		menuBar.add(menuOuvrir);
-		menuBar.add(menuQuitter);
-
-		this.setJMenuBar(menuBar);
-
-
-		// Activation des composants
-		this.menuiAjouterVille.addActionListener ( this );
-		this.menuiAjouterRoute.addActionListener ( this );
-		this.menuiOuvrir .addActionListener ( this );
-		this.menuiQuitter.addActionListener ( this );
-
 		// Gestion de la fermeture de la fenêtre
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //Recharger l'ihm
         rechargerIhm();
+        clickDetection();
     }
 
     public Runnable rechargerIhm() //Met 60 fps
@@ -72,8 +76,11 @@ public class FramePrincipale extends JFrame implements ActionListener
             @Override
             public void actionPerformed(ActionEvent e)
             {
+                //Vider la frame
+                panelReseau.removeAll();
 
-                ArrayList<Ville> villes = Controleur.getCarte().getTabVilles();
+                //remplir le panel
+                villes = Controleur.getCarte().getTabVilles();
 
 
 
@@ -84,10 +91,16 @@ public class FramePrincipale extends JFrame implements ActionListener
 
                 for(Ville v : villes)
                 {
+                    //image ville
                     ImageIcon imageVille = new ImageIcon(getClass().getResource("/images/ville.png"));
                     JLabel imgLabel = new JLabel(imageVille);
                     imgLabel.setBounds(v.getX(), v.getY(), imageVille.getIconWidth(), imageVille.getIconHeight());
-                    panelReseau.add(imgLabel, JLayeredPane.DRAG_LAYER);
+                    panelReseau.add(imgLabel, JLayeredPane.POPUP_LAYER);
+
+                    //Nom ville
+                    JLabel lblVille = new JLabel(v.getNom());
+                    lblVille.setBounds(v.getX() + 35, v.getY()+20, 60, 60);
+                    panelReseau.add(lblVille, JLayeredPane.DRAG_LAYER);
                 }
             }
         });
@@ -95,6 +108,24 @@ public class FramePrincipale extends JFrame implements ActionListener
         return null;
     }
 
+
+    private void clickDetection()
+    {
+        this.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e)
+            {
+                System.out.println(villes.size());
+                for (Ville v : villes)
+                {
+                    if(e.getX() >= v.getX() + 10 && e.getX() < v.getX() + 110 && e.getY() >= v.getY() + 60 && e.getY() < v.getY() + 160)
+                    {
+                        System.out.println(v);
+                    }
+                }
+            }
+        });
+    }
 
 
     public JMenuItem getMenuiAjouterVille()

@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
+import java.util.Collection;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -28,7 +29,7 @@ public class Carte
 
 	public Runnable readAll() throws FileNotFoundException
 	{
-		Timer timer = new Timer(3000, new ActionListener()
+		Timer timer = new Timer(1000, new ActionListener()
 		{
 			@Override
 			public void actionPerformed(ActionEvent e)
@@ -37,6 +38,10 @@ public class Carte
 				{
 					FileReader fr = new FileReader( "data.txt" );
 					Scanner sc = new Scanner(fr);
+
+					//Vider les tableaux pour ne pas refaire trop de variables
+					villes = new ArrayList<Ville>(villes.size());
+					routes = new ArrayList<Route>(routes.size());
 
 					int etapeLecture = 0;
 
@@ -91,8 +96,6 @@ public class Carte
 
 	public void lireVille( String ligne )
 	{
-
-
 		String[] routeInfo = ligne.split("\t");
 
 		String nom = routeInfo[0]; 
@@ -106,9 +109,17 @@ public class Carte
 	{
 		String[] routeInfo = ligne.split("\t");
 
+
 		int nbTroncon = Integer.parseInt(routeInfo[0]);
-		Ville  villeA = this.rechercheVille(Integer.parseInt(routeInfo[1]));
-		Ville  villeB = this.rechercheVille(Integer.parseInt(routeInfo[2]));
+
+		Ville  villeA = this.rechercheVille(routeInfo[1]);
+		Ville  villeB = this.rechercheVille(routeInfo[2]);
+
+		if(villeA == null || villeB == null) //Si la ville recherché n'existe plus
+		{
+			return;
+		}
+
 
 		Route r = new Route( nbTroncon, villeA, villeB );
 
@@ -161,7 +172,7 @@ public class Carte
 		while( sc.hasNextLine() )
 			donnesFichier += sc.nextLine()+"\n";
 
-		donnesFichier += (nbTroncons + "\t" + villeA.getNumVille() + "\t" + villeB.getNumVille() + "\n");
+		donnesFichier += (nbTroncons + "\t" + villeA.getNom() + "\t" + villeB.getNom() + "\n");
 
 
 		BufferedWriter writer = new BufferedWriter(new FileWriter("data.txt"));
@@ -187,7 +198,19 @@ public class Carte
 		return null;
 	}
 
+
 	public ArrayList<Ville> getTabVilles() { return this.villes; }
 
-	public Ville rechercheVille( int numVille ) { return this.villes.get(numVille-1); }
+
+	public Ville rechercheVille( String nom )
+	{
+		for( Ville v : this.villes )
+		{
+			if(v.getNom() == nom)
+			{
+				return v;
+			}
+		}
+		return null;
+	}
 }

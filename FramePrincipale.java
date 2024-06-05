@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class FramePrincipale extends JFrame implements ActionListener
@@ -13,7 +14,7 @@ public class FramePrincipale extends JFrame implements ActionListener
 
     public FramePrincipale ()
     {
-        this.setTitle   ( "Réseau routier");
+        this.setTitle   ( "Réseau routier" );
         this.setSize    ( 1040,950 );
         this.setLocation(  50, 50 );
 		this.setVisible (true);
@@ -61,18 +62,21 @@ public class FramePrincipale extends JFrame implements ActionListener
 
         //Recharger l'ihm
         rechargerIhm();
-
     }
 
     public Runnable rechargerIhm() //Met 60 fps
     {
-        ArrayList<Ville> villes = Controleur.getCarte().getTabVilles();
 
-        Timer fps = new Timer(17, new ActionListener()
+        Timer fps = new Timer(500, new ActionListener()
 		{
             @Override
             public void actionPerformed(ActionEvent e)
             {
+
+                ArrayList<Ville> villes = Controleur.getCarte().getTabVilles();
+
+
+
                 ImageIcon backgroundImage = new ImageIcon(this.getClass().getResource("/images/backGround.jpg"));
                 JLabel backgroundLabel = new JLabel(backgroundImage);
                 backgroundLabel.setBounds(0, 0, panelReseau.getWidth(), panelReseau.getHeight());

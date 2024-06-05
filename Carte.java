@@ -1,3 +1,6 @@
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -15,67 +18,81 @@ public class Carte
     private ArrayList<Ville> villes;
     private ArrayList<Route> routes;
 
-    public Carte()
-    {
-		FileReader fr;
-
+    public Carte() throws FileNotFoundException
+	{
 		this.villes = new ArrayList<Ville>();
 		this.routes = new ArrayList<Route>();
+		this.readAll();
+	}
 
-		try
+
+	public Runnable readAll() throws FileNotFoundException
+	{
+		Timer timer = new Timer(3000, new ActionListener()
 		{
-			fr = new FileReader( "data.txt" );
-			Scanner sc = new Scanner(fr);
-
-			int etapeLecture = 0;
-
-			while( sc.hasNextLine() )
+			@Override
+			public void actionPerformed(ActionEvent e)
 			{
-				String ligne = sc.nextLine();
-
-				if( !ligne.isEmpty() )
+				try
 				{
-					if( ligne.equals("[VILLES]") )
+					FileReader fr = new FileReader( "data.txt" );
+					Scanner sc = new Scanner(fr);
+
+					int etapeLecture = 0;
+
+					while( sc.hasNextLine() )
 					{
-						etapeLecture = 1;
-						if( sc.hasNextLine() )
-						{
-							ligne = sc.nextLine();
-						}
-					}
-					else if( ligne.equals("[ROUTES]") )
-					{
-						etapeLecture = 2;
-						if( sc.hasNextLine() )
-						{
-							ligne = sc.nextLine();
-						}
-					}
-					if( etapeLecture == 1 && !ligne.equals("[VILLES]") )
-					{
+						String ligne = sc.nextLine();
+
 						if( !ligne.isEmpty() )
 						{
-							this.lireVille(ligne);
-						}
-					}
-					if( etapeLecture == 2 )
-					{
-						if( !ligne.isEmpty() && !ligne.equals("[ROUTES]") )
-						{
-							this.lireRoute(ligne);
-						}
-					}
+							if( ligne.equals("[VILLES]") )
+							{
+								etapeLecture = 1;
+								if( sc.hasNextLine() )
+								{
+									ligne = sc.nextLine();
+								}
+							}
+							else if( ligne.equals("[ROUTES]") )
+							{
+								etapeLecture = 2;
+								if( sc.hasNextLine() )
+								{
+									ligne = sc.nextLine();
+								}
+							}
+							if( etapeLecture == 1 && !ligne.equals("[VILLES]") )
+							{
+								if( !ligne.isEmpty() )
+								{
+									lireVille(ligne);
+								}
+							}
+							if( etapeLecture == 2 )
+							{
+								if( !ligne.isEmpty() && !ligne.equals("[ROUTES]") )
+								{
+									lireRoute(ligne);
+								}
+							}
 
+						}
+					}
+					sc.close();
+					fr.close();
 				}
+				catch( Exception exp ){ exp.printStackTrace(); }
 			}
-			sc.close();
-			fr.close();
-		}
-		catch( Exception e ){ e.printStackTrace(); }
+		});
+		timer.start();
+		return null;
 	}
 
 	public void lireVille( String ligne )
 	{
+
+
 		String[] routeInfo = ligne.split("\t");
 
 		String nom = routeInfo[0]; 
@@ -124,6 +141,7 @@ public class Carte
 
 			try
 			{
+				this.villes.add(new Ville(nom, x, y)); //creation de la ville
 				writer.write(donnesFichier);
 			}
 			catch( Exception e ) { e.printStackTrace(); }
@@ -150,6 +168,7 @@ public class Carte
 
 		try
 		{
+			this.routes.add(new Route(nbTroncons, villeA, villeB));
 			writer.write(donnesFichier);
 		}
 		catch( Exception e ) { e.printStackTrace(); }

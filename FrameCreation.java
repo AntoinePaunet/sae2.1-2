@@ -120,7 +120,7 @@ public class FrameCreation extends JFrame
 						{
 							lblErreur.setText("Création d'une ville");
 							if(Controleur.setNouvelleVille(new Ville(txtNom.getText(), Integer.parseInt(txtCooX.getText()), Integer.parseInt(txtCooY.getText()))))
-								FrameCreation.super.dispose();
+                                FrameCreation.super.dispose();
 						}
 					}
 					catch( NumberFormatException e ) { lblErreur.setText("Erreur de saisie.");	}

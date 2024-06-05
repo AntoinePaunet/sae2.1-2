@@ -1,7 +1,4 @@
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 
 /**
  * Cette classe lie la pertie métier et vue du projet
@@ -22,8 +19,7 @@ public class Controleur
 
 
 
-    private Controleur()
-    {
+    private Controleur() throws FileNotFoundException {
         this.urlFichier = "data.txt";
         this.init();
         this.importFile(this.urlFichier);
@@ -88,8 +84,7 @@ public class Controleur
         return false;
     }
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) throws FileNotFoundException {
         new Controleur();
     }
 }

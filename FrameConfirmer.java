@@ -54,13 +54,15 @@ public class FrameConfirmer extends JFrame implements ActionListener
         this.add(this.panelConf);
     }
 
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e)
+	{
         if (e.getSource().equals(this.btnOui))
         {
             if (this.frameModificationVille != null)
             {
                 this.frameModificationVille.quitterFrame(true);
-                try {
+                try
+				{
                     for (Route r : this.frameModificationVille.getVilleModif().getTabRoutes())
                         Controleur.getCarte().supprimerRoute(r);
                     Controleur.getCarte().supprimerVille(this.frameModificationVille.getVilleModif());
@@ -72,9 +74,7 @@ public class FrameConfirmer extends JFrame implements ActionListener
             this.dispose();
         }
 
-        if (e.getSource().equals(this.btnNon)) {
+        if (e.getSource().equals(this.btnNon))
             this.dispose();
-        }
     }
-
 }

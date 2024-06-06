@@ -114,62 +114,67 @@ public class Carte {
 		villeB.ajouterRoute(r);
 	}
 
-	public void ecrireVille(String nom, int x, int y) throws IOException {
+	public void ecrireVille( String nom, int x, int y ) throws IOException
+	{
 		FileReader fr = new FileReader("data.txt");
 		Scanner sc = new Scanner(fr);
 
+
 		String donnesFichier = "";
 
-		while (sc.hasNextLine())
-			donnesFichier += sc.nextLine() + "\n";
+		while( sc.hasNextLine() )
+			donnesFichier += sc.nextLine()+"\n";
 
-		if (!donnesFichier.contains(nom)) // Vérification de doubles dans le fichier texte
+		if( !donnesFichier.contains(nom) ) // Vérification de doubles dans le fichier texte
 		{
-			String donneesVilles = donnesFichier.substring(donnesFichier.indexOf("[VILLES]"),
-					donnesFichier.indexOf("\n["));
+			String donneesVilles = donnesFichier.substring(donnesFichier.indexOf("[VILLES]"), donnesFichier.indexOf("\n["));
 			String donneesRoutes = donnesFichier.substring(donnesFichier.indexOf("[ROUTES]"));
 
-			donnesFichier = donneesVilles + (nom + "\t" + x + "\t" + y + "\n\n") + donneesRoutes;
+			donnesFichier = donneesVilles + (nom + "\t" + x + "\t" + y +"\n\n") + donneesRoutes;
 
-			BufferedWriter writer = new BufferedWriter(new FileWriter("data.txt"));
 
-			try {
-				this.villes.add(new Ville(nom, x, y)); // creation de la ville
+			BufferedWriter writer = new BufferedWriter( new FileWriter("data.txt") );
+
+			try
+			{
+				this.villes.add(new Ville(nom, x, y)); //creation de la ville
 				writer.write(donnesFichier);
-			} catch (Exception e) {
-				e.printStackTrace();
 			}
+			catch( Exception e ) { e.printStackTrace(); }
 
 			writer.close();
 		}
 		sc.close();
 	}
 
-	public void ecrireRoute(Ville villeA, Ville villeB, int nbTroncons) throws IOException {
+	public void ecrireRoute(Ville villeA, Ville villeB, int nbTroncons) throws IOException
+	{
 		FileReader fr = new FileReader("data.txt");
 		Scanner sc = new Scanner(fr);
 
 		String donnesFichier = "";
 
-		while (sc.hasNextLine())
-			donnesFichier += sc.nextLine() + "\n";
+		while( sc.hasNextLine() )
+			donnesFichier += sc.nextLine()+"\n";
 
 		donnesFichier += (nbTroncons + "\t" + villeA.getNom() + "\t" + villeB.getNom() + "\n");
 
+
 		BufferedWriter writer = new BufferedWriter(new FileWriter("data.txt"));
 
-		try {
+		try
+		{
 			this.routes.add(new Route(nbTroncons, villeA, villeB));
 			writer.write(donnesFichier);
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
+		catch( Exception e ) { e.printStackTrace(); }
 
 		writer.close();
 		sc.close();
 	}
 
-	public void modifieVille(Ville ville, String nomVille, int xVille, int yVille) throws IOException {
+	public void modifieVille(Ville ville, String nomVille, int xVille, int yVille) throws IOException
+	{
 		this.supprimerVille(ville);
 		this.ecrireVille(nomVille, xVille, yVille);
 	}
@@ -183,28 +188,29 @@ public class Carte {
 		FileReader fr = new FileReader("data.txt");
 		Scanner sc = new Scanner(fr);
 
+
 		String donnesFichier = "";
 
-		while (sc.hasNextLine())
-			donnesFichier += sc.nextLine() + "\n";
+		while( sc.hasNextLine() )
+			donnesFichier += sc.nextLine()+"\n";
 
-		if (donnesFichier.contains(ville.getNom())) // Vérification de doubles dans le fichier texte
+		if( donnesFichier.contains(ville.getNom()) ) // Vérification de doubles dans le fichier texte
 		{
 			String tmp = ville.getX() + "" + ville.getY();
-			String donneesVilles = donnesFichier.substring(donnesFichier.indexOf("[VILLES]"),
-					donnesFichier.indexOf(ville.getNom()));
-			String donneesRoutes = donnesFichier
-					.substring(donnesFichier.indexOf(ville.getNom()) + ville.getNom().length() + tmp.length() + 2);
+			String donneesVilles = donnesFichier.substring(donnesFichier.indexOf("[VILLES]"), donnesFichier.indexOf(ville.getNom()));
+			String donneesRoutes = donnesFichier.substring(donnesFichier.indexOf(ville.getNom()) + ville.getNom().length() + tmp.length() + 2);
+
 
 			donnesFichier = donneesVilles.stripTrailing() + donneesRoutes;
 
-			BufferedWriter writer = new BufferedWriter(new FileWriter("data.txt"));
 
-			try {
+			BufferedWriter writer = new BufferedWriter( new FileWriter("data.txt") );
+
+			try
+			{
 				writer.write(donnesFichier);
-			} catch (Exception e) {
-				e.printStackTrace();
 			}
+			catch( Exception e ) { e.printStackTrace(); }
 
 			writer.close();
 		}

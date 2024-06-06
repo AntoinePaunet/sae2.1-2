@@ -15,27 +15,34 @@ import java.util.ArrayList;
  * @version 1.0 , 2024-06-03
  */
 
-public class Carte {
+public class Carte
+{
 	private ArrayList<Ville> villes;
 	private ArrayList<Route> routes;
 
-	public Carte() throws FileNotFoundException {
+	public Carte() throws FileNotFoundException
+	{
 		this.villes = new ArrayList<Ville>();
 		this.routes = new ArrayList<Route>();
 		this.readAll("data.txt");
 	}
 
-	public Carte(String nomFichier) throws FileNotFoundException {
+	public Carte(String nomFichier) throws FileNotFoundException
+	{
 		this.villes = new ArrayList<Ville>();
 		this.routes = new ArrayList<Route>();
 		this.readAll(nomFichier);
 	}
 
-	public Runnable readAll(String nomFicher) throws FileNotFoundException {
-		Timer timer = new Timer(17, new ActionListener() {
+	public Runnable readAll(String nomFicher) throws FileNotFoundException
+	{
+		Timer timer = new Timer(17, new ActionListener()
+		{
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				try {
+			public void actionPerformed(ActionEvent e)
+			{
+				try
+				{
 					FileReader fr = new FileReader(nomFicher);
 					Scanner sc = new Scanner(fr);
 
@@ -45,15 +52,18 @@ public class Carte {
 
 					int etapeLecture = 0;
 
-					while (sc.hasNextLine()) {
+					while (sc.hasNextLine())
+					{
 						String ligne = sc.nextLine();
 
-						if (!ligne.isEmpty()) {
-							if (ligne.equals("[VILLES]")) {
+						if (!ligne.isEmpty())
+						{
+							if (ligne.equals("[VILLES]"))
+							{
 								etapeLecture = 1;
-								if (sc.hasNextLine()) {
+								if (sc.hasNextLine())
 									ligne = sc.nextLine();
-								}
+
 							} else if (ligne.equals("[ROUTES]")) {
 								etapeLecture = 2;
 								if (sc.hasNextLine()) {
@@ -75,16 +85,15 @@ public class Carte {
 					}
 					sc.close();
 					fr.close();
-				} catch (Exception exp) {
-					exp.printStackTrace();
-				}
+				} catch( Exception exp ) { exp.printStackTrace(); }
 			}
 		});
 		timer.start();
 		return null;
 	}
 
-	public void lireVille(String ligne) {
+	public void lireVille(String ligne)
+	{
 		String[] routeInfo = ligne.split("\t");
 
 		String nom = routeInfo[0];
@@ -94,7 +103,8 @@ public class Carte {
 		this.villes.add(new Ville(nom, x, y));
 	}
 
-	public void lireRoute(String ligne) {
+	public void lireRoute(String ligne)
+	{
 		String[] routeInfo = ligne.split("\t");
 
 		int nbTroncon = Integer.parseInt(routeInfo[0]);
@@ -102,16 +112,14 @@ public class Carte {
 		Ville villeA = this.rechercheVille(routeInfo[1]);
 		Ville villeB = this.rechercheVille(routeInfo[2]);
 
-		if (villeA == null || villeB == null) // Si la ville recherché n'existe plus
+		if (villeA != null && villeB != null) // Si la ville recherché n'existe plus
 		{
-			return;
-		}
-
 		Route r = new Route(nbTroncon, villeA, villeB);
 
 		this.routes.add(r);
 		villeA.ajouterRoute(r);
 		villeB.ajouterRoute(r);
+		}
 	}
 
 	public void ecrireVille( String nom, int x, int y ) throws IOException
@@ -179,15 +187,16 @@ public class Carte {
 		this.ecrireVille(nomVille, xVille, yVille);
 	}
 
-	public void modifieRoute(Route route, Ville villeDep, Ville villeArr, int nbTroncon) throws IOException {
+	public void modifieRoute(Route route, Ville villeDep, Ville villeArr, int nbTroncon) throws IOException
+	{
 		this.supprimerRoute(route);
 		this.ecrireRoute(villeDep, villeArr, nbTroncon);
 	}
 
-	public void supprimerVille(Ville ville) throws IOException {
+	public void supprimerVille(Ville ville) throws IOException
+	{
 		FileReader fr = new FileReader("data.txt");
 		Scanner sc = new Scanner(fr);
-
 
 		String donnesFichier = "";
 
@@ -200,12 +209,9 @@ public class Carte {
 			String donneesVilles = donnesFichier.substring(donnesFichier.indexOf("[VILLES]"), donnesFichier.indexOf(ville.getNom()));
 			String donneesRoutes = donnesFichier.substring(donnesFichier.indexOf(ville.getNom()) + ville.getNom().length() + tmp.length() + 2);
 
-
 			donnesFichier = donneesVilles.stripTrailing() + donneesRoutes;
 
-
 			BufferedWriter writer = new BufferedWriter( new FileWriter("data.txt") );
-
 			try
 			{
 				writer.write(donnesFichier);
@@ -217,7 +223,8 @@ public class Carte {
 		sc.close();
 	}
 
-	public void supprimerRoute(Route route) throws IOException {
+	public void supprimerRoute(Route route) throws IOException
+	{
 		FileReader fr = new FileReader("data.txt");
 		Scanner sc = new Scanner(fr);
 
@@ -239,19 +246,20 @@ public class Carte {
 
 			BufferedWriter writer = new BufferedWriter(new FileWriter("data.txt"));
 
-			try {
+			try
+			{
 				writer.write(donnesFichier);
-			} catch (Exception e) {
-				e.printStackTrace();
 			}
-
+			catch( Exception e ) { e.printStackTrace();	}
 			writer.close();
 		}
 		sc.close();
 	}
 
-	public Ville getVille(String nomVille) {
-		for (Ville i : this.villes) {
+	public Ville getVille(String nomVille)
+	{
+		for (Ville i : this.villes)
+		{
 			if (i.getNom().equals(nomVille))
 				return i;
 		}
@@ -259,19 +267,16 @@ public class Carte {
 	}
 
 
-	public ArrayList<Route> getTabRoutes() {
-		return this.routes;
-	}
+	public ArrayList<Route> getTabRoutes() { return this.routes; }
 
-	public ArrayList<Ville> getTabVilles() {
-		return this.villes;
-	}
+	public ArrayList<Ville> getTabVilles() { return this.villes; }
 
-	public Ville rechercheVille(String nom) {
-		for (Ville v : this.villes) {
-			if (v.getNom().equals(nom)) {
+	public Ville rechercheVille(String nom)
+	{
+		for (Ville v : this.villes)
+		{
+			if (v.getNom().equals(nom))
 				return v;
-			}
 		}
 		return null;
 	}

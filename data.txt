@@ -1,9 +1,6 @@
 [VILLES]
-<<<<<<< HEAD
-test	520	230
-=======
-
->>>>>>> 720beee8e9eea3e5a1dcf31aaa626b9e601ded83
+test	524	321
+Bozo	237	278
 
 [ROUTES]
 8	Munich	Hannover

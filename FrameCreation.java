@@ -193,8 +193,7 @@ public class FrameCreation extends JFrame {
                 lblErreur.setFont(new Font("Arial", Font.BOLD, 20));
                 lblErreur.setBackground(Color.RED);
                 pnlErreur.add(lblErreur);
-
-<<<<<<< HEAD
+                
                 if( !txtVilleDep.getText().isEmpty() && !txtVilleArr.getText().isEmpty() && lstTroncons.getSelectedIndex() != -1 )
                 {
 					//Création d'un élément
@@ -205,18 +204,6 @@ public class FrameCreation extends JFrame {
 							lblErreur.setText("Une des villes n'existe pas");
 						else
 							FrameCreation.super.dispose();
-=======
-                if (!txtVilleDep.getText().isEmpty() && !txtVilleArr.getText().isEmpty()
-                        && lstTroncons.getSelectedIndex() != -1) {
-                    // Création d'un élément
-                    lblErreur.setText("Création d'un élément");
-                    try {
-                        if (!Controleur.setNouvelleRoute(txtVilleDep.getText(), txtVilleArr.getText(),
-                                lstTroncons.getSelectedIndex()))
-                            lblErreur.setText("Une des villes n'existe pas");
-                        else
-                            FrameCreation.super.dispose();
->>>>>>> 36195d798097dc715d6a23dcfd5315317ce39980
 
                     } catch (IOException e) {
                         throw new RuntimeException(e);

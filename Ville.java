@@ -2,30 +2,30 @@ import java.util.ArrayList;
 
 /**
  * Cet classe recesne les Villes.
+ * 
  * @author Antione Paunet, IUT du Havre
- * @author Mael Vauthier,  IUT du Havre
+ * @author Mael Vauthier, IUT du Havre
  * @author Martin Ravenel, IUT du Havre
  * @version 1.0 , 2024-06-03
  */
 
-public class Ville
-{
+public class Ville {
 	private static int nbVille = 1;
 
-	private int numVille , x , y;
+	private int numVille, x, y;
 	private String nom;
 
 	private ArrayList<Route> lstRoute;
 
 	/**
-	 * Constructeur de la classe Ville. Chaque ville possede un numéro séquentiel, un nom, ainsi qu'une abcisse et une ordonnée pour définir sa position.
+	 * Constructeur de la classe Ville. Chaque ville possede un numéro séquentiel,
+	 * un nom, ainsi qu'une abcisse et une ordonnée pour définir sa position.
 	 *
 	 * @param nom le nom de la Ville
-	 * @param x l'abcisse de la Ville
-	 * @param y l'ordonnée de la Ville
+	 * @param x   l'abcisse de la Ville
+	 * @param y   l'ordonnée de la Ville
 	 */
-	public Ville( String nom, int x, int y)
-	{
+	public Ville(String nom, int x, int y) {
 		this.numVille = Ville.nbVille++;
 		this.nom = nom;
 		this.x = x;
@@ -40,8 +40,7 @@ public class Ville
 	 * @return le numéro de la ville.
 	 */
 
-	public int getNumVille()
-	{
+	public int getNumVille() {
 		return this.numVille;
 	}
 
@@ -51,8 +50,7 @@ public class Ville
 	 * @return le nom de la Ville.
 	 */
 
-	public String getNom()
-	{
+	public String getNom() {
 		return this.nom;
 	}
 
@@ -62,8 +60,7 @@ public class Ville
 	 * @return l'abcisse de la Ville.
 	 */
 
-	public int getX()
-	{
+	public int getX() {
 		return this.x;
 	}
 
@@ -73,8 +70,7 @@ public class Ville
 	 * @return l'ordonnée de la Ville.
 	 */
 
-	public int getY()
-	{
+	public int getY() {
 		return this.y;
 	}
 
@@ -84,13 +80,15 @@ public class Ville
 	 * @return l'ordonnée de la Ville.
 	 */
 
-	public void ajouterRoute(Route r)
-	{
-		//System.out.println(this.lstRoute.add(r));
+	public void ajouterRoute(Route r) {
+		// System.out.println(this.lstRoute.add(r));
 		this.lstRoute.add(r);
-		
+
 	}
 
+	public ArrayList<Route> getTabRoutes() {
+		return this.lstRoute;
+	}
 
 	/**
 	 * Donne sous forme texte toutes les données de la Ville.
@@ -98,10 +96,9 @@ public class Ville
 	 * @return le mot "Ville" puis le nom , numéro et position de la Ville.
 	 */
 
-	public String toString()
-	{
+	public String toString() {
 		return "Ville " + this.numVille + " " + this.nom
-				+     "\tx:" + this.x + " y:" + this.y;
+				+ "\tx:" + this.x + " y:" + this.y;
 	}
 
 }

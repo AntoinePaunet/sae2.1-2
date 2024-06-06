@@ -3,8 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
 
-public class FrameModificationVille extends JFrame implements ActionListener, KeyListener
-{
+public class FrameModificationVille extends JFrame implements ActionListener, KeyListener {
 
     private JPanel panelInfo;
     private JPanel panelPrincipal;
@@ -19,6 +18,8 @@ public class FrameModificationVille extends JFrame implements ActionListener, Ke
     private JLabel lblErreur;
     private JLabel lblRoute;
 
+    private String tabRoute;
+
     private JTextField txtNomVille;
     private JTextField txtXVille;
     private JTextField txtYVille;
@@ -28,8 +29,7 @@ public class FrameModificationVille extends JFrame implements ActionListener, Ke
 
     private Ville villeModif;
 
-    public FrameModificationVille(Ville ville)
-	{
+    public FrameModificationVille(Ville ville) {
         this.setTitle("Modification d'une ville");
         this.setSize(500, 400);
         this.setLocation(50, 50);
@@ -42,6 +42,11 @@ public class FrameModificationVille extends JFrame implements ActionListener, Ke
         this.panelDonnees = new JPanel();
         this.panelRoute = new JPanel();
         this.panelSauvegarde = new JPanel();
+
+        // Création de l'affichage des routes
+        tabRoute = "Route(s) :";
+        for (Route r : villeModif.getTabRoutes())
+            tabRoute += " " + r.departToArrivee() + " ;";
 
         // Modification du layout des panels
         this.panelPrincipal.setLayout(new GridLayout(2, 1));
@@ -63,9 +68,9 @@ public class FrameModificationVille extends JFrame implements ActionListener, Ke
 
         this.panelRoute.add(this.lblErreur = new JLabel(""), BorderLayout.SOUTH);
 
-        this.panelRoute.add(this.lblRoute = new JLabel("  Route(s) : "), BorderLayout.NORTH);
+        this.panelRoute.add(this.lblRoute = new JLabel(tabRoute));
 
-        //Routes
+        // Routes
 
         this.panelSauvegarde.add(this.btnSauvegarder = new JButton("SAUVEGARDER"));
         this.panelSauvegarde.add(this.btnSupprimer = new JButton("SUPPRIMER"));
@@ -97,10 +102,8 @@ public class FrameModificationVille extends JFrame implements ActionListener, Ke
         this.btnSauvegarder.addActionListener(this);
         this.btnSupprimer.addActionListener(this);
 
-
-		// Raccourcis
-		this.btnSauvegarder.addKeyListener(this);
-
+        // Raccourcis
+        this.btnSauvegarder.addKeyListener(this);
 
         // Initialisation
         this.setVisible(true);
@@ -110,47 +113,43 @@ public class FrameModificationVille extends JFrame implements ActionListener, Ke
     }
 
     @Override
-    public void actionPerformed(ActionEvent e)
-	{
-        if (e.getSource().equals(this.btnSauvegarder))
-		{
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource().equals(this.btnSauvegarder)) {
             if (txtNomVille.getText().isEmpty()
-			||  txtXVille.getText().isEmpty()
-			||  txtYVille.getText().isEmpty() ) 
-				lblErreur.setText("Erreur de saisie.\n");
-            else
-			{
-                try
-				{
-                    //Modification
-                    Controleur.getCarte().modifieVille(villeModif, this.txtNomVille.getText(), Integer.parseInt(this.txtXVille.getText()), Integer.parseInt(this.txtYVille.getText()));
+                    || txtXVille.getText().isEmpty()
+                    || txtYVille.getText().isEmpty())
+                lblErreur.setText("Erreur de saisie.\n");
+            else {
+                try {
+                    // Modification
+                    Controleur.getCarte().modifieVille(villeModif, this.txtNomVille.getText(),
+                            Integer.parseInt(this.txtXVille.getText()), Integer.parseInt(this.txtYVille.getText()));
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
                 }
-				catch( IOException ex ){ throw new RuntimeException(ex); }
                 this.dispose();
             }
         }
 
-		if (e.getSource().equals(this.btnSupprimer))
-		{
-			// afficher la fenetre de confirmation
-			new FrameConfirmer(this);
+        if (e.getSource().equals(this.btnSupprimer)) {
+            // afficher la fenetre de confirmation
+            new FrameConfirmer(this);
 
-		}
-	}
-    
-	public void keyPressed(KeyEvent e)
-	{
-		if( e.getKeyCode() == KeyEvent.VK_ENTER )
-			this.btnSauvegarder.doClick();			
-	}
+        }
+    }
 
-		@Override
-		public void keyReleased(KeyEvent e) { }
+    public void keyPressed(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_ENTER)
+            this.btnSauvegarder.doClick();
+    }
 
-		@Override
-		public void keyTyped(KeyEvent e) { }
+    @Override
+    public void keyReleased(KeyEvent e) {
+    }
 
-
+    @Override
+    public void keyTyped(KeyEvent e) {
+    }
 
     public void quitterFrame(boolean confirm) {
         if (confirm) {
@@ -158,9 +157,7 @@ public class FrameModificationVille extends JFrame implements ActionListener, Ke
         }
     }
 
-
-    public Ville getVilleModif()
-    {
+    public Ville getVilleModif() {
         return this.villeModif;
     }
 

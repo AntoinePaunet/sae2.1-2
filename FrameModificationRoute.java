@@ -21,7 +21,8 @@ public class FrameModificationRoute extends JFrame implements ActionListener {
     private JButton btnSupprimer;
 
     private List lstNbTroncon;
-    private List lstVilles;
+    private List lstVillesDepart;
+    private List lstVillesArrivee;
 
     private Route routeModif;
 
@@ -42,15 +43,20 @@ public class FrameModificationRoute extends JFrame implements ActionListener {
         this.panelRoute = new JPanel();
         this.panelSauvegarde = new JPanel();
         this.lstNbTroncon = new List();
-        this.lstVilles = new List();
+        this.lstVillesDepart = new List();
+        this.lstVillesArrivee = new List();
 
         // Création de la liste du nombre de tronçons
         for (int i = 0; i < TRONCON.length; i++)
             this.lstNbTroncon.add(TRONCON[i]);
 
-        // Création de la liste des villes existentent
+        // Création de la liste des villes de départ
         for (Ville v : this.carteModif.getTabVilles())
-            this.lstVilles.add(v.getNom());
+            this.lstVillesDepart.add(v.getNom());
+
+        // Création de la liste des villes d'arrivee
+        for (Ville v : this.carteModif.getTabVilles())
+            this.lstVillesArrivee.add(v.getNom());
 
         // Modification du layout des panels
         this.panelDonnees.setLayout(new GridLayout(3, 2, 10, 10));
@@ -61,10 +67,10 @@ public class FrameModificationRoute extends JFrame implements ActionListener {
         this.panelInfo.add(this.lblInfo = new JLabel("Modification de la route "));
 
         this.panelDonnees.add(this.lblVilleDepart = new JLabel("  Ville de départ"));
-        this.panelDonnees.add(this.lstVilles);
+        this.panelDonnees.add(this.lstVillesDepart);
 
         this.panelDonnees.add(this.lblVilleArrivee = new JLabel("  Ville d'arrivée"));
-        this.panelDonnees.add(this.lstVilles);
+        this.panelDonnees.add(this.lstVillesArrivee);
 
         this.panelDonnees.add(this.lblNbTroncons = new JLabel("  Nombre de tronçons"));
         this.panelDonnees.add(this.lstNbTroncon);

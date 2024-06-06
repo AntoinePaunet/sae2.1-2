@@ -1,4 +1,9 @@
 [VILLES]
+test2	600	200
+test3	46	391
 
 [ROUTES]
 
+1	test2	test1
+3	test1	test2
+2	test3	test2

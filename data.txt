@@ -1,5 +1,6 @@
 [VILLES]
 Berlin	500	500
 Munich	850	700
+Hannover	500	100
 
 [ROUTES]

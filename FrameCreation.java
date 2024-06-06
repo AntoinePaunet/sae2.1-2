@@ -123,7 +123,7 @@ public class FrameCreation extends JFrame
 							if(Controleur.setNouvelleVille(new Ville(txtNom.getText(), Integer.parseInt(txtCooX.getText()), Integer.parseInt(txtCooY.getText()))))
                                 FrameCreation.super.dispose();
 						}
-                        lblErreur.setText("X compris [20;900] et Y compris [50;730]");
+                        lblErreur.setText("Champ de saisie incorrecte");
 					}
 					catch( NumberFormatException e ) { lblErreur.setText("Erreur de saisie.");	}
 					catch( IOException e )			 { throw new RuntimeException(e); }

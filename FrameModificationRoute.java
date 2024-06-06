@@ -50,7 +50,7 @@ public class FrameModificationRoute extends JFrame implements ActionListener {
         this.panelSauvegarde.setLayout(new GridLayout(1, 2));
 
         // Ajout des objets aux panels
-        this.panelInfo.add(this.lblInfo = new JLabel("Modification d'une route"));
+        this.panelInfo.add(this.lblInfo = new JLabel("Modification de la route "));
 
         this.panelDonnees.add(this.lblVilleDepart = new JLabel("  Ville de départ"));
         this.panelDonnees.add(this.lstVilles);

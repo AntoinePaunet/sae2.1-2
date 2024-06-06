@@ -57,21 +57,23 @@ public class Controleur
     {
         this.fichierData = new File( this.urlFichier );
 
-        if( fichierData.exists() )
+        if( !fichierData.exists() )
 		{
-			Controleur.carte = new Carte();
-        	return true;
+			try( BufferedWriter writer = new BufferedWriter( new FileWriter(this.fichierData) ) )
+			{
+				writer.write("[VILLES]\n\n[ROUTES]");
+				System.out.println("Fichier de données créé : " + fichierData.getAbsolutePath());
+				Controleur.carte = new Carte();
+			}
+			catch( IOException e ) { return false; }
+
+			return true;
 		}
 
-        try( BufferedWriter writer = new BufferedWriter( new FileWriter(fichierData) ) )
-        {
-            writer.write("[VILLES]\n\n[ROUTES]");
-            System.out.println("Fichier de données créé : " + fichierData.getAbsolutePath());
-			Controleur.carte = new Carte();
-        }
-		catch( IOException e ) { return false; }
-
+		System.out.println(this.urlFichier);
+		Controleur.carte = new Carte( this.urlFichier );
         return true;
+
     }
 
     public boolean importFile( String url ) throws FileNotFoundException

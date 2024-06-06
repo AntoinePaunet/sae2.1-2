@@ -55,14 +55,31 @@ public class Route {
 		return this.villeArrivee;
 	}
 
+	/**
+	 * Donne le nom de la ville de départ de la Route.
+	 *
+	 * @return le nom de la ville de départ de la route.
+	 */
 	public String getNomVilleDepart() {
 		return this.getVilleDepart().getNom();
 	}
 
+	/**
+	 * Donne le nom de la ville d'arrivée de la Route.
+	 *
+	 * @return le nom de la ville d'arrivée de la route.
+	 */
 	public String getNomVilleArrivee() {
 		return this.getVilleArrivee().getNom();
 	}
 
+	/**
+	 * Donne la ville de départ et la ville d'arrivée de la Route qui sont séparés
+	 * par un tiret.
+	 *
+	 * @return la nom de la ville de départ, tirer, le nom de la ville d'arrivée, de
+	 *         la route.
+	 */
 	public String departToArrivee() {
 		return this.getNomVilleDepart() + "-" + this.getNomVilleArrivee();
 	}

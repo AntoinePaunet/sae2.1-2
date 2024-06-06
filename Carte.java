@@ -252,6 +252,11 @@ public class Carte {
 		return null;
 	}
 
+
+	public ArrayList<Route> getTabRoutes() {
+		return this.routes;
+	}
+
 	public ArrayList<Ville> getTabVilles() {
 		return this.villes;
 	}

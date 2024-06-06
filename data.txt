@@ -1,4 +1,0 @@
-[VILLES]
-Paris	300	600
-
-[ROUTES]

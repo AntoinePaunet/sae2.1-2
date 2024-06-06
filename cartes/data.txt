@@ -1,0 +1,7 @@
+[VILLES]
+Londres	900	650
+Manchester	500	400
+Liverpool	500	150
+Birmingham	725	150
+
+[ROUTES]

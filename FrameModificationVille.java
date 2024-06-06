@@ -117,7 +117,10 @@ public class FrameModificationVille extends JFrame implements ActionListener, Ke
         if (e.getSource().equals(this.btnSauvegarder)) {
             if (txtNomVille.getText().isEmpty()
                     || txtXVille.getText().isEmpty()
-                    || txtYVille.getText().isEmpty())
+                    || txtYVille.getText().isEmpty()
+                    || txtNomVille.getText() == villeModif.getNom() &&
+                            Integer.parseInt(txtXVille.getText()) == villeModif.getX() &&
+                            Integer.parseInt(txtYVille.getText()) == villeModif.getY())
                 lblErreur.setText("Erreur de saisie.\n");
             else {
                 try {

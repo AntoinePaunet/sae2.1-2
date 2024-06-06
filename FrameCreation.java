@@ -117,7 +117,7 @@ public class FrameCreation extends JFrame
                 {
 					try {
 						if( Integer.parseInt(txtCooX.getText()) <= 900 && Integer.parseInt(txtCooX.getText()) >= 20
-						||  Integer.parseInt(txtCooY.getText()) <= 730  && Integer.parseInt(txtCooY.getText()) >= 50 )
+						||  Integer.parseInt(txtCooY.getText()) <= 730 && Integer.parseInt(txtCooY.getText()) >= 50 )
 						{
 							lblErreur.setText("Création d'une ville");
 							if(Controleur.setNouvelleVille(new Ville(txtNom.getText(), Integer.parseInt(txtCooX.getText()), Integer.parseInt(txtCooY.getText()))))
@@ -211,7 +211,8 @@ public class FrameCreation extends JFrame
                 {
 					//Création d'un élément
 					lblErreur.setText("Création d'un élément");
-					try {
+					try
+					{
 						if(!Controleur.setNouvelleRoute(txtVilleDep.getText(), txtVilleArr.getText(), lstTroncons.getSelectedIndex()))
 							lblErreur.setText("Une des villes n'existe pas");
 						else

@@ -132,7 +132,8 @@ public class FramePrincipale extends JFrame implements ActionListener
 
     private void clickDetection()
     {
-        this.addMouseListener(new MouseAdapter() {
+        this.addMouseListener(new MouseAdapter()
+		{
             @Override
             public void mouseClicked(MouseEvent e)
             {
@@ -150,16 +151,15 @@ public class FramePrincipale extends JFrame implements ActionListener
 
     private void dragDetection()
     {
-        MouseAdapter mouseAdapter = new MouseAdapter() {
+        MouseAdapter mouseAdapter = new MouseAdapter()
+		{
             @Override
             public void mousePressed(MouseEvent e)
             {
                 for (Ville v : villes)
                 {
                     if(e.getX() >= v.getX() + 10 && e.getX() < v.getX() + 110 && e.getY() >= v.getY() + 60 && e.getY() < v.getY() + 160)
-                    {
-                        villeSelectionne = v;
-                    }
+						villeSelectionne = v;
                 }
             }
 
@@ -167,15 +167,13 @@ public class FramePrincipale extends JFrame implements ActionListener
             @Override
             public void mouseDragged(MouseEvent e)
             {
-                if(villeSelectionne == null)
+                if(villeSelectionne != null)
                 {
-                    return;
-                }
-
-                try {
-                    Controleur.getCarte().modifieVille(villeSelectionne,villeSelectionne.getNom(),e.getX()-50,e.getY()-100);
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
+                	try
+					{
+                    	Controleur.getCarte().modifieVille(villeSelectionne,villeSelectionne.getNom(),e.getX()-50,e.getY()-100);
+					}
+					catch( IOException ex ) { throw new RuntimeException(ex); }   
                 }
             }
 
@@ -228,7 +226,6 @@ public class FramePrincipale extends JFrame implements ActionListener
 					this.ctrl.importFile(getName());
 				}
 				catch( Exception ex ) { ex.printStackTrace(); }
-
 			}
 			else
 				System.out.println("Annuler");

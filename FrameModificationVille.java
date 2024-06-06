@@ -138,7 +138,7 @@ public class FrameModificationVille extends JFrame implements ActionListener, Ke
 	public void keyPressed(KeyEvent e)
 	{
 		if( e.getKeyCode() == KeyEvent.VK_ENTER )
-			
+			this.btnSauvegarder.doClick();
 	}
 
 		@Override

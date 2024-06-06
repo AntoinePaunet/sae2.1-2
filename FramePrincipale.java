@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class FramePrincipale extends JFrame implements ActionListener
@@ -14,11 +15,22 @@ public class FramePrincipale extends JFrame implements ActionListener
 
     private ArrayList<Ville>    villes;
 
-    public FramePrincipale ()
+	private Controleur ctrl;
+
+    private int xInitial;
+    private int yInitial;
+
+    private int xFinal;
+    private int yFinal;
+
+    private Ville villeSelectionne;
+
+    public FramePrincipale (Controleur ctrl)
     {
+		this.ctrl = ctrl;
         this.setTitle   ( "Réseau routier" );
         this.setSize    ( 1040,950 );
-        this.setLocation(  50, 50 );
+        this.setLocation(  300, 50 );
 		this.setVisible (true);
         this.setIconImage(new ImageIcon(this.getClass().getResource("/images/ville.png")).getImage());
 
@@ -46,6 +58,15 @@ public class FramePrincipale extends JFrame implements ActionListener
 
         this.setJMenuBar(menuBar);
 
+		// Définition des raccourcis clavier
+		menuAjouter.setMnemonic('A');
+		menuOuvrir .setMnemonic('O');
+		menuQuitter.setMnemonic('Q');
+
+		this.menuiAjouterVille.setAccelerator (KeyStroke.getKeyStroke(KeyEvent.VK_T, InputEvent.CTRL_DOWN_MASK) );
+		this.menuiAjouterRoute.setAccelerator (KeyStroke.getKeyStroke(KeyEvent.VK_R, InputEvent.CTRL_DOWN_MASK) );
+		this.menuiOuvrir      .setAccelerator (KeyStroke.getKeyStroke(KeyEvent.VK_I, InputEvent.CTRL_DOWN_MASK) );
+		this.menuiQuitter	  .setAccelerator (KeyStroke.getKeyStroke(KeyEvent.VK_F4, InputEvent.ALT_DOWN_MASK) );
 
         // Activation des composants
         this.menuiAjouterVille.addActionListener ( this );
@@ -66,12 +87,13 @@ public class FramePrincipale extends JFrame implements ActionListener
         //Recharger l'ihm
         rechargerIhm();
         clickDetection();
+        dragDetection();
     }
 
     public Runnable rechargerIhm() //Met 60 fps
     {
 
-        Timer fps = new Timer(500, new ActionListener()
+        Timer fps = new Timer(17, new ActionListener()
 		{
             @Override
             public void actionPerformed(ActionEvent e)
@@ -115,7 +137,6 @@ public class FramePrincipale extends JFrame implements ActionListener
             @Override
             public void mouseClicked(MouseEvent e)
             {
-                System.out.println(villes.size());
                 for (Ville v : villes)
                 {
                     if(e.getX() >= v.getX() + 10 && e.getX() < v.getX() + 110 && e.getY() >= v.getY() + 60 && e.getY() < v.getY() + 160)
@@ -126,6 +147,53 @@ public class FramePrincipale extends JFrame implements ActionListener
             }
         });
     }
+
+
+    private void dragDetection()
+    {
+        MouseAdapter mouseAdapter = new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e)
+            {
+                for (Ville v : villes)
+                {
+                    if(e.getX() >= v.getX() + 10 && e.getX() < v.getX() + 110 && e.getY() >= v.getY() + 60 && e.getY() < v.getY() + 160)
+                    {
+                        villeSelectionne = v;
+                    }
+                }
+            }
+
+
+            @Override
+            public void mouseDragged(MouseEvent e)
+            {
+                if(villeSelectionne == null)
+                {
+                    return;
+                }
+
+                try {
+                    Controleur.getCarte().modifieVille(villeSelectionne,villeSelectionne.getNom(),e.getX()-50,e.getY()-100);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e)
+            {
+                villeSelectionne = null;
+            }
+
+
+        };
+
+
+        this.addMouseListener(mouseAdapter);
+        this.addMouseMotionListener(mouseAdapter);
+    }
+
 
 
     public JMenuItem getMenuiAjouterVille()
@@ -150,7 +218,7 @@ public class FramePrincipale extends JFrame implements ActionListener
 		if( e.getSource() == this.menuiAjouterRoute )
 			new FrameCreation(false);
 
-		/*
+		
 		// Importation des fichiers
 		if( e.getSource() == this.menuiOuvrir )
 		{
@@ -159,12 +227,11 @@ public class FramePrincipale extends JFrame implements ActionListener
 			int returnVal = fc.showOpenDialog(this);
 
 			if (returnVal == JFileChooser.APPROVE_OPTION)
-				this.ctrl.setFichierImage(fc.getSelectedFile().getAbsolutePath());
+				this.ctrl.importFile(getName());
 			else
 				System.out.println("Annuler");
 		}
-		*/
-
+		
 		// Fermeture de l'application
 		if ( e.getSource() == this.menuiQuitter )
 			System.exit(0);

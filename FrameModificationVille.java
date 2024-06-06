@@ -1,10 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.io.IOException;
 
-public class FrameModificationVille extends JFrame implements ActionListener {
+public class FrameModificationVille extends JFrame implements ActionListener, KeyListener
+{
 
     private JPanel panelInfo;
     private JPanel panelPrincipal;
@@ -28,7 +28,8 @@ public class FrameModificationVille extends JFrame implements ActionListener {
 
     private Ville villeModif;
 
-    public FrameModificationVille(Ville ville) {
+    public FrameModificationVille(Ville ville)
+	{
         this.setTitle("Modification d'une ville");
         this.setSize(500, 400);
         this.setLocation(50, 50);
@@ -96,6 +97,11 @@ public class FrameModificationVille extends JFrame implements ActionListener {
         this.btnSauvegarder.addActionListener(this);
         this.btnSupprimer.addActionListener(this);
 
+
+		// Raccourcis
+		this.btnSauvegarder.addKeyListener(this);
+
+
         // Initialisation
         this.setVisible(true);
 
@@ -104,32 +110,47 @@ public class FrameModificationVille extends JFrame implements ActionListener {
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource().equals(this.btnSauvegarder)) {
-            if (txtNomVille.getText().isEmpty() ||
-                    txtXVille.getText().isEmpty() ||
-                    txtYVille.getText().isEmpty()) {
-                lblErreur.setText("Erreur de saisie.\n");
-            } else {
-                try {
-
+    public void actionPerformed(ActionEvent e)
+	{
+        if (e.getSource().equals(this.btnSauvegarder))
+		{
+            if (txtNomVille.getText().isEmpty()
+			||  txtXVille.getText().isEmpty()
+			||  txtYVille.getText().isEmpty() ) 
+				lblErreur.setText("Erreur de saisie.\n");
+            else
+			{
+                try
+				{
                     //Modification
                     Controleur.getCarte().modifieVille(villeModif, this.txtNomVille.getText(), Integer.parseInt(this.txtXVille.getText()), Integer.parseInt(this.txtYVille.getText()));
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
                 }
+				catch( IOException ex ){ throw new RuntimeException(ex); }
                 this.dispose();
             }
         }
 
-        if (e.getSource().equals(this.btnSupprimer)) {
+		if (e.getSource().equals(this.btnSupprimer))
+		{
+			// afficher la fenetre de confirmation
+			new FrameConfirmer(this);
 
-            // afficher la fenetre de confirmation
-            FrameConfirmer confirmer;
-            confirmer = new FrameConfirmer(this);
+		}
+	}
+    
+	public void keyPressed(KeyEvent e)
+	{
+		if( e.getKeyCode() == KeyEvent.VK_ENTER )
+			this.btnSauvegarder.doClick();			
+	}
 
-        }
-    }
+		@Override
+		public void keyReleased(KeyEvent e) { }
+
+		@Override
+		public void keyTyped(KeyEvent e) { }
+
+
 
     public void quitterFrame(boolean confirm) {
         if (confirm) {

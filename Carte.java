@@ -2,7 +2,6 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
-import java.util.Collection;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -23,20 +22,27 @@ public class Carte
 	{
 		this.villes = new ArrayList<Ville>();
 		this.routes = new ArrayList<Route>();
-		this.readAll();
+		this.readAll("data.txt");
+	}
+
+    public Carte( String nomFichier ) throws FileNotFoundException
+	{
+		this.villes = new ArrayList<Ville>();
+		this.routes = new ArrayList<Route>();
+		this.readAll(nomFichier);
 	}
 
 
-	public Runnable readAll() throws FileNotFoundException
+	public Runnable readAll( String nomFicher ) throws FileNotFoundException
 	{
-		Timer timer = new Timer(1000, new ActionListener()
+		Timer timer = new Timer(17, new ActionListener()
 		{
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
 				try
 				{
-					FileReader fr = new FileReader( "data.txt" );
+					FileReader fr = new FileReader( nomFicher );
 					Scanner sc = new Scanner(fr);
 
 					//Vider les tableaux pour ne pas refaire trop de variables
@@ -208,8 +214,8 @@ public class Carte
 		if( donnesFichier.contains(ville.getNom()) ) // Vérification de doubles dans le fichier texte
 		{
 			String tmp = ville.getX() + "" + ville.getY();
-			String donneesVilles = donnesFichier.substring(donnesFichier.indexOf("[VILLES]"), donnesFichier.indexOf(ville.getNom()));
-			String donneesRoutes = donnesFichier.substring(donnesFichier.indexOf(ville.getNom()) + ville.getNom().length() + tmp.length() + 2);
+			String donneesVilles = donnesFichier.substring( donnesFichier.indexOf("[VILLES]"), donnesFichier.indexOf(ville.getNom()) );
+			String donneesRoutes = donnesFichier.substring( donnesFichier.indexOf(ville.getNom()) + ville.getNom().length() + tmp.length() + 2 );
 
 
 			donnesFichier = donneesVilles.stripTrailing() + donneesRoutes;

@@ -1,5 +1,6 @@
 [VILLES]
-Rouen	200	500
-Caen	420	320
+Hannover	237	297
+Munich	651	525
+Berlin	645	132
 
 [ROUTES]

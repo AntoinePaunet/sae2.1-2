@@ -56,7 +56,8 @@ public class FrameConfirmer extends JFrame implements ActionListener {
             if (this.frameModificationVille != null)
             {
                 this.frameModificationVille.quitterFrame(true);
-                try {
+                try
+                {
                     Controleur.getCarte().supprimerVille(this.frameModificationVille.getVilleModif());
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);

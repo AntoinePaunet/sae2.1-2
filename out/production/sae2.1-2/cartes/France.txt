@@ -1,0 +1,8 @@
+[VILLES]
+Paris	500	300
+Rouen	250	100
+Marseille	550	750
+Lyon	850	800
+
+
+[ROUTES]

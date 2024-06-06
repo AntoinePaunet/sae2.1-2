@@ -19,15 +19,16 @@ public class Controleur
 
 
 
-    private Controleur() throws FileNotFoundException {
+    private Controleur() throws FileNotFoundException
+	{
         this.urlFichier = "data.txt";
         this.init();
         this.importFile(this.urlFichier);
         Controleur.carte = new Carte();
-        this.ihm = new FramePrincipale();
+        this.ihm = new FramePrincipale(this);
     }
 
-    public static Carte getCarte() { return carte; }
+    public static Carte getCarte() { return carte; }	
 
     public static boolean setNouvelleVille( Ville ville ) throws IOException
     {
@@ -74,10 +75,11 @@ public class Controleur
     {
         File fileImport = new File(url);
 
-        if( fileImport.exists() && fileImport.isFile() && fileImport.canWrite() && fileImport.canRead() )
+        if( 0 == 0 )
         {
             this.urlFichier = url;
             this.fichierData = fileImport;
+			this.init();
             return true;
         }
         System.out.println("Ce fichier n'est pas lisible");

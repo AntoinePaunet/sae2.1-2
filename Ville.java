@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 /**
- * Cet classe recesne les Villes.
+ * Cet classe recense les Villes.
  * 
  * @author Antione Paunet, IUT du Havre
  * @author Mael Vauthier, IUT du Havre

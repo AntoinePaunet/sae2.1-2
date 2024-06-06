@@ -4,3 +4,4 @@ test2	300	100
 
 [ROUTES]
 2	Paris	test
+2	test	test2

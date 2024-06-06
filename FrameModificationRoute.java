@@ -135,6 +135,7 @@ public class FrameModificationRoute extends JFrame implements ActionListener
 
         if (e.getSource().equals(this.btnSupprimer))
 			new FrameConfirmer(this);
+        }
 
 
         if (e.getSource().equals(this.lstNbTroncon)) {

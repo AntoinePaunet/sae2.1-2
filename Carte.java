@@ -25,6 +25,13 @@ public class Carte
 		this.readAll("data.txt");
 	}
 
+    public Carte( String nomFichier ) throws FileNotFoundException
+	{
+		this.villes = new ArrayList<Ville>();
+		this.routes = new ArrayList<Route>();
+		this.readAll(nomFichier);
+	}
+
 
 	public Runnable readAll( String nomFicher ) throws FileNotFoundException
 	{

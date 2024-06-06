@@ -25,10 +25,10 @@ public class Controleur
         this.init();
         this.importFile(this.urlFichier);
         Controleur.carte = new Carte();
-        this.ihm = new FramePrincipale();
+        this.ihm = new FramePrincipale(this);
     }
 
-    public static Carte getCarte() { return carte; }
+    public static Carte getCarte() { return carte; }	
 
     public static boolean setNouvelleVille( Ville ville ) throws IOException
     {

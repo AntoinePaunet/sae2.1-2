@@ -14,8 +14,11 @@ public class FramePrincipale extends JFrame implements ActionListener
 
     private ArrayList<Ville>    villes;
 
-    public FramePrincipale ()
+	private Controleur ctrl;
+
+    public FramePrincipale (Controleur ctrl)
     {
+		this.ctrl = ctrl;
         this.setTitle   ( "Réseau routier" );
         this.setSize    ( 1040,950 );
         this.setLocation(  50, 50 );
@@ -159,7 +162,7 @@ public class FramePrincipale extends JFrame implements ActionListener
 		if( e.getSource() == this.menuiAjouterRoute )
 			new FrameCreation(false);
 
-		/*
+		
 		// Importation des fichiers
 		if( e.getSource() == this.menuiOuvrir )
 		{
@@ -168,11 +171,11 @@ public class FramePrincipale extends JFrame implements ActionListener
 			int returnVal = fc.showOpenDialog(this);
 
 			if (returnVal == JFileChooser.APPROVE_OPTION)
-				this.ctrl.setFichierImage(fc.getSelectedFile().getAbsolutePath());
+				this.ctrl.importFile(getName());
 			else
 				System.out.println("Annuler");
 		}
-		*/
+		
 		// Fermeture de l'application
 		if ( e.getSource() == this.menuiQuitter )
 			System.exit(0);

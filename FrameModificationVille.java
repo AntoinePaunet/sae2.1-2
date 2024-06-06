@@ -97,7 +97,10 @@ public class FrameModificationVille extends JFrame implements ActionListener, Ke
         this.btnSauvegarder.addActionListener(this);
         this.btnSupprimer.addActionListener(this);
 
+
+		// Raccourcis
 		this.btnSauvegarder.addKeyListener(this);
+
 
         // Initialisation
         this.setVisible(true);
@@ -138,7 +141,7 @@ public class FrameModificationVille extends JFrame implements ActionListener, Ke
 	public void keyPressed(KeyEvent e)
 	{
 		if( e.getKeyCode() == KeyEvent.VK_ENTER )
-			this.btnSauvegarder.doClick();
+			this.btnSauvegarder.doClick();			
 	}
 
 		@Override

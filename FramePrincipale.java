@@ -184,11 +184,7 @@ public class FramePrincipale extends JFrame implements ActionListener
             {
                 villeSelectionne = null;
             }
-
-
         };
-
-
         this.addMouseListener(mouseAdapter);
         this.addMouseMotionListener(mouseAdapter);
     }
@@ -205,7 +201,7 @@ public class FramePrincipale extends JFrame implements ActionListener
         return this.menuiAjouterRoute;
     }
 
-	public void actionPerformed ( ActionEvent e )
+	public void actionPerformed ( ActionEvent e ) 
 	{
 		// Syso pour confirmer l'action
 		if ( e.getSource() instanceof JMenuItem )
@@ -226,7 +222,14 @@ public class FramePrincipale extends JFrame implements ActionListener
 			int returnVal = fc.showOpenDialog(this);
 
 			if (returnVal == JFileChooser.APPROVE_OPTION)
-				this.ctrl.importFile(getName());
+			{
+				try
+				{
+					this.ctrl.importFile(getName());
+				}
+				catch( Exception ex ) { ex.printStackTrace(); }
+
+			}
 			else
 				System.out.println("Annuler");
 		}

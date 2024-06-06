@@ -24,7 +24,6 @@ public class Controleur
         this.urlFichier = "data.txt";
         this.init();
         this.importFile(this.urlFichier);
-        Controleur.carte = new Carte();
         this.ihm = new FramePrincipale(this);
     }
 
@@ -54,24 +53,28 @@ public class Controleur
     }
 
 
-    private boolean init()
+    private boolean init() throws FileNotFoundException
     {
         this.fichierData = new File( this.urlFichier );
 
         if( fichierData.exists() )
+		{
+			Controleur.carte = new Carte();
         	return true;
+		}
 
         try( BufferedWriter writer = new BufferedWriter( new FileWriter(fichierData) ) )
         {
             writer.write("[VILLES]\n\n[ROUTES]");
             System.out.println("Fichier de données créé : " + fichierData.getAbsolutePath());
+			Controleur.carte = new Carte();
         }
 		catch( IOException e ) { return false; }
 
         return true;
     }
 
-    public boolean importFile( String url )
+    public boolean importFile( String url ) throws FileNotFoundException
     {
         File fileImport = new File(url);
 

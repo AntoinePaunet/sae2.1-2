@@ -1,5 +1,4 @@
 [VILLES]
-Hannover	511	374
-Munich	139	263
 
 [ROUTES]
+8	Munich	Hannover

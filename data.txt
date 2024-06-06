@@ -3,5 +3,7 @@ Berlin	473	153
 Hannover	806	472
 Munich	292	514
 
+New York	50	1000
+Test	50	300
 
 [ROUTES]

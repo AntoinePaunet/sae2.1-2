@@ -50,7 +50,7 @@ public class FrameModificationVille extends JFrame implements ActionListener, Ke
         this.panelSauvegarde.setLayout(new GridLayout(1, 2));
 
         // Ajout des objets aux panels
-        this.panelInfo.add(this.lblInfo = new JLabel("Modification d'une ville"));
+        this.panelInfo.add(this.lblInfo = new JLabel("Modification de " + ville.getNom()));
 
         this.panelDonnees.add(this.lblNomVille = new JLabel("  Nom de la ville : "));
         this.panelDonnees.add(this.txtNomVille = new JTextField(ville.getNom()));

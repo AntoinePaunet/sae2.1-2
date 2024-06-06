@@ -132,23 +132,24 @@ public class FrameModificationRoute extends JFrame implements ActionListener
 				catch( IOException ex ) { throw new RuntimeException(ex); }
                 this.dispose();
             }
-
+		}
         if (e.getSource().equals(this.btnSupprimer))
 			new FrameConfirmer(this);
         }
 
 
-        if (e.getSource().equals(this.lstNbTroncon)) {
+        if (e.getSource().equals(this.lstNbTroncon))
+		{
             for (String s : this.lstNbTroncon.getSelectedItems())
-                System.out.println(s);
-        }
+        		System.out.println(s);
+		}
 
     }
 
-    public void quitterFrame(boolean confirm) {
-        if (confirm) {
+    public void quitterFrame(boolean confirm)
+	{
+        if (confirm)
             this.dispose();
-        }
     }
 
 }

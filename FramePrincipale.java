@@ -159,7 +159,7 @@ public class FramePrincipale extends JFrame implements ActionListener
 		if( e.getSource() == this.menuiAjouterRoute )
 			new FrameCreation(false);
 
-		
+		/*
 		// Importation des fichiers
 		if( e.getSource() == this.menuiOuvrir )
 		{
@@ -172,7 +172,7 @@ public class FramePrincipale extends JFrame implements ActionListener
 			else
 				System.out.println("Annuler");
 		}
-		
+		*/
 		// Fermeture de l'application
 		if ( e.getSource() == this.menuiQuitter )
 			System.exit(0);

@@ -124,6 +124,9 @@ public class FrameModificationVille extends JFrame implements ActionListener, Ke
                     // Modification
                     Controleur.getCarte().modifieVille(villeModif, this.txtNomVille.getText(),
                             Integer.parseInt(this.txtXVille.getText()), Integer.parseInt(this.txtYVille.getText()));
+                    for (Route r : villeModif.getTabRoutes())
+                        Controleur.getCarte().modifieRoute(r, r.getVilleDepart(), r.getVilleArrivee(),
+                                r.getNbTroncon());
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }

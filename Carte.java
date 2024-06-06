@@ -179,8 +179,17 @@ public class Carte {
 		this.ecrireVille(nomVille, xVille, yVille);
 	}
 
+<<<<<<< HEAD
 	public void supprimerVille(Ville ville) throws IOException
 	{
+=======
+	public void modifieRoute(Route route, Ville villeDep, Ville villeArr, int nbTroncon) throws IOException {
+		this.supprimerRoute(route);
+		this.ecrireRoute(villeDep, villeArr, nbTroncon);
+	}
+
+	public void supprimerVille(Ville ville) throws IOException {
+>>>>>>> 720beee8e9eea3e5a1dcf31aaa626b9e601ded83
 		FileReader fr = new FileReader("data.txt");
 		Scanner sc = new Scanner(fr);
 
@@ -207,6 +216,39 @@ public class Carte {
 				writer.write(donnesFichier);
 			}
 			catch( Exception e ) { e.printStackTrace(); }
+
+			writer.close();
+		}
+		sc.close();
+	}
+
+	public void supprimerRoute(Route route) throws IOException {
+		FileReader fr = new FileReader("data.txt");
+		Scanner sc = new Scanner(fr);
+
+		String donnesFichier = "";
+
+		while (sc.hasNextLine())
+			donnesFichier += sc.nextLine() + "\n";
+
+		String donneeRoute = route.getNbTroncon() + "\t" + route.getNomVilleDepart() + "\t"
+				+ route.getNomVilleArrivee();
+
+		if (donnesFichier.contains(donneeRoute)) // Vérification de doubles dans le fichier texte
+		{
+			String donneesAvantRoute = donnesFichier.substring(0, donnesFichier.indexOf(donneeRoute));
+			String donneesApresRoute = donnesFichier
+					.substring(donnesFichier.indexOf(donneeRoute) + donneeRoute.length() + 1);
+
+			donnesFichier = donneesAvantRoute.stripTrailing() + "\n" + donneesApresRoute.stripLeading();
+
+			BufferedWriter writer = new BufferedWriter(new FileWriter("data.txt"));
+
+			try {
+				writer.write(donnesFichier);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 
 			writer.close();
 		}

@@ -2,7 +2,6 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
-import java.util.Collection;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -23,11 +22,11 @@ public class Carte
 	{
 		this.villes = new ArrayList<Ville>();
 		this.routes = new ArrayList<Route>();
-		this.readAll();
+		this.readAll("data.txt");
 	}
 
 
-	public Runnable readAll() throws FileNotFoundException
+	public Runnable readAll( String nomFicher ) throws FileNotFoundException
 	{
 		Timer timer = new Timer(1000, new ActionListener()
 		{
@@ -36,7 +35,7 @@ public class Carte
 			{
 				try
 				{
-					FileReader fr = new FileReader( "data.txt" );
+					FileReader fr = new FileReader( nomFicher );
 					Scanner sc = new Scanner(fr);
 
 					//Vider les tableaux pour ne pas refaire trop de variables

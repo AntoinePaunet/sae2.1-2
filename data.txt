@@ -1,0 +1,4 @@
+[VILLES]
+Berlin	500	500
+
+[ROUTES]

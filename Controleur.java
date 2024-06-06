@@ -19,7 +19,8 @@ public class Controleur
 
 
 
-    private Controleur() throws FileNotFoundException {
+    private Controleur() throws FileNotFoundException
+	{
         this.urlFichier = "data.txt";
         this.init();
         this.importFile(this.urlFichier);

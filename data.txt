@@ -1,6 +1,5 @@
 [VILLES]
-test	524	321
-Bozo	237	278
-
+Caen	250	300
+Munich	450	100
 [ROUTES]
-8	Munich	Hannover
+1	Caen	Munich

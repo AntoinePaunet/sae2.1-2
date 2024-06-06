@@ -1,9 +1,5 @@
 [VILLES]
-<<<<<<< HEAD
-test	520	230
-=======
-
->>>>>>> 720beee8e9eea3e5a1dcf31aaa626b9e601ded83
-
+Caen	250	300
+Munich	450	100
 [ROUTES]
-8	Munich	Hannover
+1	Caen	Munich

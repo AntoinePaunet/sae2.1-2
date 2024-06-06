@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class FramePrincipale extends JFrame implements ActionListener
@@ -15,6 +16,14 @@ public class FramePrincipale extends JFrame implements ActionListener
     private ArrayList<Ville>    villes;
 
 	private Controleur ctrl;
+
+    private int xInitial;
+    private int yInitial;
+
+    private int xFinal;
+    private int yFinal;
+
+    private Ville villeSelectionne;
 
     public FramePrincipale (Controleur ctrl)
     {
@@ -78,12 +87,13 @@ public class FramePrincipale extends JFrame implements ActionListener
         //Recharger l'ihm
         rechargerIhm();
         clickDetection();
+        dragDetection();
     }
 
     public Runnable rechargerIhm() //Met 60 fps
     {
 
-        Timer fps = new Timer(500, new ActionListener()
+        Timer fps = new Timer(17, new ActionListener()
 		{
             @Override
             public void actionPerformed(ActionEvent e)
@@ -127,7 +137,6 @@ public class FramePrincipale extends JFrame implements ActionListener
             @Override
             public void mouseClicked(MouseEvent e)
             {
-                System.out.println(villes.size());
                 for (Ville v : villes)
                 {
                     if(e.getX() >= v.getX() + 10 && e.getX() < v.getX() + 110 && e.getY() >= v.getY() + 60 && e.getY() < v.getY() + 160)
@@ -138,6 +147,38 @@ public class FramePrincipale extends JFrame implements ActionListener
             }
         });
     }
+
+
+    private void dragDetection()
+    {
+        MouseAdapter mouseAdapter = new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e)
+            {
+                for (Ville v : villes)
+                {
+                    if(e.getX() >= v.getX() + 10 && e.getX() < v.getX() + 110 && e.getY() >= v.getY() + 60 && e.getY() < v.getY() + 160)
+                    {
+                        villeSelectionne = v;
+                    }
+                }
+            }
+
+
+            @Override
+            public void mouseDragged(MouseEvent e)
+            {
+                try {
+                    Controleur.getCarte().modifieVille(villeSelectionne,villeSelectionne.getNom(),e.getX()-50,e.getY()-100);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        };
+        this.addMouseListener(mouseAdapter);
+        this.addMouseMotionListener(mouseAdapter);
+    }
+
 
 
     public JMenuItem getMenuiAjouterVille()

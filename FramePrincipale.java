@@ -47,7 +47,7 @@ public class FramePrincipale extends JFrame implements ActionListener
         this.setJMenuBar(menuBar);
 
 		// Définition des raccourcis clavier
-		menuAjouter.setMnemonic('F');
+		menuAjouter.setMnemonic('A');
 		menuOuvrir .setMnemonic('O');
 		menuQuitter.setMnemonic('Q');
 

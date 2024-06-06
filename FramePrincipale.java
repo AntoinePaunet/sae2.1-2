@@ -1,7 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -30,7 +29,7 @@ public class FramePrincipale extends JFrame implements ActionListener
 		this.ctrl = ctrl;
         this.setTitle   ( "Réseau routier" );
         this.setSize    ( 1040,950 );
-        this.setLocation(  300, 50 );
+        this.setLocation(  600, 50 );
 		this.setVisible (true);
         this.setIconImage(new ImageIcon(this.getClass().getResource("/images/ville.png")).getImage());
 
@@ -185,11 +184,7 @@ public class FramePrincipale extends JFrame implements ActionListener
             {
                 villeSelectionne = null;
             }
-
-
         };
-
-
         this.addMouseListener(mouseAdapter);
         this.addMouseMotionListener(mouseAdapter);
     }
@@ -206,7 +201,7 @@ public class FramePrincipale extends JFrame implements ActionListener
         return this.menuiAjouterRoute;
     }
 
-	public void actionPerformed ( ActionEvent e )
+	public void actionPerformed ( ActionEvent e ) 
 	{
 		// Syso pour confirmer l'action
 		if ( e.getSource() instanceof JMenuItem )
@@ -227,7 +222,14 @@ public class FramePrincipale extends JFrame implements ActionListener
 			int returnVal = fc.showOpenDialog(this);
 
 			if (returnVal == JFileChooser.APPROVE_OPTION)
-				this.ctrl.importFile(getName());
+			{
+				try
+				{
+					this.ctrl.importFile(getName());
+				}
+				catch( Exception ex ) { ex.printStackTrace(); }
+
+			}
 			else
 				System.out.println("Annuler");
 		}

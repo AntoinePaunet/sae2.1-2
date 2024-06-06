@@ -1,5 +1,5 @@
 [VILLES]
-Berlin	659	426
-Hannover	313	334
+Hannover	709	269
+Munich	373	293
 
 [ROUTES]

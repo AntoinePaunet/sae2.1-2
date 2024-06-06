@@ -18,9 +18,13 @@ public class FrameModificationRoute extends JFrame implements ActionListener {
     private JButton btnSupprimer;
 
     private List lstNbTroncon;
+    private List lstVilles;
 
-    public FrameModificationRoute() {
+    private Carte carteModif;
+
+    public FrameModificationRoute(Carte carte) {
         final String[] TRONCON = new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };
+        this.carteModif = carte;
         this.setTitle("Modification d'une route");
         this.setSize(500, 400);
         this.setLocation(50, 50);
@@ -31,23 +35,28 @@ public class FrameModificationRoute extends JFrame implements ActionListener {
         this.panelDonnees = new JPanel();
         this.panelSauvegarde = new JPanel();
         this.lstNbTroncon = new List();
+        this.lstVilles = new List();
 
         // Création de la liste du nombre de tronçons
         for (int i = 0; i < TRONCON.length; i++)
             this.lstNbTroncon.add(TRONCON[i]);
+
+        // Création de la liste des villes existentent
+        for (Ville v : this.carteModif.getTabVilles())
+            this.lstVilles.add(v.getNom());
 
         // Modification du layout des panels
         this.panelDonnees.setLayout(new GridLayout(3, 2, 10, 10));
         this.panelSauvegarde.setLayout(new GridLayout(1, 2));
 
         // Ajout des objets aux panels
-        this.panelInfo.add(this.lblInfo = new JLabel("Modification d'une route"));
+        this.panelInfo.add(this.lblInfo = new JLabel("Modification de la route "));
 
         this.panelDonnees.add(this.lblVilleDepart = new JLabel("  Ville de départ"));
-        // this.panelDonnees.add(this.lstVilleDepart = new JList<>());
+        this.panelDonnees.add(this.lstVilles);
 
         this.panelDonnees.add(this.lblVilleArrivee = new JLabel("  Ville d'arrivée"));
-        // this.panelDonnees.add(this.lstVilleArrivee = new JList<>());
+        this.panelDonnees.add(this.lstVilles);
 
         this.panelDonnees.add(this.lblNbTroncons = new JLabel("  Nombre de tronçons"));
         this.panelDonnees.add(this.lstNbTroncon);
@@ -109,7 +118,4 @@ public class FrameModificationRoute extends JFrame implements ActionListener {
         }
     }
 
-    public static void main(String[] args) {
-        new FrameModificationRoute();
-    }
 }

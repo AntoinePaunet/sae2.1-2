@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.io.*;
 
 /**
@@ -25,7 +26,14 @@ public class Controleur
         this.init();
         this.importFile(this.urlFichier);
         Controleur.carte = new Carte();
-        this.ihm = new FramePrincipale(this);
+        SwingUtilities.invokeLater(() -> {
+            try {
+                this.ihm = new FramePrincipale(this);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+        });
     }
 
     public static Carte getCarte() { return carte; }	

@@ -4,7 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-public class FrameConfirmer extends JFrame implements ActionListener {
+public class FrameConfirmer extends JFrame implements ActionListener
+{
     private JPanel panelConf;
 
     private JLabel lblConf;
@@ -13,17 +14,20 @@ public class FrameConfirmer extends JFrame implements ActionListener {
     private FrameModificationVille frameModificationVille;
     private FrameModificationRoute frameModificationRoute;
 
-    public FrameConfirmer(FrameModificationRoute frameModificationRoute) {
+    public FrameConfirmer(FrameModificationRoute frameModificationRoute)
+	{
         this.frameModificationRoute = frameModificationRoute;
         creerFrameConfirmer();
     }
 
-    public FrameConfirmer(FrameModificationVille frameModificationVille) {
+    public FrameConfirmer(FrameModificationVille frameModificationVille)
+	{
         this.frameModificationVille = frameModificationVille;
         creerFrameConfirmer();
     }
 
-    private void creerFrameConfirmer() {
+    private void creerFrameConfirmer()
+	{
         this.setTitle("Confirmer");
         this.setSize(300, 100);
         this.setLocation(600, 500);
@@ -50,27 +54,27 @@ public class FrameConfirmer extends JFrame implements ActionListener {
         this.add(this.panelConf);
     }
 
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e)
+	{
         if (e.getSource().equals(this.btnOui))
         {
             if (this.frameModificationVille != null)
             {
                 this.frameModificationVille.quitterFrame(true);
                 try
-                {
+				{
+                    for (Route r : this.frameModificationVille.getVilleModif().getTabRoutes())
+                        Controleur.getCarte().supprimerRoute(r);
                     Controleur.getCarte().supprimerVille(this.frameModificationVille.getVilleModif());
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
                 }
+				catch( IOException ex ) { throw new RuntimeException(ex); }
             }
             if (this.frameModificationRoute != null)
                 this.frameModificationRoute.quitterFrame(true);
             this.dispose();
         }
 
-        if (e.getSource().equals(this.btnNon)) {
+        if (e.getSource().equals(this.btnNon))
             this.dispose();
-        }
     }
-
 }

@@ -1,5 +1,0 @@
-[VILLES]
-Caen	250	300
-Munich	450	100
-[ROUTES]
-1	Caen	Munich

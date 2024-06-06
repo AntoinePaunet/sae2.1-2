@@ -1,5 +1,6 @@
 [VILLES]
-Caen	250	300
-Munich	450	100
+Test	520	300
+Bozo	278	229
+
 [ROUTES]
-1	Caen	Munich
+3	Bozo	Test

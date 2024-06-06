@@ -3,8 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
 
-public class FrameModificationVille extends JFrame implements ActionListener, KeyListener
-{
+public class FrameModificationVille extends JFrame implements ActionListener, KeyListener {
     private JPanel panelInfo;
     private JPanel panelPrincipal;
     private JPanel panelDonnees;
@@ -29,8 +28,7 @@ public class FrameModificationVille extends JFrame implements ActionListener, Ke
 
     private Ville villeModif;
 
-    public FrameModificationVille(Ville ville)
-	{
+    public FrameModificationVille(Ville ville) {
         this.setTitle("Modification d'une ville");
         this.setSize(500, 400);
         this.setLocation(50, 50);
@@ -111,69 +109,55 @@ public class FrameModificationVille extends JFrame implements ActionListener, Ke
     }
 
     @Override
-    public void actionPerformed(ActionEvent e)
-	{
-        if (e.getSource().equals(this.btnSauvegarder))
-		{
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource().equals(this.btnSauvegarder)) {
             if (txtNomVille.getText().isEmpty()
-<<<<<<< HEAD
-            ||  txtXVille.getText().isEmpty()
-            ||  txtYVille.getText().isEmpty())
-=======
                     || txtXVille.getText().isEmpty()
                     || txtYVille.getText().isEmpty()
                     || txtNomVille.getText() == villeModif.getNom() &&
                             Integer.parseInt(txtXVille.getText()) == villeModif.getX() &&
                             Integer.parseInt(txtYVille.getText()) == villeModif.getY())
->>>>>>> b6b06ee2b654ab4c3b5315ab322f187850b63df2
+
                 lblErreur.setText("Erreur de saisie.\n");
-            else
-			{
-                try
-				{
+            else {
+                try {
                     // Modification
                     Controleur.getCarte().modifieVille(villeModif, this.txtNomVille.getText(),
                             Integer.parseInt(this.txtXVille.getText()), Integer.parseInt(this.txtYVille.getText()));
                     for (Route r : villeModif.getTabRoutes())
                         Controleur.getCarte().modifieRoute(r, r.getVilleDepart(), r.getVilleArrivee(),
                                 r.getNbTroncon());
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
                 }
-				catch( IOException ex ) { throw new RuntimeException(ex); }
                 this.dispose();
             }
         }
 
         if (e.getSource().equals(this.btnSupprimer))
-			new FrameConfirmer(this);
+            new FrameConfirmer(this);
     }
 
-    public void keyPressed(KeyEvent e)
-	{
+    public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_ENTER)
             this.btnSauvegarder.doClick();
     }
 
     @Override
-    public void keyReleased(KeyEvent e) {}
+    public void keyReleased(KeyEvent e) {
+    }
 
     @Override
-    public void keyTyped(KeyEvent e) {}
+    public void keyTyped(KeyEvent e) {
+    }
 
     public void quitterFrame(boolean confirm) {
         if (confirm)
             this.dispose();
     }
 
-    public Ville getVilleModif()
-	{
+    public Ville getVilleModif() {
         return this.villeModif;
     }
 
-<<<<<<< HEAD
-    public static void main(String[] args)
-	{
-        new FrameModificationVille(new Ville("test", 20, 20));
-    }
-=======
->>>>>>> 213607b2f6c5721c3c87e06d7bc6db91449776e9
 }

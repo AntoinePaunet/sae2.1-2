@@ -104,16 +104,6 @@ public class FrameCreation extends JFrame {
                 lblErreur.setBackground(Color.RED);
                 pnlErreur.add(lblErreur);
 
-<<<<<<< HEAD
-                if( !txtNom.getText().isEmpty() )
-                {
-					try {
-						if( Integer.parseInt(txtCooX.getText()) <= 900 && Integer.parseInt(txtCooX.getText()) >= 20
-						||  Integer.parseInt(txtCooY.getText()) <= 730 && Integer.parseInt(txtCooY.getText()) >= 50 )
-						{
-							lblErreur.setText("Création d'une ville");
-							if(Controleur.setNouvelleVille(new Ville(txtNom.getText(), Integer.parseInt(txtCooX.getText()), Integer.parseInt(txtCooY.getText()))))
-=======
                 if (!txtNom.getText().isEmpty()) {
                     try {
                         if (Integer.parseInt(txtCooX.getText()) <= 900 && Integer.parseInt(txtCooX.getText()) >= 20
@@ -122,7 +112,7 @@ public class FrameCreation extends JFrame {
                             lblErreur.setText("Création d'une ville");
                             if (Controleur.setNouvelleVille(new Ville(txtNom.getText(),
                                     Integer.parseInt(txtCooX.getText()), Integer.parseInt(txtCooY.getText()))))
->>>>>>> b6b06ee2b654ab4c3b5315ab322f187850b63df2
+
                                 FrameCreation.super.dispose();
                         }
                         lblErreur.setText("Champ de saisie incorrecte");
@@ -204,6 +194,7 @@ public class FrameCreation extends JFrame {
                 lblErreur.setBackground(Color.RED);
                 pnlErreur.add(lblErreur);
 
+<<<<<<< HEAD
                 if( !txtVilleDep.getText().isEmpty() && !txtVilleArr.getText().isEmpty() && lstTroncons.getSelectedIndex() != -1 )
                 {
 					//Création d'un élément
@@ -214,6 +205,18 @@ public class FrameCreation extends JFrame {
 							lblErreur.setText("Une des villes n'existe pas");
 						else
 							FrameCreation.super.dispose();
+=======
+                if (!txtVilleDep.getText().isEmpty() && !txtVilleArr.getText().isEmpty()
+                        && lstTroncons.getSelectedIndex() != -1) {
+                    // Création d'un élément
+                    lblErreur.setText("Création d'un élément");
+                    try {
+                        if (!Controleur.setNouvelleRoute(txtVilleDep.getText(), txtVilleArr.getText(),
+                                lstTroncons.getSelectedIndex()))
+                            lblErreur.setText("Une des villes n'existe pas");
+                        else
+                            FrameCreation.super.dispose();
+>>>>>>> 36195d798097dc715d6a23dcfd5315317ce39980
 
                     } catch (IOException e) {
                         throw new RuntimeException(e);

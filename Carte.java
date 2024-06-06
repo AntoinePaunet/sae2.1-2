@@ -179,17 +179,12 @@ public class Carte {
 		this.ecrireVille(nomVille, xVille, yVille);
 	}
 
-<<<<<<< HEAD
-	public void supprimerVille(Ville ville) throws IOException
-	{
-=======
 	public void modifieRoute(Route route, Ville villeDep, Ville villeArr, int nbTroncon) throws IOException {
 		this.supprimerRoute(route);
 		this.ecrireRoute(villeDep, villeArr, nbTroncon);
 	}
 
 	public void supprimerVille(Ville ville) throws IOException {
->>>>>>> 720beee8e9eea3e5a1dcf31aaa626b9e601ded83
 		FileReader fr = new FileReader("data.txt");
 		Scanner sc = new Scanner(fr);
 

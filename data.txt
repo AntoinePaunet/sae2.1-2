@@ -1,6 +1,4 @@
 [VILLES]
-test	524	321
-Bozo	237	278
 
 [ROUTES]
-8	Munich	Hannover
+

@@ -167,7 +167,4 @@ public class FrameModificationVille extends JFrame implements ActionListener, Ke
         return this.villeModif;
     }
 
-    public static void main(String[] args) {
-        new FrameModificationVille(new Ville("test", 20, 20));
-    }
 }

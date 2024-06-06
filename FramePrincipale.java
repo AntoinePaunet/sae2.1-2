@@ -168,13 +168,28 @@ public class FramePrincipale extends JFrame implements ActionListener
             @Override
             public void mouseDragged(MouseEvent e)
             {
+                if(villeSelectionne == null)
+                {
+                    return;
+                }
+
                 try {
                     Controleur.getCarte().modifieVille(villeSelectionne,villeSelectionne.getNom(),e.getX()-50,e.getY()-100);
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
             }
+
+            @Override
+            public void mouseReleased(MouseEvent e)
+            {
+                villeSelectionne = null;
+            }
+
+
         };
+
+
         this.addMouseListener(mouseAdapter);
         this.addMouseMotionListener(mouseAdapter);
     }

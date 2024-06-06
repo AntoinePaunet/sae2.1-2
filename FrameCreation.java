@@ -193,7 +193,7 @@ public class FrameCreation extends JFrame {
                 lblErreur.setFont(new Font("Arial", Font.BOLD, 20));
                 lblErreur.setBackground(Color.RED);
                 pnlErreur.add(lblErreur);
-                
+
                 if( !txtVilleDep.getText().isEmpty() && !txtVilleArr.getText().isEmpty() && lstTroncons.getSelectedIndex() != -1 )
                 {
 					//Création d'un élément

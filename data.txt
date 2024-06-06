@@ -1,8 +1,8 @@
 [VILLES]
-Test	520	300
 Bozo	278	229
 Paris	460	600
+Test	720	364
 
 [ROUTES]
-3	Bozo	Test
-2	Paris	test
+3	Bozo	test
+2	Paris	Bozo

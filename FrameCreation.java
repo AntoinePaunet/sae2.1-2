@@ -194,16 +194,16 @@ public class FrameCreation extends JFrame {
                 lblErreur.setBackground(Color.RED);
                 pnlErreur.add(lblErreur);
 
-                if (!txtVilleDep.getText().isEmpty() && !txtVilleArr.getText().isEmpty()
-                        && lstTroncons.getSelectedIndex() != -1) {
-                    // Création d'un élément
-                    lblErreur.setText("Création d'un élément");
-                    try {
-                        if (!Controleur.setNouvelleRoute(txtVilleDep.getText(), txtVilleArr.getText(),
-                                lstTroncons.getSelectedIndex()))
-                            lblErreur.setText("Une des villes n'existe pas");
-                        else
-                            FrameCreation.super.dispose();
+                if( !txtVilleDep.getText().isEmpty() && !txtVilleArr.getText().isEmpty() && lstTroncons.getSelectedIndex() != -1 )
+                {
+					//Création d'un élément
+					lblErreur.setText("Création d'un élément");
+					try
+					{
+						if(!Controleur.setNouvelleRoute(txtVilleDep.getText(), txtVilleArr.getText(), lstTroncons.getSelectedIndex()))
+							lblErreur.setText("Une des villes n'existe pas");
+						else
+							FrameCreation.super.dispose();
 
                     } catch (IOException e) {
                         throw new RuntimeException(e);

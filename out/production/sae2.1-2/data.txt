@@ -1,9 +1,8 @@
 [VILLES]
-<<<<<<< HEAD
-test	520	230
-=======
-
->>>>>>> 720beee8e9eea3e5a1dcf31aaa626b9e601ded83
+Test	520	300
+Bozo	278	229
+Paris	460	600
 
 [ROUTES]
-8	Munich	Hannover
+3	Bozo	Test
+2	Paris	test

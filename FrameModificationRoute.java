@@ -98,7 +98,6 @@ public class FrameModificationRoute extends JFrame implements ActionListener {
         btnSupprimer.setFont(new Font("Arial", Font.BOLD, 25));
 
         // Initialisation
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
     }
 

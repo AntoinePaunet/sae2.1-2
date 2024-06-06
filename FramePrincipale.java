@@ -13,6 +13,7 @@ public class FramePrincipale extends JFrame implements ActionListener
 	private JMenuItem           menuiQuitter;
 
     private ArrayList<Ville>    villes;
+    private ArrayList<Route>    routes;
 
 	private Controleur ctrl;
 
@@ -102,6 +103,7 @@ public class FramePrincipale extends JFrame implements ActionListener
 
                 //remplir le panel
                 villes = Controleur.getCarte().getTabVilles();
+                routes = Controleur.getCarte().getTabRoutes();
 
 
 
@@ -123,6 +125,15 @@ public class FramePrincipale extends JFrame implements ActionListener
                     lblVille.setBounds(v.getX() + 35, v.getY()+20, 60, 60);
                     panelReseau.add(lblVille, JLayeredPane.DRAG_LAYER);
                 }
+
+                for(Route r : routes)
+                {
+                    ImageIcon imageVille = new ImageIcon(getClass().getResource("/images/route" + r.getNbTroncon() +  ".png"));
+                    JLabel imgLabel = new JLabel(imageVille);
+                    imgLabel.setBounds(r.getVilleDepart().getX(), r.getVilleArrivee().getY(), Math.abs(r.getVilleArrivee().getX()-r.getVilleDepart().getX()), imageVille.getIconHeight());
+                    panelReseau.add(imgLabel, JLayeredPane.POPUP_LAYER);
+                }
+
             }
         });
         fps.start();
@@ -142,6 +153,16 @@ public class FramePrincipale extends JFrame implements ActionListener
                     if(e.getX() >= v.getX() + 10 && e.getX() < v.getX() + 110 && e.getY() >= v.getY() + 60 && e.getY() < v.getY() + 160)
                     {
                         new FrameModificationVille(v);
+                    }
+                }
+
+
+                for(Route r : routes)
+                {
+                    System.out.println();
+                    if(e.getX() >= r.getVilleDepart().getX() && e.getX() < r.getVilleArrivee().getX() || e.getX() >= r.getVilleArrivee().getX() && e.getX() < r.getVilleDepart().getX() && e.getY() >= r.getVilleDepart().getY() && e.getY() < r.getVilleArrivee().getY() || e.getY() >= r.getVilleArrivee().getY() && e.getY() < r.getVilleDepart().getY())
+                    {
+                        new FrameModificationRoute(Controleur.getCarte(), r);
                     }
                 }
             }

@@ -208,8 +208,8 @@ public class Carte
 		if( donnesFichier.contains(ville.getNom()) ) // Vérification de doubles dans le fichier texte
 		{
 			String tmp = ville.getX() + "" + ville.getY();
-			String donneesVilles = donnesFichier.substring(donnesFichier.indexOf("[VILLES]"), donnesFichier.indexOf(ville.getNom()));
-			String donneesRoutes = donnesFichier.substring(donnesFichier.indexOf(ville.getNom()) + ville.getNom().length() + tmp.length() + 2);
+			String donneesVilles = donnesFichier.substring( donnesFichier.indexOf("[VILLES]"), donnesFichier.indexOf(ville.getNom()) );
+			String donneesRoutes = donnesFichier.substring( donnesFichier.indexOf(ville.getNom()) + ville.getNom().length() + tmp.length() + 2 );
 
 
 			donnesFichier = donneesVilles.stripTrailing() + donneesRoutes;

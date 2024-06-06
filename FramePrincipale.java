@@ -30,7 +30,7 @@ public class FramePrincipale extends JFrame implements ActionListener
 		this.ctrl = ctrl;
         this.setTitle   ( "Réseau routier" );
         this.setSize    ( 1040,950 );
-        this.setLocation(  50, 50 );
+        this.setLocation(  300, 50 );
 		this.setVisible (true);
         this.setIconImage(new ImageIcon(this.getClass().getResource("/images/ville.png")).getImage());
 
